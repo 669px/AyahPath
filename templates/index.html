@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="AyahPath — Navigate life decisions with wisdom from the Qur'an. Explore relevant ayat, understand real-life and spiritual impact.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>AyahPath — Qur'anic Life Guidance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&family=Figtree:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" href="/static/img/logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="/static/img/logo.png">
+    <meta name="theme-color" content="#2CA4AB">
+</head>
+<body>
+    <div class="ambient-bg">
+        <div class="ambient-orb orb-1"></div>
+        <div class="ambient-orb orb-2"></div>
+        <div class="ambient-orb orb-3"></div>
+    </div>
+    <div class="geo-pattern"></div>
+
+    <div id="app" class="shell">
+        <header id="header" class="header">
+            <div class="header-inner">
+                <a class="brand" id="logo-home" href="#">
+                    <div class="brand-mark">
+                        <img src="/static/img/logo.png" alt="AyahPath Logo" class="brand-logo" />
+                    </div>
+                    <div class="brand-text">
+                        <span class="brand-name">AyahPath</span>
+                        <span class="brand-tag">Qur'anic Guidance</span>
+                    </div>
+                </a>
+                
+                <div class="header-actions">
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                        <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                        <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="desktop-layout">
+        <nav class="desktop-nav" id="desktop-nav">
+            <button class="nav-item active" data-page="home" id="nav-home-desktop">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span>Home</span>
+            </button>
+            <button class="nav-item" data-page="prayer" id="nav-prayer-desktop">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4.5 2.5"/></svg>
+                <span>Prayer</span>
+            </button>
+            <button class="nav-item" data-page="reflect" id="nav-reflect-desktop">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                <span>Reflect</span>
+            </button>
+            <button class="nav-item" data-page="streak" id="nav-streak-desktop">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                <span>Streak</span>
+            </button>
+            <button class="nav-item" data-page="history" id="nav-history-desktop">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>History</span>
+            </button>
+            <button class="nav-item" data-page="notifications" id="nav-notifications-desktop" style="position:relative;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                <div class="notif-badge" style="display:none;"></div>
+                <span>Alerts</span>
+            </button>
+            <button class="nav-item" data-page="settings" id="nav-settings-desktop">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                <span>Settings</span>
+            </button>
+        </nav>
+        <div class="desktop-content">
+
+        <main id="page-home" class="page active">
+            <section class="daily-banner" id="daily-banner">
+                <div class="daily-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                    <span>Ayah of the Day</span>
+                </div>
+                <p class="daily-ar" id="daily-arabic"></p>
+                <p class="daily-trans" id="daily-urdu"></p>
+                <p class="daily-en" id="daily-translation"></p>
+                <div class="daily-meta">
+                    <span class="daily-ref" id="daily-ref"></span>
+                    <button class="btn-icon" id="daily-audio-btn" title="Listen">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    </button>
+                </div>
+            </section>
+
+            <section class="streak-mini" id="streak-mini">
+                <div class="streak-mini-inner">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    <span id="mini-streak-count">0</span>
+                    <span class="streak-mini-label">day streak</span>
+                </div>
+                <div class="streak-dots" id="streak-dots"></div>
+            </section>
+
+            <section class="scenarios">
+                <div class="sec-head">
+                    <h2>Life Scenarios</h2>
+                    <p>Choose a situation to explore Qur'anic wisdom</p>
+                </div>
+                <div class="grid" id="scenario-grid"></div>
+            </section>
+        </main>
+
+        <main id="page-simulation" class="page">
+            <button class="back-link" id="back-to-home">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+                Back to Scenarios
+            </button>
+
+            <div class="sim-wrap">
+                <div class="sim-hero" id="sim-hero">
+                    <div class="sim-hero-icon" id="sim-icon"></div>
+                    <h2 id="sim-title"></h2>
+                    <p id="sim-desc"></p>
+                </div>
+
+                <div class="loader" id="sim-loading" hidden>
+                    <div class="loader-ring"></div>
+                    <p>Seeking Qur'anic guidance...</p>
+                </div>
+
+                <article class="verse-card" id="verse-card" hidden>
+                    <div class="verse-top">
+                        <span class="verse-badge">Primary Verse</span>
+                        <span class="verse-ref" id="verse-ref"></span>
+                    </div>
+                    <p class="verse-ar" id="verse-ar"></p>
+                    <p class="verse-trans" id="verse-ur" dir="auto"></p>
+                    <blockquote class="verse-en" id="verse-en"></blockquote>
+                    <div class="verse-controls">
+                        <button class="btn-audio" id="verse-audio-btn">
+                            <svg class="ico-play" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                            <svg class="ico-pause" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+                            <span>Recitation</span>
+                        </button>
+                    </div>
+                    <div class="audio-track" id="audio-track" hidden>
+                        <div class="track-bar"><div class="track-fill" id="track-fill"></div></div>
+                    </div>
+                </article>
+
+                <section class="extras" id="extras-section" hidden>
+                    <h3 class="label">Related Verses</h3>
+                    <div id="extras-list"></div>
+                </section>
+
+                <section class="insight" id="insight-section" hidden>
+                    <h3 class="label">Understanding the Path</h3>
+                    <div class="insight-cards">
+                        <div class="icard icard-dunya">
+                            <div class="icard-head">
+                                <span class="icon-3d icon-3d-sky" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10A15.3 15.3 0 0112 2z"/></svg>
+                                </span>
+                                <h4>Dunya Impact</h4>
+                            </div>
+                            <p id="txt-dunya"></p>
+                        </div>
+                        <div class="icard icard-akhirah">
+                            <div class="icard-head">
+                                <span class="icon-3d icon-3d-violet" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                </span>
+                                <h4>Akhirah Impact</h4>
+                            </div>
+                            <p id="txt-akhirah"></p>
+                        </div>
+                        <div class="icard icard-better">
+                            <div class="icard-head">
+                                <span class="icon-3d icon-3d-emerald" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                </span>
+                                <h4>The Better Choice</h4>
+                            </div>
+                            <p id="txt-better"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="video-embeds" id="youtube-section" hidden>
+                    <h3 class="label">Scholarly Videos</h3>
+                    <div class="video-grid" id="youtube-list"></div>
+                </section>
+
+                <div class="action-row" id="action-row" hidden>
+                    <button class="btn-secondary" id="save-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
+                        Save
+                    </button>
+                    <button class="btn-secondary" id="share-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        Share
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <main id="page-reflect" class="page">
+            <section class="reflect-area">
+                <div class="reflect-hero">
+                    <div class="reflect-hero-orb">
+                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="url(#rg)" stroke-width="1.2" stroke-linecap="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                            <defs><linearGradient id="rg" x1="2" y1="2" x2="22" y2="22"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs>
+                        </svg>
+                    </div>
+                    <h2>Personal Reflection</h2>
+                    <p>Describe what weighs on your heart — the Qur'an will illuminate your path</p>
+                </div>
+                <div class="reflect-form">
+                    <textarea id="reflect-input" placeholder="What situation are you facing? Share your thoughts, struggles, or the decision you're wrestling with..." rows="4" maxlength="500"></textarea>
+                    <div class="reflect-bar">
+                        <span class="char-ct" id="char-count">0 / 500</span>
+                        <button class="btn-primary" id="reflect-submit">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                            Seek Guidance
+                        </button>
+                    </div>
+                </div>
+
+                <div class="reflect-results" id="reflect-results" hidden>
+                    <div class="loader" id="reflect-loading" hidden>
+                        <div class="loader-ring"></div>
+                        <p>Reflecting deeply...</p>
+                    </div>
+                    <div id="reflect-content" hidden>
+                        <div class="reflect-topic" id="reflect-topic"></div>
+                        <article class="verse-card" id="reflect-verse-card"></article>
+                        <div class="insight-cards" id="reflect-insights"></div>
+                        <section class="video-embeds" id="reflect-youtube-section" hidden>
+                            <h3 class="label">Scholarly Videos</h3>
+                            <div class="video-grid" id="reflect-youtube-list"></div>
+                        </section>
+                        <div class="action-row">
+                            <button class="btn-secondary" id="reflect-save-btn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <main id="page-streak" class="page">
+            <section class="streak-page">
+                <div class="streak-hero-card">
+                    <div class="streak-flame">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2C10 6 6 8 6 13a6 6 0 0012 0c0-5-4-7-6-11z" fill="url(#fl)" opacity=".2"/>
+                            <path d="M12 2C10 6 6 8 6 13a6 6 0 0012 0c0-5-4-7-6-11z" stroke="url(#fl)" stroke-width="1.5" fill="none"/>
+                            <path d="M12 12c-1 2-3 3-3 5a3 3 0 006 0c0-2-2-3-3-5z" fill="url(#fl)" opacity=".4"/>
+                            <defs><linearGradient id="fl" x1="6" y1="2" x2="18" y2="19"><stop stop-color="#f59e0b"/><stop offset="1" stop-color="#ef4444"/></linearGradient></defs>
+                        </svg>
+                    </div>
+                    <div class="streak-number" id="streak-number">0</div>
+                    <div class="streak-unit">Day Streak</div>
+                    <div class="streak-sub" id="streak-sub">Longest: 0 days • Total active: 0 days</div>
+                </div>
+
+                <div class="week-grid" id="week-grid"></div>
+
+                <button class="btn-primary btn-checkin" id="checkin-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    Daily Check-in
+                </button>
+
+                <div class="goals-section">
+                    <div class="goals-head">
+                        <h3>Your Goals</h3>
+                        <button class="btn-ghost" id="add-goal-btn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            Add Goal
+                        </button>
+                    </div>
+                    <div id="goals-list" class="goals-list"></div>
+                    <div id="goals-empty" class="goals-empty">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".4"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                        <p>No goals yet — set one to track your spiritual growth</p>
+                    </div>
+                </div>
+
+                <div class="activity-section">
+                    <h3>Recent Activity</h3>
+                    <div id="activity-list" class="activity-list"></div>
+                    <div id="activity-empty" class="activity-empty">
+                        <p>Your activity will appear here as you use AyahPath</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <main id="page-history" class="page">
+            <section class="history-area">
+                <div class="sec-head">
+                    <h2>Saved Reflections</h2>
+                    <p>Revisit your spiritual journey</p>
+                </div>
+                <div id="history-empty" class="empty-state">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".35"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+                    <p>No reflections saved yet</p>
+                    <span>Explore scenarios or reflect to begin</span>
+                </div>
+                <div id="history-list" class="history-list"></div>
+            </section>
+        </main>
+
+        <main id="page-notifications" class="page">
+            <section class="history-area">
+                <div class="sec-head">
+                    <h2>Alerts</h2>
+                    <p>Updates, reminders, and daily check-ins</p>
+                </div>
+                <div class="history-list" id="notif-list">
+                    <!-- Dynamic notifications -->
+                </div>
+                <div id="notif-empty" class="empty-state" style="display:none">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    <p>No new alerts</p>
+                    <span>Your notification inbox is clear.</span>
+                </div>
+            </section>
+        </main>
+
+        <main id="page-settings" class="page">
+            <section class="history-area">
+                <div class="sec-head">
+                    <h2>Settings</h2>
+                    <p>Customize your spiritual journey</p>
+                </div>
+                <div class="settings-panel">
+                    <div class="setting-group">
+                        <h3>Language & Region</h3>
+                        <label class="field">
+                            <span>Preferred Translation</span>
+                            <select id="settings-lang-toggle" class="lang-toggle-full">
+                                <option value="97">Urdu</option>
+                                <option value="84">English (Hilali)</option>
+                                <option value="136">French</option>
+                                <option value="33">Indonesian</option>
+                                <option value="20">Bengali</option>
+                                <option value="77">Turkish</option>
+                                <option value="54">Hindi</option>
+                                <option value="131">English Only</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <div class="setting-group">
+                        <h3>Notifications</h3>
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <h4>Daily Reminder</h4>
+                                <p>Get alerted to complete your daily check-in</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="setting-daily-notif" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="toggle-row">
+                            <div class="toggle-info">
+                                <h4>Streak Alerts</h4>
+                                <p>Get notified when your streak is at risk</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="setting-streak-notif" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="setting-group danger-zone">
+                        <h3>Data Management</h3>
+                        <p class="z-desc">These actions cannot be undone.</p>
+                        <button class="btn-ghost alert-text" id="clear-history-btn">Clear All Reflection History</button>
+                        <button class="btn-ghost alert-text" id="clear-streak-btn">Reset Streak Data</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <main id="page-prayer" class="page">
+            <section class="prayer-tracker-area">
+                <div class="prayer-header">
+                    <div class="prayer-today-badge">TODAY</div>
+                    <div class="prayer-date-nav">
+                        <button class="prayer-nav-arrow" id="prayer-prev-day" aria-label="Previous day">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+                        </button>
+                        <div class="prayer-date-info">
+                            <h2 id="prayer-date-label"></h2>
+                            <span class="prayer-hijri" id="prayer-hijri-label"></span>
+                        </div>
+                        <button class="prayer-nav-arrow" id="prayer-next-day" aria-label="Next day">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="prayer-list" id="prayer-list">
+                    <!-- Prayer items rendered by JS -->
+                </div>
+
+                <div class="prayer-progress-section">
+                    <div class="prayer-progress-bar">
+                        <div class="prayer-progress-fill" id="prayer-progress-fill"></div>
+                    </div>
+                    <span class="prayer-progress-label" id="prayer-progress-label">0 / 5 completed</span>
+                </div>
+
+                <div class="prayer-week-strip" id="prayer-week-strip">
+                    <!-- Day circles rendered by JS -->
+                </div>
+
+                <div class="prayer-stats-row">
+                    <div class="prayer-stat-card">
+                        <span class="prayer-stat-value" id="prayer-streak-count">0</span>
+                        <span class="prayer-stat-label">Day Streak</span>
+                    </div>
+                    <div class="prayer-stat-card">
+                        <span class="prayer-stat-value" id="prayer-total-prayers">0</span>
+                        <span class="prayer-stat-label">Total Prayers</span>
+                    </div>
+                    <div class="prayer-stat-card">
+                        <span class="prayer-stat-value" id="prayer-completion-rate">0%</span>
+                        <span class="prayer-stat-label">This Week</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>AyahPath — Guided by the Words of Allah ﷻ</p>
+            <span>Quran.com API • Built with reverence</span>
+        </footer>
+        </div>
+        </div>
+    </div>
+
+    <nav class="bottom-nav" id="bottom-nav">
+        <button class="btm-item active" data-page="home" id="nav-home">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span>Home</span>
+        </button>
+        <button class="btm-item" data-page="prayer" id="nav-prayer">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4.5 2.5"/></svg>
+            <span>Prayer</span>
+        </button>
+        <button class="btm-item" data-page="reflect" id="nav-reflect">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            <span>Reflect</span>
+        </button>
+        <button class="btm-item" data-page="streak" id="nav-streak">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <span>Streak</span>
+        </button>
+        <button class="btm-item" data-page="history" id="nav-history">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>History</span>
+        </button>
+        <button class="btm-item" data-page="notifications" style="position:relative;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <div class="notif-badge" id="notif-badge" style="display:none;"></div>
+            <span>Alerts</span>
+        </button>
+        <button class="btm-item" data-page="settings">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            <span>Settings</span>
+        </button>
+    </nav>
+
+    <div class="modal-overlay" id="goal-modal" style="display:none">
+        <div class="modal">
+            <div class="modal-head">
+                <h3>Set a New Goal</h3>
+                <button class="btn-icon" id="goal-modal-close">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label class="field">
+                    <span>Goal Title</span>
+                    <input type="text" id="goal-title-input" placeholder="e.g., Explore 5 scenarios" maxlength="60">
+                </label>
+                <label class="field">
+                    <span>Track</span>
+                    <select id="goal-type-select">
+                        <option value="any">Any Activity</option>
+                        <option value="scenarios">Scenarios Explored</option>
+                        <option value="reflections">Reflections Made</option>
+                        <option value="listening">Verses Listened</option>
+                        <option value="daily_ayah">Daily Ayah Viewed</option>
+                    </select>
+                </label>
+                <label class="field">
+                    <span>Target Count</span>
+                    <input type="number" id="goal-target-input" value="5" min="1" max="100">
+                </label>
+            </div>
+            <div class="modal-foot">
+                <button class="btn-primary" id="goal-create-btn">Create Goal</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"><span id="toast-msg"></span></div>
+    <audio id="audio-player" preload="none"></audio>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

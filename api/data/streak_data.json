@@ -1,0 +1,12 @@
+{
+    "anonymous_user": {
+        "user_id": "anonymous_user",
+        "current_streak": 1,
+        "longest_streak": 1,
+        "last_active": "2026-04-07",
+        "total_days_active": 1,
+        "activity_dates": [
+            "2026-04-07"
+        ]
+    }
+}

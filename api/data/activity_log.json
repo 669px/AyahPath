@@ -1,0 +1,566 @@
+[
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-06T16:34:59.806529",
+        "action": "reflection_saved",
+        "details": "Saved reflection for 94:6"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-06T16:43:36.042937",
+        "action": "reflection_saved",
+        "details": "Saved reflection for 2:286"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-06T16:47:20.607292",
+        "action": "reflection_saved",
+        "details": "Saved reflection for 94:5"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-06T16:48:22.696342",
+        "action": "reflection_saved",
+        "details": "Saved reflection for 2:286"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-06T16:48:36.668571",
+        "action": "reflection_saved",
+        "details": "Saved reflection for 94:6"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-06T17:01:39.005900",
+        "action": "reflection_saved",
+        "details": "Saved reflection for 94:5"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T12:56:17.566323",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T12:59:50.552970",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T13:02:05.728224",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T13:05:18.253015",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T13:08:10.319918",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T13:16:25.877974",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T13:19:54.773933",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T13:20:47.137546",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T13:20:57.381492",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T13:22:49.779275",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T13:23:10.510526",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T13:25:33.799626",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T13:25:54.043653",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T13:27:20.915675",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T13:39:26.583194",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T13:40:18.093657",
+        "action": "scenario_viewed",
+        "details": "Jealousy"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T13:40:19.060399",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T13:43:01.519041",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T13:43:47.043391",
+        "action": "scenario_viewed",
+        "details": "Lying"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T13:44:58.787598",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T13:45:06.685693",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T13:45:49.840458",
+        "action": "scenario_viewed",
+        "details": "Lying"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T14:15:48.897039+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T14:20:15.581609+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T14:20:38.412266+00:00",
+        "action": "scenario_viewed",
+        "details": "Trust in Allah"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T14:22:10.535604+00:00",
+        "action": "scenario_viewed",
+        "details": "Lying"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T14:22:25.304466+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T14:22:50.563344+00:00",
+        "action": "scenario_viewed",
+        "details": "Stress & Anxiety"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T14:53:46.159165+00:00",
+        "action": "scenario_viewed",
+        "details": "Patience"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T14:54:01.895013+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T14:54:03.969174+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T14:54:18.360162+00:00",
+        "action": "scenario_viewed",
+        "details": "Lying"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T14:55:38.425901+00:00",
+        "action": "reflection_saved",
+        "details": "Saved reflection for 13:28"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T14:55:38.427228+00:00",
+        "action": "reflection_submitted",
+        "details": "hi i am sad today"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T14:59:00.004557+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T14:59:17.754980+00:00",
+        "action": "reflection_saved",
+        "details": "Saved reflection for 13:28"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T14:59:17.758355+00:00",
+        "action": "reflection_submitted",
+        "details": "why i am sad today"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T15:01:32.254053+00:00",
+        "action": "scenario_viewed",
+        "details": "Lying"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T15:03:02.941948+00:00",
+        "action": "scenario_viewed",
+        "details": "Lying"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T15:04:03.092797+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T15:04:22.673535+00:00",
+        "action": "scenario_viewed",
+        "details": "Lying"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T15:05:36.646737+00:00",
+        "action": "scenario_viewed",
+        "details": "Lying"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T15:05:54.982713+00:00",
+        "action": "scenario_viewed",
+        "details": "Lying"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T15:06:13.559510+00:00",
+        "action": "scenario_viewed",
+        "details": "Lying"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T15:06:31.606164+00:00",
+        "action": "scenario_viewed",
+        "details": "Lying"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T15:06:49.585217+00:00",
+        "action": "scenario_viewed",
+        "details": "Lying"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T15:07:07.948493+00:00",
+        "action": "scenario_viewed",
+        "details": "Lying"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T15:07:29.971739+00:00",
+        "action": "scenario_viewed",
+        "details": "Lying"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T15:08:59.502109+00:00",
+        "action": "reflection_saved",
+        "details": "Saved reflection for 13:28"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T15:08:59.503155+00:00",
+        "action": "reflection_submitted",
+        "details": "I am feeling very anxious about my final exams today."
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T15:09:58.912308+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T15:10:14.323196+00:00",
+        "action": "scenario_viewed",
+        "details": "Trust in Allah"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T15:27:35.765502+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T15:27:57.084983+00:00",
+        "action": "scenario_viewed",
+        "details": "Lying"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T15:28:00.388224+00:00",
+        "action": "scenario_viewed",
+        "details": "Charity"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T15:29:17.624024+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T15:29:33.523480+00:00",
+        "action": "scenario_viewed",
+        "details": "Trust in Allah"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T15:29:39.207925+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T15:30:27.894912+00:00",
+        "action": "reflection_saved",
+        "details": "Saved reflection for 65:3"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T15:30:27.896581+00:00",
+        "action": "reflection_submitted",
+        "details": "is stealing halal or haram"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T15:31:19.591088+00:00",
+        "action": "manual_checkin",
+        "details": "Daily check-in"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T19:37:16.879047+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T19:38:26.171458+00:00",
+        "action": "reflection_saved",
+        "details": "Saved reflection for 9:119"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T19:38:26.186243+00:00",
+        "action": "reflection_submitted",
+        "details": "How can I deal with tough situations?"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T19:39:00.679627+00:00",
+        "action": "manual_checkin",
+        "details": "Daily check-in"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T19:39:39.617289+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T19:39:42.545737+00:00",
+        "action": "manual_checkin",
+        "details": "Daily check-in"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T19:39:55.375500+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T19:39:59.339032+00:00",
+        "action": "manual_checkin",
+        "details": "Daily check-in"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T19:40:24.598443+00:00",
+        "action": "scenario_viewed",
+        "details": "Arrogance"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T19:40:55.183473+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T19:41:30.998292+00:00",
+        "action": "reflection_saved",
+        "details": "Saved reflection for 9:119"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T19:41:31.014292+00:00",
+        "action": "reflection_submitted",
+        "details": "I am feeling extremely sick and I require help."
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T19:42:17.042737+00:00",
+        "action": "scenario_viewed",
+        "details": "Gratitude"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T19:42:25.909710+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T19:42:40.504909+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T19:42:42.779316+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T19:43:11.988693+00:00",
+        "action": "scenario_viewed",
+        "details": "Gratitude"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T20:00:55.058812+00:00",
+        "action": "manual_checkin",
+        "details": "Daily check-in"
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T20:03:01.990935+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T20:03:12.071124+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T20:12:34.711746+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T20:13:19.748639+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T20:13:31.005009+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T20:56:35.291454+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T20:57:11.471264+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T21:00:02.153450+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    },
+    {
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-07T21:01:03.417076+00:00",
+        "action": "daily_ayah_viewed",
+        "details": ""
+    }
+]
