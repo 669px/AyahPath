@@ -18,6 +18,35 @@
     let audioPlayer = null;
     let isPlaying = false;
     let dailyAudioUrl = null;
+    let lastPrayerRenderToken = 0;
+    const prayerPending = new Set();
+    const THEMES = {
+        dark: {
+            label: 'Midnight',
+            color: '#2CA4AB',
+            description: 'A calm night palette with teal highlights and soft contrast.'
+        },
+        light: {
+            label: 'Light',
+            color: '#F7F8FA',
+            description: 'A bright reading mode for longer study and reflection.'
+        },
+        arabic: {
+            label: 'Arabic Majlis',
+            color: '#8A623E',
+            description: 'Warm parchment tones and classical Arabic-inspired typography.'
+        },
+        quranic: {
+            label: 'Quranic Emerald',
+            color: '#1F6F5F',
+            description: 'Deep emerald, gold accents, and a manuscript-inspired atmosphere.'
+        },
+        ramadan: {
+            label: 'Ramadan Lantern',
+            color: '#43316B',
+            description: 'A lantern-lit indigo palette with moonlit gold highlights.'
+        }
+    };
 
     const $ = (s) => document.querySelector(s);
     const $$ = (s) => document.querySelectorAll(s);
@@ -42,13 +71,45 @@
 
     function initTheme() {
         const saved = localStorage.getItem('ayahpath-theme') || 'dark';
-        document.documentElement.setAttribute('data-theme', saved);
-        $('#theme-toggle').addEventListener('click', () => {
-            const cur = document.documentElement.getAttribute('data-theme');
-            const next = cur === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', next);
-            localStorage.setItem('ayahpath-theme', next);
-        });
+        const themeNames = Object.keys(THEMES);
+        const toggle = $('#theme-toggle');
+        const select = $('#settings-theme-select');
+
+        const applyTheme = (themeName) => {
+            const nextTheme = THEMES[themeName] ? themeName : 'dark';
+            document.documentElement.setAttribute('data-theme', nextTheme);
+            document.documentElement.style.colorScheme = nextTheme === 'light' ? 'light' : 'dark';
+            localStorage.setItem('ayahpath-theme', nextTheme);
+            if (select) {
+                select.value = nextTheme;
+            }
+            const meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) {
+                meta.setAttribute('content', THEMES[nextTheme].color);
+            }
+            const desc = $('#theme-description');
+            if (desc) {
+                desc.textContent = THEMES[nextTheme].description;
+            }
+            if (toggle) {
+                toggle.setAttribute('aria-label', `Change theme from ${THEMES[nextTheme].label}`);
+                toggle.title = THEMES[nextTheme].label;
+            }
+        };
+
+        applyTheme(saved);
+
+        if (toggle) {
+            toggle.addEventListener('click', () => {
+                const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+                const next = themeNames[(themeNames.indexOf(cur) + 1) % themeNames.length];
+                applyTheme(next);
+            });
+        }
+
+        if (select) {
+            select.addEventListener('change', (e) => applyTheme(e.target.value));
+        }
     }
 
     function initLanguage() {
@@ -173,7 +234,6 @@
         $('#logo-home').addEventListener('click', (e) => { e.preventDefault(); go('home'); });
         $('#back-to-home').addEventListener('click', () => go('home'));
 
-        // Micro-interaction: streak click burst (desktop + mobile bottom nav)
         const streakBtns = [$('#nav-streak-desktop'), $('#nav-streak')].filter(Boolean);
         streakBtns.forEach((btn) => {
             btn.addEventListener('click', (e) => streakClickFx(btn, e));
@@ -189,12 +249,10 @@
             const y = cy - rect.top;
 
             btn.classList.remove('streak-pop');
-            // Force reflow so animation reliably restarts
             void btn.offsetWidth;
             btn.classList.add('streak-pop');
             setTimeout(() => btn.classList.remove('streak-pop'), 260);
 
-            // Ripple
             const ripple = document.createElement('span');
             ripple.className = 'click-ripple';
             const size = Math.max(rect.width, rect.height) * 1.2;
@@ -205,7 +263,6 @@
             btn.appendChild(ripple);
             setTimeout(() => ripple.remove(), 650);
 
-            // Dots burst
             const count = 7;
             for (let i = 0; i < count; i++) {
                 const dot = document.createElement('span');
@@ -220,7 +277,6 @@
                 setTimeout(() => dot.remove(), 750);
             }
         } catch (_) {
-            // No-op if anything goes wrong
         }
     }
 
@@ -229,25 +285,30 @@
             const rect = btn.getBoundingClientRect();
             const cx = rect.left + rect.width / 2;
             const cy = rect.top + rect.height / 2;
-
-            // Create a container for particles
+            const styles = getComputedStyle(document.documentElement);
+            const accent = styles.getPropertyValue('--emerald').trim() || '#2CA4AB';
+            const colors = [
+                accent,
+                styles.getPropertyValue('--sky').trim() || '#38bdf8',
+                styles.getPropertyValue('--amber').trim() || '#fbbf24',
+                styles.getPropertyValue('--violet').trim() || '#a78bfa',
+                styles.getPropertyValue('--rose').trim() || '#fb7185',
+                '#4ade80'
+            ];
             const container = document.createElement('div');
             container.style.cssText = 'position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden;';
             document.body.appendChild(container);
 
-            // Shockwave ring
             const ring = document.createElement('div');
             ring.style.cssText = `
                 position:absolute;left:${cx}px;top:${cy}px;
                 width:0;height:0;border-radius:50%;
-                border:2px solid rgba(44,164,171,0.7);
+                border:2px solid ${accent};
                 transform:translate(-50%,-50%);
                 animation:checkinRing 0.7s ease-out forwards;
             `;
             container.appendChild(ring);
 
-            // Sparkle particles
-            const colors = ['#2CA4AB', '#38bdf8', '#fbbf24', '#a78bfa', '#fb7185', '#4ade80'];
             const count = 18;
             for (let i = 0; i < count; i++) {
                 const p = document.createElement('div');
@@ -271,7 +332,6 @@
                 container.appendChild(p);
             }
 
-            // Add a ✓ checkmark flash
             const check = document.createElement('div');
             check.style.cssText = `
                 position:absolute;left:${cx}px;top:${cy}px;
@@ -282,12 +342,10 @@
             check.textContent = '✓';
             container.appendChild(check);
 
-            // Cleanup
             setTimeout(() => container.remove(), 1200);
         } catch (_) {}
     }
 
-    // Inject keyframes for check-in burst (only once)
     if (!document.getElementById('checkin-fx-styles')) {
         const style = document.createElement('style');
         style.id = 'checkin-fx-styles';
@@ -460,22 +518,22 @@
             videos.forEach(vid => {
                 const wrapper = document.createElement('div');
                 wrapper.className = 'video-card';
-                const watchUrl = `https://www.youtube.com/watch?v=${encodeURIComponent(vid.id)}`;
-                const thumbUrl = `https://i.ytimg.com/vi/${encodeURIComponent(vid.id)}/hqdefault.jpg`;
-                
-                // Track scenario title for the search fallback
-                const scenarioTitle = $('#sim-title')?.innerText || 'Qur\'an';
-                const searchQuery = encodeURIComponent(`${vid.channel} ${vid.title}`);
-                const searchUrl = `https://www.youtube.com/results?search_query=${searchQuery}`;
+                const searchQuery = encodeURIComponent(vid.query || `${vid.channel || ''} ${vid.title || ''}`.trim());
+                const searchUrl = vid.search_url || `https://www.youtube.com/results?search_query=${searchQuery}`;
+                const targetUrl = vid.url || searchUrl;
+                const thumbUrl = vid.thumbnail_url || '';
+                const ctaLabel = vid.link_type === 'video' ? 'Watch on YouTube' : 'Open YouTube results';
+                const thumbMarkup = thumbUrl
+                    ? `<img class="video-thumb" src="${thumbUrl}" alt="${esc(vid.title)} thumbnail" loading="lazy" onerror="this.remove(); this.parentElement.classList.add('video-thumb-failed');" />`
+                    : '';
 
                 wrapper.innerHTML = `
                     <div class="video-responsive">
-                        <a class="video-link" href="${watchUrl}" target="_blank" rel="noopener noreferrer" aria-label="${esc(vid.title)} (opens in YouTube)">
-                            <img class="video-thumb" src="${thumbUrl}" alt="${esc(vid.title)} thumbnail" loading="lazy" 
-                                 onerror="this.style.display='none'; this.parentElement.classList.add('video-thumb-failed');" />
+                        <a class="video-link" href="${targetUrl}" target="_blank" rel="noopener noreferrer" aria-label="${esc(vid.title)} (opens in YouTube)">
+                            ${thumbMarkup}
                             <div class="video-thumb-fallback">
                                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
-                                <span>Preview Unavailable</span>
+                                <span>${ctaLabel}</span>
                             </div>
                             <span class="video-play" aria-hidden="true">
                                 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="9 7 19 12 9 17 9 7"/></svg>
@@ -486,7 +544,7 @@
                         <h4 class="video-title">${esc(vid.title)}</h4>
                         <div class="video-meta">
                             <span class="video-channel">${esc(vid.channel)}</span>
-                            <a href="${searchUrl}" target="_blank" class="video-search-link">Search on YouTube &rarr;</a>
+                            <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="video-search-link">${ctaLabel} &rarr;</a>
                         </div>
                     </div>
                 `;
@@ -514,7 +572,6 @@
                 resetAudioUI();
                 isPlaying = false;
             } else {
-                // Stop everything first
                 audioPlayer.pause();
                 audioPlayer.currentTime = 0;
                 resetAudioUI();
@@ -574,9 +631,26 @@
     async function loadDailyAyah() {
         try {
             const langId = localStorage.getItem('ayahpath-lang') || '131';
-            const r = await fetch('/api/daily-ayah?trans=' + langId);
-            const d = await r.json();
+            const lastVerseKey = localStorage.getItem('ayahpath-last-home-ayah') || '';
+            const exclude = encodeURIComponent(lastVerseKey);
+            let r = await fetch(`/api/personalized-ayah?trans=${encodeURIComponent(langId)}&user_id=anonymous_user&exclude=${exclude}`, {
+                cache: 'no-store'
+            });
+            let d = await r.json();
+            if (!d.success) {
+                r = await fetch(`/api/daily-ayah?trans=${encodeURIComponent(langId)}&user_id=anonymous_user&random=1&exclude=${exclude}`, {
+                    cache: 'no-store'
+                });
+                d = await r.json();
+            }
             if (d.success && d.ayah && d.ayah.success) {
+                if (d.ayah.verse_key) {
+                    localStorage.setItem('ayahpath-last-home-ayah', d.ayah.verse_key);
+                }
+                const badgeLabel = $('#daily-badge-label');
+                const reason = $('#daily-reason');
+                if (badgeLabel) badgeLabel.textContent = d.source === 'personalized' ? 'Ayah for Today' : 'Ayah of the Day';
+                if (reason) reason.textContent = d.reason || '';
                 $('#daily-arabic').textContent = d.ayah.arabic;
                 $('#daily-urdu').textContent = d.ayah.secondary_translation || '';
                 $('#daily-translation').textContent = `"${d.ayah.translation}"`;
@@ -751,12 +825,10 @@
                 const r = await fetch('/api/streak/anonymous_user/checkin', {method: 'POST'});
                 const d = await r.json();
                 if (d.success) {
-                    // Trigger success pulse animation
                     cb.classList.remove('success-pulse');
-                    void cb.offsetWidth; // Force reflow
+                    void cb.offsetWidth;
                     cb.classList.add('success-pulse');
 
-                    // Spawn celebration burst particles
                     checkinBurstFx(cb);
 
                     toast(`Checked in! Streak: ${d.current_streak} days 🔥`);
@@ -1054,7 +1126,6 @@
         return new Date(ts).toLocaleDateString();
     }
 
-    // ==================== PRAYER TRACKER (API-backed SQLite) ====================
     const PRAYERS = [
         { id: 'fajr',    name: 'Fajr Prayer',    defaultTime: '05:30' },
         { id: 'dhuhr',   name: 'Dhuhr Prayer',   defaultTime: '12:30' },
@@ -1064,8 +1135,15 @@
     ];
 
     let prayerViewDate = new Date();
-    // In-memory cache so renders feel instant; API is source of truth
     let prayerCache = {};
+    
+    function clonePrayerState(prayers) {
+        const next = {};
+        PRAYERS.forEach((p) => {
+            next[p.id] = !!(prayers && prayers[p.id]);
+        });
+        return next;
+    }
 
     function prayerDateStr(d) {
         const dt = d || prayerViewDate;
@@ -1113,8 +1191,8 @@
 
     async function renderPrayerPage() {
         const dateStr = prayerDateStr();
+        const renderToken = ++lastPrayerRenderToken;
 
-        // Update date labels immediately
         $('#prayer-date-label').textContent = formatDateLabel(prayerViewDate);
         $('#prayer-hijri-label').textContent = getApproxHijriDate(prayerViewDate);
 
@@ -1123,21 +1201,22 @@
             todayBadge.style.display = isSameDay(prayerViewDate, new Date()) ? 'inline-block' : 'none';
         }
 
-        // Fetch prayer data from API
-        let prayerData = {};
+        let prayerData = clonePrayerState(prayerCache[dateStr]);
         try {
             const r = await fetch(`/api/prayers/${dateStr}`);
             const d = await r.json();
             if (d.success) {
-                prayerData = d.prayers || {};
+                prayerData = clonePrayerState(d.prayers);
                 prayerCache[dateStr] = prayerData;
             }
         } catch (e) {
-            // Fall back to cache if API fails
-            prayerData = prayerCache[dateStr] || {};
+            prayerData = clonePrayerState(prayerCache[dateStr]);
         }
 
-        // Render prayer list
+        if (renderToken !== lastPrayerRenderToken) {
+            return;
+        }
+
         const list = $('#prayer-list');
         list.innerHTML = '';
 
@@ -1156,12 +1235,26 @@
             `;
 
             const btn = item.querySelector('.prayer-check-btn');
+            const pendingKey = `${dateStr}:${p.id}`;
+            if (prayerPending.has(pendingKey)) {
+                btn.disabled = true;
+                item.classList.add('prayer-pending');
+            }
             btn.addEventListener('click', async () => {
-                // Animate immediately for responsiveness
+                if (prayerPending.has(pendingKey)) return;
+
                 btn.classList.remove('prayer-pop');
                 void btn.offsetWidth;
                 btn.classList.add('prayer-pop');
                 setTimeout(() => btn.classList.remove('prayer-pop'), 450);
+
+                prayerPending.add(pendingKey);
+                const nextState = !checked;
+                prayerCache[dateStr] = {
+                    ...clonePrayerState(prayerCache[dateStr]),
+                    [p.id]: nextState
+                };
+                renderPrayerPage();
 
                 try {
                     const r = await fetch(`/api/prayers/${dateStr}/${p.id}`, {
@@ -1171,24 +1264,32 @@
                     });
                     const d = await r.json();
                     if (d.success) {
-                        prayerCache[dateStr] = d.prayers;
-                        // Update stats from response
+                        prayerCache[dateStr] = clonePrayerState(d.prayers);
                         if (d.stats) {
                             updatePrayerStatsFromData(d.stats);
                         }
-                        renderPrayerPage();
                     } else {
+                        prayerCache[dateStr] = {
+                            ...clonePrayerState(prayerCache[dateStr]),
+                            [p.id]: checked
+                        };
                         toast('Failed to update prayer');
                     }
                 } catch (e) {
+                    prayerCache[dateStr] = {
+                        ...clonePrayerState(prayerCache[dateStr]),
+                        [p.id]: checked
+                    };
                     toast('Connection error');
+                } finally {
+                    prayerPending.delete(pendingKey);
+                    renderPrayerPage();
                 }
             });
 
             list.appendChild(item);
         });
 
-        // Update progress
         const completedCount = PRAYERS.filter(p => !!prayerData[p.id]).length;
         const pct = (completedCount / PRAYERS.length) * 100;
         const fill = $('#prayer-progress-fill');
@@ -1196,7 +1297,6 @@
         const label = $('#prayer-progress-label');
         if (label) label.textContent = `${completedCount} / ${PRAYERS.length} completed`;
 
-        // Fetch and render week strip and stats in parallel
         fetchPrayerWeekStrip();
         fetchPrayerStats();
     }
@@ -1213,9 +1313,7 @@
                 return;
             }
         } catch (e) {
-            // Ignore — render empty strip
         }
-        // Fallback: render empty strip
         strip.innerHTML = '';
         const dayLabels = ['M','T','W','T','F','S','S'];
         dayLabels.forEach(l => {
@@ -1241,7 +1339,7 @@
 
             circle.style.cursor = 'pointer';
             circle.addEventListener('click', () => {
-                prayerViewDate = new Date(day.date + 'T12:00:00');  // noon to avoid timezone issues
+                prayerViewDate = new Date(day.date + 'T12:00:00');
                 renderPrayerPage();
             });
 
@@ -1257,7 +1355,6 @@
                 updatePrayerStatsFromData(d);
             }
         } catch (e) {
-            // Silently fail
         }
     }
 

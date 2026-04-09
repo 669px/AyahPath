@@ -5,15 +5,23 @@ import hashlib
 from datetime import datetime, date, timedelta, timezone
 import tempfile
 import shutil
-
-DATA_DIR = os.getenv("DATA_DIR", "data")
-
+import re
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_DIR = os.getenv("DATA_DIR", os.path.join(BASE_DIR, "data"))
+if not os.path.isabs(DATA_DIR):
+    DATA_DIR = os.path.join(BASE_DIR, DATA_DIR)
 logger = logging.getLogger(__name__)
-
+SAFE_USER_ID = re.compile(r"[^a-zA-Z0-9_.-]")
+def normalize_user_id(user_id):
+    """Return a filesystem-safe user id with a sensible default."""
+    cleaned = SAFE_USER_ID.sub("_", str(user_id or "anonymous_user")).strip("._")
+    return cleaned[:64] or "anonymous_user"
+def sanitize_text(value, max_len=1000):
+    """Trim untrusted text input to a safe bounded string."""
+    return str(value or "").replace("\x00", "").strip()[:max_len]
 def ensure_data_dir():
     if not os.path.exists(DATA_DIR):
         os.makedirs(DATA_DIR)
-
 def _read_json(filename):
     filepath = os.path.join(DATA_DIR, filename)
     if not os.path.exists(filepath):
@@ -24,12 +32,11 @@ def _read_json(filename):
     except (json.JSONDecodeError, IOError) as e:
         logger.error(f"Error reading {filename}: {e}")
         return [] if filename != "streak_data.json" else {}
-
 def _write_json(filename, data):
     ensure_data_dir()
     filepath = os.path.join(DATA_DIR, filename)
     try:
-        # Atomic write using a temporary file
+                                             
         fd, temp_path = tempfile.mkstemp(dir=DATA_DIR, prefix=f"{filename}.tmp")
         try:
             with os.fdopen(fd, 'w', encoding='utf-8') as f:
@@ -41,10 +48,12 @@ def _write_json(filename, data):
             raise e
     except Exception as e:
         logger.error(f"Error writing {filename}: {e}")
-
-# Reflection management
+                       
 def save_reflection(user_id, scenario, category, chapter, verse, verse_text, tafsir_text, ai_guidance):
     """Save a reflection entry."""
+    user_id = normalize_user_id(user_id)
+    scenario = sanitize_text(scenario, max_len=500)
+    category = sanitize_text(category, max_len=64)
     reflections = _read_json("saved_reflections.json")
     new_entry = {
         "id": hashlib.md5(f"{datetime.now(timezone.utc).isoformat()}{scenario}".encode()).hexdigest()[:12],
@@ -61,22 +70,21 @@ def save_reflection(user_id, scenario, category, chapter, verse, verse_text, taf
     _write_json("saved_reflections.json", reflections)
     _log_activity(user_id, "reflection_saved", f"Saved reflection for {chapter}:{verse}")
     return new_entry
-
 def get_reflections(user_id):
     """Get all reflections for a user."""
+    user_id = normalize_user_id(user_id)
     reflections = _read_json("saved_reflections.json")
     return [r for r in reflections if r.get("user_id") == user_id]
-
 def delete_reflection(reflection_id):
     """Delete a reflection by ID."""
     reflections = _read_json("saved_reflections.json")
     updated = [r for r in reflections if r.get("id") != reflection_id]
     _write_json("saved_reflections.json", updated)
     return True
-
-# Streak management
+                   
 def update_streak(user_id):
     """Update or initialize streak data for a user."""
+    user_id = normalize_user_id(user_id)
     streaks = _read_json("streak_data.json")
     if not isinstance(streaks, dict):
         streaks = {}
@@ -96,7 +104,7 @@ def update_streak(user_id):
     else:
         last_active = user_streak.get("last_active")
         if last_active != today:
-            # Check if yesterday
+                                
             last_date = date.fromisoformat(last_active)
             today_date = date.today()
             diff = (today_date - last_date).days
@@ -117,24 +125,24 @@ def update_streak(user_id):
     streaks[user_id] = user_streak
     _write_json("streak_data.json", streaks)
     return user_streak
-
 def get_streak(user_id):
     """Get streak data for a user."""
+    user_id = normalize_user_id(user_id)
     streaks = _read_json("streak_data.json")
     if isinstance(streaks, dict):
         return streaks.get(user_id, {})
     return {}
-
 def clear_streak(user_id):
     """Clear streak data for a user."""
+    user_id = normalize_user_id(user_id)
     streaks = _read_json("streak_data.json")
     if isinstance(streaks, dict) and user_id in streaks:
         del streaks[user_id]
         _write_json("streak_data.json", streaks)
     return True
-
 def get_week_activity(user_id):
     """Get activity for the past 7 days."""
+    user_id = normalize_user_id(user_id)
     streak = get_streak(user_id)
     activity_dates = set(streak.get("activity_dates", []))
     
@@ -147,10 +155,12 @@ def get_week_activity(user_id):
             'active': d in activity_dates,
         })
     return week_activity
-
-# Activity logging
+                  
 def _log_activity(user_id, action, details):
     """Log an activity."""
+    user_id = normalize_user_id(user_id)
+    action = sanitize_text(action, max_len=64)
+    details = sanitize_text(details, max_len=280)
     logs = _read_json("activity_log.json")
     logs.append({
         "user_id": user_id,
@@ -159,20 +169,30 @@ def _log_activity(user_id, action, details):
         "details": details
     })
     _write_json("activity_log.json", logs)
-
 def get_activity_logs(user_id, limit=30):
     """Get recent activity logs for a user."""
+    user_id = normalize_user_id(user_id)
     logs = _read_json("activity_log.json")
     user_logs = [l for l in logs if l.get("user_id") == user_id]
     return user_logs[-limit:]
-
+def get_recent_user_context(user_id, reflection_limit=6, activity_limit=12):
+    """Return recent user reflections and activity for AI memory/personalization."""
+    user_id = normalize_user_id(user_id)
+    reflections = get_reflections(user_id)[-reflection_limit:]
+    activities = get_activity_logs(user_id, activity_limit)
+    return {
+        "user_id": user_id,
+        "reflections": reflections,
+        "activities": activities,
+    }
 def progress_user_goals(user_id, activity_type):
     """Progress all active goals for a user based on activity type."""
+    user_id = normalize_user_id(user_id)
     goals = _read_json("goals_data.json")
     
-    # Map activity to goal type
-    # activity types: scenario_viewed, reflection_submitted, ayah_listened, daily_ayah_viewed, manual_checkin
-    # goal types: any, scenarios, reflections, listening, daily_ayah
+                               
+                                                                                                             
+                                                                    
     
     type_map = {
         'scenario_viewed': 'scenarios',
@@ -192,16 +212,19 @@ def progress_user_goals(user_id, activity_type):
                     goal["completed_date"] = datetime.now(timezone.utc).isoformat()
     
     _write_json("goals_data.json", goals)
-
 def record_activity(user_id, activity_type, details=""):
     """Record an activity and progress goals."""
+    user_id = normalize_user_id(user_id)
     _log_activity(user_id, activity_type, details)
     update_streak(user_id)
     progress_user_goals(user_id, activity_type)
-
-# Goals management
+                  
 def create_goal(user_id, title, goal_type, target, period="daily"):
     """Create a new goal."""
+    user_id = normalize_user_id(user_id)
+    title = sanitize_text(title, max_len=120)
+    goal_type = sanitize_text(goal_type, max_len=40)
+    period = sanitize_text(period, max_len=24)
     goals = _read_json("goals_data.json")
     new_goal = {
         "id": hashlib.md5(f"{datetime.now(timezone.utc).isoformat()}{title}".encode()).hexdigest()[:12],
@@ -218,24 +241,22 @@ def create_goal(user_id, title, goal_type, target, period="daily"):
     goals.append(new_goal)
     _write_json("goals_data.json", goals)
     return new_goal
-
 def get_goals(user_id):
     """Get all goals for a user."""
+    user_id = normalize_user_id(user_id)
     goals = _read_json("goals_data.json")
     return [g for g in goals if g.get("user_id") == user_id]
-
 def get_active_goals(user_id):
     """Get active (incomplete) goals for a user."""
     goals = get_goals(user_id)
     return [g for g in goals if not g.get("completed")]
-
 def get_completed_goals(user_id):
     """Get completed goals for a user."""
     goals = get_goals(user_id)
     return [g for g in goals if g.get("completed")]
-
 def update_goal_progress(user_id, goal_id, increment=1):
     """Update goal progress."""
+    user_id = normalize_user_id(user_id)
     goals = _read_json("goals_data.json")
     for goal in goals:
         if goal.get("id") == goal_id and goal.get("user_id") == user_id:
@@ -245,16 +266,16 @@ def update_goal_progress(user_id, goal_id, increment=1):
                 goal["completed_date"] = datetime.now(timezone.utc).isoformat()
     _write_json("goals_data.json", goals)
     return goals
-
 def delete_goal(user_id, goal_id):
     """Delete a goal."""
+    user_id = normalize_user_id(user_id)
     goals = _read_json("goals_data.json")
     updated = [g for g in goals if not (g.get("id") == goal_id and g.get("user_id") == user_id)]
     _write_json("goals_data.json", updated)
     return True
-
 def clear_user_goals(user_id):
     """Clear all goals for a user."""
+    user_id = normalize_user_id(user_id)
     goals = _read_json("goals_data.json")
     updated = [g for g in goals if g.get("user_id") != user_id]
     _write_json("goals_data.json", updated)

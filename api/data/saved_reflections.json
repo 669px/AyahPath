@@ -262,5 +262,61 @@
             "better_choice": "Take a moment for prayer and reflection today.",
             "why_this_verse": "This verse reminds us of Allah's presence in all situations."
         }
+    },
+    {
+        "id": "f6600b9ddce3",
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-09T15:09:09.218214+00:00",
+        "scenario": "hi i am sad",
+        "assigned_category": "lying",
+        "reference": "9:119",
+        "verse_text": {
+            "chapter": 9,
+            "verse": 119,
+            "verse_key": "9:119",
+            "arabic": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱتَّقُوا۟ ٱللَّهَ وَكُونُوا۟ مَعَ ٱلصَّٰدِقِينَ",
+            "translation": "O YOU who have attained to faith! Remain conscious of God, and be among those who are true to their word!",
+            "secondary_translation": "",
+            "surah_name": "At-Tawba",
+            "surah_name_ar": "سُورَةُ التَّوۡبَةِ",
+            "audio": "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1354.mp3",
+            "audio_url": "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1354.mp3",
+            "success": true
+        },
+        "tafsir_snippet": "Tafsir available through Quran.com for detailed explanations.",
+        "guidance": {
+            "dunya_impact": "Focus on patience and practical steps in your daily affairs.",
+            "akhirah_impact": "Trust in Allah's plan and seek reward in the hereafter.",
+            "better_choice": "Take a moment for prayer and reflection today.",
+            "why_this_verse": "This verse reminds us of Allah's presence in all situations."
+        }
+    },
+    {
+        "id": "e0b2d1bbbd29",
+        "user_id": "anonymous_user",
+        "timestamp": "2026-04-09T15:22:49.539397+00:00",
+        "scenario": "hi i am sad",
+        "assigned_category": "lying",
+        "reference": "9:119",
+        "verse_text": {
+            "chapter": 9,
+            "verse": 119,
+            "verse_key": "9:119",
+            "arabic": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱتَّقُوا۟ ٱللَّهَ وَكُونُوا۟ مَعَ ٱلصَّٰدِقِينَ",
+            "translation": "O YOU who have attained to faith! Remain conscious of God, and be among those who are true to their word!",
+            "secondary_translation": "",
+            "surah_name": "At-Tawba",
+            "surah_name_ar": "سُورَةُ التَّوۡبَةِ",
+            "audio": "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1354.mp3",
+            "audio_url": "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1354.mp3",
+            "success": true
+        },
+        "tafsir_snippet": "Tafsir available through Quran.com for detailed explanations.",
+        "guidance": {
+            "dunya_impact": "When you're feeling sad, it's important to be honest with yourself and others about your feelings. Suppressing sadness can lead to further emotional distress. Seeking support from friends, family, or a professional can help you navigate difficult emotions and find healthy coping mechanisms. Remember, being true to your word also means being true to yourself and acknowledging your emotional state.",
+            "akhirah_impact": "In Islam, honesty and truthfulness are highly valued virtues. Being honest about your feelings, even sadness, is a sign of humility and self-awareness before Allah. Seeking help and support when you're struggling is not a sign of weakness but rather a recognition of your need for Allah's guidance and mercy. Remember that Allah is always there to listen and provide comfort during times of difficulty.",
+            "better_choice": "Acknowledge your sadness and reach out to a trusted friend or family member to share how you're feeling.",
+            "why_this_verse": "This verse reminds you to be truthful in all aspects of your life, including acknowledging and addressing your sadness, rather than masking it with falsehood."
+        }
     }
 ]

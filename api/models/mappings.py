@@ -1,6 +1,3 @@
-# models/mappings.py
-
-# Comprehensive scenario mappings with full metadata
 SCENARIO_MAPPINGS = {
     "lying": {
         "title": "Lying",
@@ -113,8 +110,7 @@ SCENARIO_MAPPINGS = {
         "category": "character"
     },
 }
-
-# Daily ayahs for consistent daily reminders
+                                            
 DAILY_AYAHS = [
     {"surah": 2, "ayah": 152}, {"surah": 2, "ayah": 186}, {"surah": 3, "ayah": 139},
     {"surah": 13, "ayah": 28}, {"surah": 94, "ayah": 5}, {"surah": 93, "ayah": 5},
@@ -128,8 +124,7 @@ DAILY_AYAHS = [
     {"surah": 96, "ayah": 1}, {"surah": 112, "ayah": 1}, {"surah": 1, "ayah": 1},
     {"surah": 36, "ayah": 58},
 ]
-
-# Counter for every ayah across the Quran
+                                         
 AYAH_COUNTS = [
     7, 286, 200, 176, 120, 165, 206, 75, 129, 109,
     123, 111, 43, 52, 99, 128, 111, 110, 98, 135,
@@ -144,8 +139,7 @@ AYAH_COUNTS = [
     11, 8, 3, 9, 5, 4, 7, 3, 6, 3,
     5, 4, 5, 6
 ]
-
-# Curated YouTube videos by scenario
+                                    
 YOUTUBE_VIDEOS = {
     "lying": [
         {"id": "nKBo_nHe4Lk", "title": "The Weight of Lying — Nouman Ali Khan", "channel": "Bayyinah Official"},
@@ -192,15 +186,11 @@ YOUTUBE_VIDEOS = {
         {"id": "BJ0XnFfGz68", "title": "The Beauty of Islam", "channel": "MercifulServant"},
     ]
 }
-
 def get_all_categories():
     return list(SCENARIO_MAPPINGS.keys())
-
 def get_scenario(scenario_id):
     return SCENARIO_MAPPINGS.get(scenario_id)
-
 def get_daily_ayahs():
     return DAILY_AYAHS
-
 def get_youtube_videos(scenario_id):
     return YOUTUBE_VIDEOS.get(scenario_id, YOUTUBE_VIDEOS.get("_default", []))

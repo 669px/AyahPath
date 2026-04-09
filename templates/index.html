@@ -83,8 +83,9 @@
             <section class="daily-banner" id="daily-banner">
                 <div class="daily-badge">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-                    <span>Ayah of the Day</span>
+                    <span id="daily-badge-label">Ayah of the Day</span>
                 </div>
+                <p class="daily-ref" id="daily-reason"></p>
                 <p class="daily-ar" id="daily-arabic"></p>
                 <p class="daily-trans" id="daily-urdu"></p>
                 <p class="daily-en" id="daily-translation"></p>
@@ -326,7 +327,7 @@
                     <p>Updates, reminders, and daily check-ins</p>
                 </div>
                 <div class="history-list" id="notif-list">
-                    <!-- Dynamic notifications -->
+                    
                 </div>
                 <div id="notif-empty" class="empty-state" style="display:none">
                     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
@@ -343,6 +344,21 @@
                     <p>Customize your spiritual journey</p>
                 </div>
                 <div class="settings-panel">
+                    <div class="setting-group">
+                        <h3>Appearance</h3>
+                        <label class="field">
+                            <span>Theme Preset</span>
+                            <select id="settings-theme-select" class="lang-toggle-full">
+                                <option value="dark">Midnight</option>
+                                <option value="light">Light</option>
+                                <option value="arabic">Arabic Majlis</option>
+                                <option value="quranic">Quranic Emerald</option>
+                                <option value="ramadan">Ramadan Lantern</option>
+                            </select>
+                        </label>
+                        <p class="settings-note" id="theme-description">Switch the entire app mood and color story.</p>
+                    </div>
+
                     <div class="setting-group">
                         <h3>Language & Region</h3>
                         <label class="field">
@@ -413,7 +429,7 @@
                 </div>
 
                 <div class="prayer-list" id="prayer-list">
-                    <!-- Prayer items rendered by JS -->
+                    
                 </div>
 
                 <div class="prayer-progress-section">
@@ -424,7 +440,7 @@
                 </div>
 
                 <div class="prayer-week-strip" id="prayer-week-strip">
-                    <!-- Day circles rendered by JS -->
+                    
                 </div>
 
                 <div class="prayer-stats-row">
