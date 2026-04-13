@@ -69,10 +69,10 @@ def fetch_verse(chapter, verse, translation_id="131"):
         return None
 
     verse_key = f"{chapter_num}:{verse_num}"
-    data = virtual_get_by_key(verse_key=verse_key, translations=translation_id, words=False)
+    data = virtual_get_by_key(verse_key=verse_key, translations=None, words=False)
     if not data or "verse" not in data:
         logger.warning("Virtual Quran verse not found in sample dataset: %s", verse_key)
-        fallback = virtual_list_verses(limit=1, randomize=True, translations=translation_id)
+        fallback = virtual_list_verses(limit=1, randomize=True, translations=None)
         if fallback:
             data = {"verse": (fallback[0] or {}).get("verse") or {}}
         else:
@@ -81,30 +81,38 @@ def fetch_verse(chapter, verse, translation_id="131"):
     item = data.get("verse") or {}
     translations = item.get("translations") or []
 
-    requested_translation_id = _safe_int(translation_id)
+    requested_translation_id = _safe_int(translation_id, 131)
     primary_translation = ""
     secondary_translation = ""
 
     if translations:
-        selected = translations[0]
-        if requested_translation_id is not None:
+        # Keep English (131) as primary text across the UI.
+        en_entry = None
+        for tr in translations:
+            if _safe_int(tr.get("resource_id")) == 131:
+                en_entry = tr
+                break
+        if en_entry is None:
+            en_entry = translations[0]
+        primary_translation = str(en_entry.get("text") or "")
+
+        # Secondary translation follows the selected language when available.
+        if requested_translation_id != 131:
+            selected = None
             for tr in translations:
                 if _safe_int(tr.get("resource_id")) == requested_translation_id:
                     selected = tr
                     break
-        primary_translation = str(selected.get("text") or "")
-
-        if requested_translation_id is not None:
-            for tr in translations:
-                if _safe_int(tr.get("resource_id")) != requested_translation_id:
-                    secondary_translation = str(tr.get("text") or "")
-                    break
-
-    audio_url = str((item.get("audio") or {}).get("url") or "")
+            secondary_translation = str((selected or {}).get("text") or "")
+            if secondary_translation == primary_translation:
+                secondary_translation = ""
 
     resolved_chapter = _safe_int(item.get("chapter_id"), chapter_num)
     resolved_verse = _safe_int(item.get("verse_number"), verse_num)
     resolved_key = str(item.get("verse_key") or f"{resolved_chapter}:{resolved_verse}")
+
+    # Build audio URL from verse key so recitation always matches displayed ayah.
+    audio_url = f"https://everyayah.com/data/Abdul_Basit_Murattal_192kbps/{resolved_chapter:03d}{resolved_verse:03d}.mp3"
 
     return {
         "chapter": resolved_chapter,
