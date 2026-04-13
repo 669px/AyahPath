@@ -559,6 +559,7 @@
     function initAudio() {
         const btn = $('#verse-audio-btn');
         const dailyAudioBtn = $('#daily-audio-btn');
+        const dailyRefreshBtn = $('#daily-refresh-btn');
 
         function resetAudioUI() {
             btn.classList.remove('playing');
@@ -601,6 +602,7 @@
 
         audioPlayer.addEventListener('ended', () => {
             btn.classList.remove('playing');
+            dailyAudioBtn.classList.remove('playing');
             isPlaying = false;
             const fill = $('#track-fill');
             if (fill) fill.style.width = '0%';
@@ -626,22 +628,36 @@
                 }).catch(() => toast('Audio unavailable'));
             }
         });
+
+        if (dailyRefreshBtn) {
+            dailyRefreshBtn.addEventListener('click', async () => {
+                audioPlayer.pause();
+                audioPlayer.currentTime = 0;
+                resetAudioUI();
+                await loadDailyAyah(true);
+            });
+        }
     }
 
-    async function loadDailyAyah() {
+    async function loadDailyAyah(forceRandom = false) {
         try {
             const langId = localStorage.getItem('ayahpath-lang') || '131';
             const lastVerseKey = localStorage.getItem('ayahpath-last-home-ayah') || '';
             const exclude = encodeURIComponent(lastVerseKey);
-            let r = await fetch(`/api/personalized-ayah?trans=${encodeURIComponent(langId)}&user_id=anonymous_user&exclude=${exclude}`, {
-                cache: 'no-store'
-            });
-            let d = await r.json();
-            if (!d.success) {
-                r = await fetch(`/api/daily-ayah?trans=${encodeURIComponent(langId)}&user_id=anonymous_user&random=1&exclude=${exclude}`, {
+            let d = null;
+
+            if (!forceRandom) {
+                const personalized = await fetch(`/api/personalized-ayah?trans=${encodeURIComponent(langId)}&user_id=anonymous_user&exclude=${exclude}`, {
                     cache: 'no-store'
                 });
-                d = await r.json();
+                d = await personalized.json();
+            }
+
+            if (!d || !d.success) {
+                const dailyResp = await fetch(`/api/daily-ayah?trans=${encodeURIComponent(langId)}&user_id=anonymous_user&random=1&exclude=${exclude}`, {
+                    cache: 'no-store'
+                });
+                d = await dailyResp.json();
             }
             if (d.success && d.ayah && d.ayah.success) {
                 if (d.ayah.verse_key) {

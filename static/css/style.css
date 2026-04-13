@@ -1360,6 +1360,14 @@ body[data-lang="97"] .verse-trans {
     display: block !important
 }
 
+.btn-icon.playing .ico-play {
+    display: none !important
+}
+
+.btn-icon.playing .ico-pause {
+    display: block !important
+}
+
 .audio-track {
     margin-top: 14px
 }
