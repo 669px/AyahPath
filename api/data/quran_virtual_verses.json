@@ -1,0 +1,735 @@
+{
+  "verses": [
+    {
+      "category": "stress",
+      "verse": {
+        "id": 1762,
+        "chapter_id": 13,
+        "verse_number": 28,
+        "verse_key": "13:28",
+        "text_uthmani": "ٱلَّذِينَ ءَامَنُوا۟ وَتَطْمَئِنُّ قُلُوبُهُم بِذِكْرِ ٱللَّهِ ۗ أَلَا بِذِكْرِ ٱللَّهِ تَطْمَئِنُّ ٱلْقُلُوبُ",
+        "juz_number": 13,
+        "hizb_number": 26,
+        "page_number": 252,
+        "words": [],
+        "audio": {
+          "verse_key": "13:28",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/013028.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "those who believe and whose hearts find comfort in the remembrance of Allah. Surely in the remembrance of Allah do hearts find comfort.",
+            "verse_key": "13:28"
+          }
+        ]
+      }
+    },
+    {
+      "category": "stress",
+      "verse": {
+        "id": 286,
+        "chapter_id": 2,
+        "verse_number": 286,
+        "verse_key": "2:286",
+        "text_uthmani": "لَا يُكَلِّفُ ٱللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا ٱكْتَسَبَتْ",
+        "juz_number": 3,
+        "hizb_number": 6,
+        "page_number": 49,
+        "words": [],
+        "audio": {
+          "verse_key": "2:286",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/002286.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "Allah does not require of any soul more than what it can afford. All good will be for its own benefit, and all evil will be to its own loss.",
+            "verse_key": "2:286"
+          }
+        ]
+      }
+    },
+    {
+      "category": "stress",
+      "verse": {
+        "id": 6200,
+        "chapter_id": 94,
+        "verse_number": 5,
+        "verse_key": "94:5",
+        "text_uthmani": "فَإِنَّ مَعَ ٱلْعُسْرِ يُسْرًا",
+        "juz_number": 30,
+        "hizb_number": 60,
+        "page_number": 597,
+        "words": [],
+        "audio": {
+          "verse_key": "94:5",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/094005.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "So, surely with hardship comes ease.",
+            "verse_key": "94:5"
+          }
+        ]
+      }
+    },
+    {
+      "category": "anger",
+      "verse": {
+        "id": 401,
+        "chapter_id": 3,
+        "verse_number": 134,
+        "verse_key": "3:134",
+        "text_uthmani": "ٱلَّذِينَ يُنفِقُونَ فِى ٱلسَّرَّآءِ وَٱلضَّرَّآءِ وَٱلْكَـٰظِمِينَ ٱلْغَيْظَ وَٱلْعَافِينَ عَنِ ٱلنَّاسِ ۗ وَٱللَّهُ يُحِبُّ ٱلْمُحْسِنِينَ",
+        "juz_number": 4,
+        "hizb_number": 7,
+        "page_number": 67,
+        "words": [],
+        "audio": {
+          "verse_key": "3:134",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/003134.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "They are those who donate in prosperity and adversity, control their anger, and pardon others. And Allah loves the good-doers.",
+            "verse_key": "3:134"
+          }
+        ]
+      }
+    },
+    {
+      "category": "anger",
+      "verse": {
+        "id": 4534,
+        "chapter_id": 41,
+        "verse_number": 34,
+        "verse_key": "41:34",
+        "text_uthmani": "وَلَا تَسْتَوِى ٱلْحَسَنَةُ وَلَا ٱلسَّيِّئَةُ ۚ ٱدْفَعْ بِٱلَّتِى هِىَ أَحْسَنُ",
+        "juz_number": 24,
+        "hizb_number": 48,
+        "page_number": 480,
+        "words": [],
+        "audio": {
+          "verse_key": "41:34",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/041034.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "Good and evil cannot be equal. Repel evil with what is better.",
+            "verse_key": "41:34"
+          }
+        ]
+      }
+    },
+    {
+      "category": "anger",
+      "verse": {
+        "id": 4637,
+        "chapter_id": 42,
+        "verse_number": 37,
+        "verse_key": "42:37",
+        "text_uthmani": "وَإِذَا مَا غَضِبُوا۟ هُمْ يَغْفِرُونَ",
+        "juz_number": 25,
+        "hizb_number": 49,
+        "page_number": 487,
+        "words": [],
+        "audio": {
+          "verse_key": "42:37",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/042037.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "And when they are angry, they forgive.",
+            "verse_key": "42:37"
+          }
+        ]
+      }
+    },
+    {
+      "category": "jealousy",
+      "verse": {
+        "id": 588,
+        "chapter_id": 4,
+        "verse_number": 54,
+        "verse_key": "4:54",
+        "text_uthmani": "أَمْ يَحْسُدُونَ ٱلنَّاسَ عَلَىٰ مَآ ءَاتَىٰهُمُ ٱللَّهُ مِن فَضْلِهِۦ",
+        "juz_number": 5,
+        "hizb_number": 9,
+        "page_number": 87,
+        "words": [],
+        "audio": {
+          "verse_key": "4:54",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/004054.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "Or do they envy others for what Allah has given them of His bounty?",
+            "verse_key": "4:54"
+          }
+        ]
+      }
+    },
+    {
+      "category": "jealousy",
+      "verse": {
+        "id": 6225,
+        "chapter_id": 113,
+        "verse_number": 5,
+        "verse_key": "113:5",
+        "text_uthmani": "وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ",
+        "juz_number": 30,
+        "hizb_number": 60,
+        "page_number": 604,
+        "words": [],
+        "audio": {
+          "verse_key": "113:5",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/113005.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "And from the evil of an envier when they envy.",
+            "verse_key": "113:5"
+          }
+        ]
+      }
+    },
+    {
+      "category": "gratitude",
+      "verse": {
+        "id": 1833,
+        "chapter_id": 14,
+        "verse_number": 7,
+        "verse_key": "14:7",
+        "text_uthmani": "وَإِذْ تَأَذَّنَ رَبُّكُمْ لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ",
+        "juz_number": 13,
+        "hizb_number": 26,
+        "page_number": 256,
+        "words": [],
+        "audio": {
+          "verse_key": "14:7",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/014007.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "If you are grateful, I will certainly give you more.",
+            "verse_key": "14:7"
+          }
+        ]
+      }
+    },
+    {
+      "category": "gratitude",
+      "verse": {
+        "id": 158,
+        "chapter_id": 2,
+        "verse_number": 152,
+        "verse_key": "2:152",
+        "text_uthmani": "فَٱذْكُرُونِىٓ أَذْكُرْكُمْ وَٱشْكُرُوا۟ لِى",
+        "juz_number": 2,
+        "hizb_number": 3,
+        "page_number": 23,
+        "words": [],
+        "audio": {
+          "verse_key": "2:152",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/002152.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "So remember Me; I will remember you. And be grateful to Me.",
+            "verse_key": "2:152"
+          }
+        ]
+      }
+    },
+    {
+      "category": "gratitude",
+      "verse": {
+        "id": 3572,
+        "chapter_id": 31,
+        "verse_number": 12,
+        "verse_key": "31:12",
+        "text_uthmani": "أَنِ ٱشْكُرْ لِلَّهِ ۚ وَمَن يَشْكُرْ فَإِنَّمَا يَشْكُرُ لِنَفْسِهِۦ",
+        "juz_number": 21,
+        "hizb_number": 41,
+        "page_number": 411,
+        "words": [],
+        "audio": {
+          "verse_key": "31:12",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/031012.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "Be grateful to Allah, for whoever is grateful, it is only for their own good.",
+            "verse_key": "31:12"
+          }
+        ]
+      }
+    },
+    {
+      "category": "forgiveness",
+      "verse": {
+        "id": 578,
+        "chapter_id": 4,
+        "verse_number": 110,
+        "verse_key": "4:110",
+        "text_uthmani": "وَمَن يَعْمَلْ سُوٓءًا أَوْ يَظْلِمْ نَفْسَهُۥ ثُمَّ يَسْتَغْفِرِ ٱللَّهَ",
+        "juz_number": 5,
+        "hizb_number": 10,
+        "page_number": 96,
+        "words": [],
+        "audio": {
+          "verse_key": "4:110",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/004110.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "Whoever seeks Allah's forgiveness will certainly find Allah All-Forgiving, Most Merciful.",
+            "verse_key": "4:110"
+          }
+        ]
+      }
+    },
+    {
+      "category": "forgiveness",
+      "verse": {
+        "id": 4383,
+        "chapter_id": 39,
+        "verse_number": 53,
+        "verse_key": "39:53",
+        "text_uthmani": "لَا تَقْنَطُوا۟ مِن رَّحْمَةِ ٱللَّهِ ۚ إِنَّ ٱللَّهَ يَغْفِرُ ٱلذُّنُوبَ جَمِيعًا",
+        "juz_number": 24,
+        "hizb_number": 47,
+        "page_number": 464,
+        "words": [],
+        "audio": {
+          "verse_key": "39:53",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/039053.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "Do not lose hope in Allah's mercy, for Allah certainly forgives all sins.",
+            "verse_key": "39:53"
+          }
+        ]
+      }
+    },
+    {
+      "category": "forgiveness",
+      "verse": {
+        "id": 4625,
+        "chapter_id": 42,
+        "verse_number": 25,
+        "verse_key": "42:25",
+        "text_uthmani": "وَهُوَ ٱلَّذِى يَقْبَلُ ٱلتَّوْبَةَ عَنْ عِبَادِهِۦ وَيَعْفُوا۟ عَنِ ٱلسَّيِّـَٔاتِ",
+        "juz_number": 25,
+        "hizb_number": 49,
+        "page_number": 485,
+        "words": [],
+        "audio": {
+          "verse_key": "42:25",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/042025.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "He is the One Who accepts repentance from His servants and pardons misdeeds.",
+            "verse_key": "42:25"
+          }
+        ]
+      }
+    },
+    {
+      "category": "trust_in_allah",
+      "verse": {
+        "id": 5672,
+        "chapter_id": 65,
+        "verse_number": 3,
+        "verse_key": "65:3",
+        "text_uthmani": "وَمَن يَتَوَكَّلْ عَلَى ٱللَّهِ فَهُوَ حَسْبُهُۥٓ",
+        "juz_number": 28,
+        "hizb_number": 56,
+        "page_number": 558,
+        "words": [],
+        "audio": {
+          "verse_key": "65:3",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/065003.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "Whoever puts their trust in Allah, then He alone is sufficient for them.",
+            "verse_key": "65:3"
+          }
+        ]
+      }
+    },
+    {
+      "category": "trust_in_allah",
+      "verse": {
+        "id": 459,
+        "chapter_id": 3,
+        "verse_number": 159,
+        "verse_key": "3:159",
+        "text_uthmani": "فَإِذَا عَزَمْتَ فَتَوَكَّلْ عَلَى ٱللَّهِ",
+        "juz_number": 4,
+        "hizb_number": 8,
+        "page_number": 72,
+        "words": [],
+        "audio": {
+          "verse_key": "3:159",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/003159.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "Once you make a decision, put your trust in Allah.",
+            "verse_key": "3:159"
+          }
+        ]
+      }
+    },
+    {
+      "category": "trust_in_allah",
+      "verse": {
+        "id": 1291,
+        "chapter_id": 9,
+        "verse_number": 51,
+        "verse_key": "9:51",
+        "text_uthmani": "وَعَلَى ٱللَّهِ فَلْيَتَوَكَّلِ ٱلْمُؤْمِنُونَ",
+        "juz_number": 11,
+        "hizb_number": 21,
+        "page_number": 200,
+        "words": [],
+        "audio": {
+          "verse_key": "9:51",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/009051.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "And in Allah let the believers put their trust.",
+            "verse_key": "9:51"
+          }
+        ]
+      }
+    },
+    {
+      "category": "patience",
+      "verse": {
+        "id": 160,
+        "chapter_id": 2,
+        "verse_number": 153,
+        "verse_key": "2:153",
+        "text_uthmani": "ٱسْتَعِينُوا۟ بِٱلصَّبْرِ وَٱلصَّلَوٰةِ ۚ إِنَّ ٱللَّهَ مَعَ ٱلصَّـٰبِرِينَ",
+        "juz_number": 2,
+        "hizb_number": 3,
+        "page_number": 23,
+        "words": [],
+        "audio": {
+          "verse_key": "2:153",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/002153.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "Seek comfort in patience and prayer. Allah is truly with those who are patient.",
+            "verse_key": "2:153"
+          }
+        ]
+      }
+    },
+    {
+      "category": "patience",
+      "verse": {
+        "id": 500,
+        "chapter_id": 3,
+        "verse_number": 200,
+        "verse_key": "3:200",
+        "text_uthmani": "ٱصْبِرُوا۟ وَصَابِرُوا۟ وَرَابِطُوا۟",
+        "juz_number": 4,
+        "hizb_number": 8,
+        "page_number": 76,
+        "words": [],
+        "audio": {
+          "verse_key": "3:200",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/003200.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "Persist patiently, be steadfast, stand firm, and be mindful of Allah.",
+            "verse_key": "3:200"
+          }
+        ]
+      }
+    },
+    {
+      "category": "patience",
+      "verse": {
+        "id": 4390,
+        "chapter_id": 39,
+        "verse_number": 10,
+        "verse_key": "39:10",
+        "text_uthmani": "إِنَّمَا يُوَفَّى ٱلصَّـٰبِرُونَ أَجْرَهُم بِغَيْرِ حِسَابٍۢ",
+        "juz_number": 23,
+        "hizb_number": 46,
+        "page_number": 459,
+        "words": [],
+        "audio": {
+          "verse_key": "39:10",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/039010.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "Only those who endure patiently will be given their reward without limit.",
+            "verse_key": "39:10"
+          }
+        ]
+      }
+    },
+    {
+      "category": "charity",
+      "verse": {
+        "id": 261,
+        "chapter_id": 2,
+        "verse_number": 261,
+        "verse_key": "2:261",
+        "text_uthmani": "مَّثَلُ ٱلَّذِينَ يُنفِقُونَ أَمْوَٰلَهُمْ فِى سَبِيلِ ٱللَّهِ",
+        "juz_number": 3,
+        "hizb_number": 5,
+        "page_number": 44,
+        "words": [],
+        "audio": {
+          "verse_key": "2:261",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/002261.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "The example of those who spend their wealth in the cause of Allah is that of a grain that sprouts into seven ears.",
+            "verse_key": "2:261"
+          }
+        ]
+      }
+    },
+    {
+      "category": "charity",
+      "verse": {
+        "id": 271,
+        "chapter_id": 2,
+        "verse_number": 271,
+        "verse_key": "2:271",
+        "text_uthmani": "إِن تُبْدُوا۟ ٱلصَّدَقَـٰتِ فَنِعِمَّا هِىَ ۖ وَإِن تُخْفُوهَا",
+        "juz_number": 3,
+        "hizb_number": 5,
+        "page_number": 46,
+        "words": [],
+        "audio": {
+          "verse_key": "2:271",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/002271.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "To give charity publicly is good, but to give to the poor privately is better for you.",
+            "verse_key": "2:271"
+          }
+        ]
+      }
+    },
+    {
+      "category": "charity",
+      "verse": {
+        "id": 5318,
+        "chapter_id": 57,
+        "verse_number": 18,
+        "verse_key": "57:18",
+        "text_uthmani": "إِنَّ ٱلْمُصَّدِّقِينَ وَٱلْمُصَّدِّقَـٰتِ",
+        "juz_number": 27,
+        "hizb_number": 54,
+        "page_number": 540,
+        "words": [],
+        "audio": {
+          "verse_key": "57:18",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/057018.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "Surely those who give in charity men and women will have their reward multiplied.",
+            "verse_key": "57:18"
+          }
+        ]
+      }
+    },
+    {
+      "category": "lying",
+      "verse": {
+        "id": 49,
+        "chapter_id": 2,
+        "verse_number": 42,
+        "verse_key": "2:42",
+        "text_uthmani": "وَلَا تَلْبِسُوا۟ ٱلْحَقَّ بِٱلْبَـٰطِلِ وَتَكْتُمُوا۟ ٱلْحَقَّ",
+        "juz_number": 1,
+        "hizb_number": 1,
+        "page_number": 7,
+        "words": [],
+        "audio": {
+          "verse_key": "2:42",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/002042.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "Do not mix truth with falsehood or hide the truth knowingly.",
+            "verse_key": "2:42"
+          }
+        ]
+      }
+    },
+    {
+      "category": "lying",
+      "verse": {
+        "id": 2065,
+        "chapter_id": 16,
+        "verse_number": 105,
+        "verse_key": "16:105",
+        "text_uthmani": "إِنَّمَا يَفْتَرِى ٱلْكَذِبَ ٱلَّذِينَ لَا يُؤْمِنُونَ",
+        "juz_number": 14,
+        "hizb_number": 28,
+        "page_number": 281,
+        "words": [],
+        "audio": {
+          "verse_key": "16:105",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/016105.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "They only invent falsehood who do not believe in the verses of Allah.",
+            "verse_key": "16:105"
+          }
+        ]
+      }
+    },
+    {
+      "category": "lying",
+      "verse": {
+        "id": 1339,
+        "chapter_id": 9,
+        "verse_number": 119,
+        "verse_key": "9:119",
+        "text_uthmani": "وَكُونُوا۟ مَعَ ٱلصَّـٰدِقِينَ",
+        "juz_number": 11,
+        "hizb_number": 22,
+        "page_number": 208,
+        "words": [],
+        "audio": {
+          "verse_key": "9:119",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/009119.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "Be mindful of Allah and be with those who are true.",
+            "verse_key": "9:119"
+          }
+        ]
+      }
+    },
+    {
+      "category": "arrogance",
+      "verse": {
+        "id": 3462,
+        "chapter_id": 31,
+        "verse_number": 18,
+        "verse_key": "31:18",
+        "text_uthmani": "وَلَا تُصَعِّرْ خَدَّكَ لِلنَّاسِ وَلَا تَمْشِ فِى ٱلْأَرْضِ مَرَحًا",
+        "juz_number": 21,
+        "hizb_number": 41,
+        "page_number": 412,
+        "words": [],
+        "audio": {
+          "verse_key": "31:18",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/031018.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "Do not walk pridefully upon the earth. Surely Allah does not like whoever is arrogant.",
+            "verse_key": "31:18"
+          }
+        ]
+      }
+    },
+    {
+      "category": "arrogance",
+      "verse": {
+        "id": 2197,
+        "chapter_id": 17,
+        "verse_number": 37,
+        "verse_key": "17:37",
+        "text_uthmani": "وَلَا تَمْشِ فِى ٱلْأَرْضِ مَرَحًا",
+        "juz_number": 15,
+        "hizb_number": 29,
+        "page_number": 286,
+        "words": [],
+        "audio": {
+          "verse_key": "17:37",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/017037.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "Do not walk upon the earth exultantly.",
+            "verse_key": "17:37"
+          }
+        ]
+      }
+    },
+    {
+      "category": "arrogance",
+      "verse": {
+        "id": 2083,
+        "chapter_id": 16,
+        "verse_number": 23,
+        "verse_key": "16:23",
+        "text_uthmani": "إِنَّهُۥ لَا يُحِبُّ ٱلْمُسْتَكْبِرِينَ",
+        "juz_number": 14,
+        "hizb_number": 27,
+        "page_number": 269,
+        "words": [],
+        "audio": {
+          "verse_key": "16:23",
+          "url": "https://verses.quran.com/Abdul_Basit/mp3/016023.mp3"
+        },
+        "translations": [
+          {
+            "resource_id": 131,
+            "text": "Surely He does not like the arrogant.",
+            "verse_key": "16:23"
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "source": "quran.com-virtual",
+    "translation_resource_id": 131,
+    "translation_name": "Dr. Mustafa Khattab - The Clear Quran",
+    "audio_reciter": "Abdul Basit"
+  }
+}

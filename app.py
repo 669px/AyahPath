@@ -126,6 +126,35 @@ def api_call(endpoint, method='GET', data=None):
         logger.error(f"API call error: {e}")
         return {'success': False, 'error': 'Unexpected proxy error'}
                                                         
+
+
+def api_proxy_get(endpoint, params=None):
+    """Forward GET requests while preserving auth-like headers for virtual APIs."""
+    url = f"{API_BASE_URL}{endpoint}"
+    headers = {
+        'X-Forwarded-For': request.headers.get('X-Forwarded-For', request.remote_addr),
+    }
+    for header_name in ('x-auth-token', 'x-client-id'):
+        header_value = request.headers.get(header_name)
+        if header_value:
+            headers[header_name] = header_value
+
+    try:
+        resp = API_SESSION.get(url, params=params or {}, headers=headers, timeout=12)
+        if not resp.text:
+            return jsonify({'success': resp.ok}), resp.status_code
+        try:
+            return jsonify(resp.json()), resp.status_code
+        except Exception:
+            return jsonify({'success': False, 'error': 'Invalid backend response'}), 502
+    except requests.exceptions.Timeout:
+        return jsonify({'success': False, 'error': 'API timeout'}), 504
+    except requests.exceptions.ConnectionError:
+        return jsonify({'success': False, 'error': 'Cannot connect to backend API'}), 503
+    except Exception as exc:
+        logger.error(f'Proxy passthrough error: {exc}')
+        return jsonify({'success': False, 'error': 'Unexpected proxy error'}), 500
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -357,6 +386,57 @@ def get_tafsir(surah, ayah):
         return jsonify({'success': False, 'error': 'Backend not available'}), 503
     return jsonify(result), 200 if result.get('success') else 400
                                                                                           
+
+
+@app.route('/content/api/v4/verses/by_key/<verse_key>', methods=['GET'])
+def virtual_proxy_by_key(verse_key):
+    params = {
+        'language': request.args.get('language'),
+        'words': request.args.get('words'),
+        'translations': request.args.get('translations'),
+    }
+    params = {k: v for k, v in params.items() if v is not None}
+    return api_proxy_get(f'/content/api/v4/verses/by_key/{verse_key}', params=params)
+
+
+@app.route('/content/api/v4/verses/by_category/<category>', methods=['GET'])
+def virtual_proxy_by_category(category):
+    params = {
+        'limit': request.args.get('limit'),
+        'random': request.args.get('random'),
+        'words': request.args.get('words'),
+        'translations': request.args.get('translations'),
+    }
+    params = {k: v for k, v in params.items() if v is not None}
+    return api_proxy_get(f'/content/api/v4/verses/by_category/{category}', params=params)
+
+
+@app.route('/content/api/v4/verses/by_keywords', methods=['GET'])
+def virtual_proxy_by_keywords():
+    params = {
+        'q': request.args.get('q') or request.args.get('text'),
+        'limit': request.args.get('limit'),
+        'random': request.args.get('random'),
+        'words': request.args.get('words'),
+        'translations': request.args.get('translations'),
+    }
+    params = {k: v for k, v in params.items() if v is not None}
+    return api_proxy_get('/content/api/v4/verses/by_keywords', params=params)
+
+
+@app.route('/content/api/v4/verses', methods=['GET'])
+def virtual_proxy_verses_index():
+    params = {
+        'category': request.args.get('category'),
+        'q': request.args.get('q') or request.args.get('text'),
+        'limit': request.args.get('limit'),
+        'random': request.args.get('random'),
+        'words': request.args.get('words'),
+        'translations': request.args.get('translations'),
+    }
+    params = {k: v for k, v in params.items() if v is not None}
+    return api_proxy_get('/content/api/v4/verses', params=params)
+
 @app.route('/api/prayers/week', methods=['GET'])
 def get_prayer_week():
     """Get prayer summary for the week containing the given date."""
