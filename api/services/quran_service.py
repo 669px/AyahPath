@@ -1,78 +1,160 @@
-import requests
 import logging
 from functools import lru_cache
-BASE_URL = "https://api.alquran.cloud/v1"
-ARABIC_EDITION = "quran-uthmani"
-AUDIO_EDITION = "ar.alafasy"
-HTTP = requests.Session()
-HTTP.headers.update({"User-Agent": "AyahPath/1.0"})
-TRANSLATION_EDITIONS = {
-    "131": "en.asad",
-    "97": "ur.ahmedali",
-    "84": "en.hilali",
-    "136": "fr.hamidullah",
-    "33": "id.indonesian",
-    "20": "bn.bengali",
-    "77": "tr.diyanet",
-    "54": "hi.hindi",
+
+try:
+    from .virtual_quran_api import get_by_key as virtual_get_by_key
+    from .virtual_quran_api import list_verses as virtual_list_verses
+    from .virtual_quran_api import get_categories as virtual_get_categories
+except ImportError:
+    from virtual_quran_api import get_by_key as virtual_get_by_key
+    from virtual_quran_api import list_verses as virtual_list_verses
+    from virtual_quran_api import get_categories as virtual_get_categories
+
+logger = logging.getLogger(__name__)
+
+SURAH_NAMES_EN = {
+    2: "Al-Baqarah",
+    3: "Ali 'Imran",
+    4: "An-Nisa",
+    8: "Al-Anfal",
+    9: "At-Tawbah",
+    13: "Ar-Ra'd",
+    14: "Ibrahim",
+    16: "An-Nahl",
+    17: "Al-Isra",
+    31: "Luqman",
+    39: "Az-Zumar",
+    41: "Fussilat",
+    42: "Ash-Shura",
+    57: "Al-Hadid",
+    65: "At-Talaq",
+    94: "Ash-Sharh",
+    113: "Al-Falaq",
 }
+
+SURAH_NAMES_AR = {
+    2: "البقرة",
+    3: "آل عمران",
+    4: "النساء",
+    8: "الأنفال",
+    9: "التوبة",
+    13: "الرعد",
+    14: "إبراهيم",
+    16: "النحل",
+    17: "الإسراء",
+    31: "لقمان",
+    39: "الزمر",
+    41: "فصلت",
+    42: "الشورى",
+    57: "الحديد",
+    65: "الطلاق",
+    94: "الشرح",
+    113: "الفلق",
+}
+
+
+def _safe_int(value, fallback=None):
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return fallback
+
+
 @lru_cache(maxsize=512)
 def fetch_verse(chapter, verse, translation_id="131"):
-    """Fetch verse details including Arabic text, translation, and audio."""
-    primary_edition = "en.asad"
-    secondary_edition = TRANSLATION_EDITIONS.get(str(translation_id), primary_edition)
-    if secondary_edition == primary_edition:
-        editions_str = primary_edition
-    else:
-        editions_str = f"{primary_edition},{secondary_edition}"
-    url = f"{BASE_URL}/ayah/{chapter}:{verse}/editions/{ARABIC_EDITION},{editions_str},{AUDIO_EDITION}"
-    
-    try:
-        r = HTTP.get(url, timeout=5)
-        r.raise_for_status()
-        data = r.json()
-        
-        if not data.get('data') or len(data['data']) < 2:
-            logging.error(f"Incomplete data returned for {chapter}:{verse}")
-            return None
-            
-        results = data['data']
-        arabic_text = results[0]['text']
-        primary_trans = results[1]['text']
-        secondary_trans = results[2]['text'] if len(results) > 3 else ""
-        audio_url = results[-1]['audio']
-        
-        surah = results[0]['surah']
-        
-        return {
-            "chapter": chapter,
-            "verse": verse,
-            "verse_key": f"{chapter}:{verse}",
-            "arabic": arabic_text,
-            "translation": primary_trans,
-            "secondary_translation": secondary_trans,
-            "surah_name": surah['englishName'],
-            "surah_name_ar": surah.get('name', ''),
-            "audio": audio_url,
-            "audio_url": audio_url,
-            "success": True
-        }
-    except Exception as e:
-        logging.error(f"Error fetching verse {chapter}:{verse}: {e}")
+    """Fetch verse details from the local virtual Quran dataset (no external API call)."""
+    chapter_num = _safe_int(chapter)
+    verse_num = _safe_int(verse)
+    if chapter_num is None or verse_num is None:
         return None
+
+    verse_key = f"{chapter_num}:{verse_num}"
+    data = virtual_get_by_key(verse_key=verse_key, translations=None, words=False)
+    if not data or "verse" not in data:
+        logger.warning("Virtual Quran verse not found in sample dataset: %s", verse_key)
+        fallback = virtual_list_verses(limit=1, randomize=True, translations=None)
+        if fallback:
+            data = {"verse": (fallback[0] or {}).get("verse") or {}}
+        else:
+            return None
+
+    item = data.get("verse") or {}
+    translations = item.get("translations") or []
+
+    requested_translation_id = _safe_int(translation_id, 131)
+    primary_translation = ""
+    secondary_translation = ""
+
+    if translations:
+        # Keep English (131) as primary text across the UI.
+        en_entry = None
+        for tr in translations:
+            if _safe_int(tr.get("resource_id")) == 131:
+                en_entry = tr
+                break
+        if en_entry is None:
+            en_entry = translations[0]
+        primary_translation = str(en_entry.get("text") or "")
+
+        # Secondary translation follows the selected language when available.
+        if requested_translation_id != 131:
+            selected = None
+            for tr in translations:
+                if _safe_int(tr.get("resource_id")) == requested_translation_id:
+                    selected = tr
+                    break
+            secondary_translation = str((selected or {}).get("text") or "")
+            if secondary_translation == primary_translation:
+                secondary_translation = ""
+
+    resolved_chapter = _safe_int(item.get("chapter_id"), chapter_num)
+    resolved_verse = _safe_int(item.get("verse_number"), verse_num)
+    resolved_key = str(item.get("verse_key") or f"{resolved_chapter}:{resolved_verse}")
+
+    # Build audio URL from verse key so recitation always matches displayed ayah.
+    audio_url = f"https://everyayah.com/data/Abdul_Basit_Murattal_192kbps/{resolved_chapter:03d}{resolved_verse:03d}.mp3"
+
+    return {
+        "chapter": resolved_chapter,
+        "verse": resolved_verse,
+        "verse_key": resolved_key,
+        "arabic": str(item.get("text_uthmani") or ""),
+        "translation": primary_translation,
+        "secondary_translation": secondary_translation,
+        "surah_name": SURAH_NAMES_EN.get(resolved_chapter, f"Surah {resolved_chapter}"),
+        "surah_name_ar": SURAH_NAMES_AR.get(resolved_chapter, ""),
+        "audio": audio_url,
+        "audio_url": audio_url,
+        "success": True,
+    }
+
+
 def get_chapters():
-    """Fetches the list of all surahs (chapters) from the Quran."""
-    try:
-        response = HTTP.get(f"{BASE_URL}/surah", timeout=10)
-        response.raise_for_status()
-        return response.json().get("data", [])
-    except Exception as e:
-        logging.error(f"Error fetching chapters: {e}")
-        return []
+    """Build chapter list from the local virtual Quran dataset."""
+    chapters = {}
+
+    for category in virtual_get_categories():
+        rows = virtual_list_verses(category=category, limit=1000)
+        for row in rows:
+            verse = (row or {}).get("verse") or {}
+            chapter_id = _safe_int(verse.get("chapter_id"))
+            if chapter_id is None:
+                continue
+
+            item = chapters.setdefault(
+                chapter_id,
+                {
+                    "id": chapter_id,
+                    "name_simple": SURAH_NAMES_EN.get(chapter_id, f"Surah {chapter_id}"),
+                    "name_arabic": SURAH_NAMES_AR.get(chapter_id, ""),
+                    "verses_count": 0,
+                },
+            )
+            item["verses_count"] += 1
+
+    return [chapters[k] for k in sorted(chapters.keys())]
+
+
 def get_tafsir(chapter, verse):
-    """Fetches tafsir for the given verse."""
-    try:
-        return "Tafsir available through Quran.com for detailed explanations."
-    except Exception as e:
-        logging.error(f"Error fetching tafsir for {chapter}:{verse} - {e}")
-        return "Tafsir unavailable at the moment."
+    """Return a local tafsir placeholder for virtual mode."""
+    return f"Tafsir text is not bundled in virtual mode for {chapter}:{verse}."

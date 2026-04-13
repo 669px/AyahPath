@@ -55,6 +55,7 @@
         audioPlayer = $('#audio-player');
         initTheme();
         initLanguage();
+        initTypography();
         initNav();
         initScroll();
         initAudio();
@@ -158,6 +159,51 @@
                 toast('Failed to clear some data');
             }
         });
+    }
+
+    function initTypography() {
+        const MIN = -5;
+        const MAX = 5;
+        const STORAGE_KEY = 'ayahpath-font-size-level';
+        const decBtn = $('#font-size-decrease');
+        const incBtn = $('#font-size-increase');
+        const valueEl = $('#settings-font-size-value');
+
+        const normalize = (value) => {
+            const parsed = Number.parseInt(value, 10);
+            if (!Number.isFinite(parsed)) return 0;
+            return Math.max(MIN, Math.min(MAX, parsed));
+        };
+
+        let level = normalize(localStorage.getItem(STORAGE_KEY) || '0');
+
+        const apply = () => {
+            document.documentElement.style.setProperty('--font-size-level', String(level));
+            localStorage.setItem(STORAGE_KEY, String(level));
+            if (valueEl) {
+                valueEl.textContent = level > 0 ? `+${level}` : `${level}`;
+            }
+            if (decBtn) decBtn.disabled = level <= MIN;
+            if (incBtn) incBtn.disabled = level >= MAX;
+        };
+
+        apply();
+
+        if (decBtn) {
+            decBtn.addEventListener('click', () => {
+                if (level <= MIN) return;
+                level -= 1;
+                apply();
+            });
+        }
+
+        if (incBtn) {
+            incBtn.addEventListener('click', () => {
+                if (level >= MAX) return;
+                level += 1;
+                apply();
+            });
+        }
     }
 
     function initNotifications() {
@@ -559,10 +605,14 @@
     function initAudio() {
         const btn = $('#verse-audio-btn');
         const dailyAudioBtn = $('#daily-audio-btn');
+        const dailyRefreshBtn = $('#daily-refresh-btn');
+        const getReflectAudioBtn = () => $('#reflect-audio-btn');
 
         function resetAudioUI() {
             btn.classList.remove('playing');
             dailyAudioBtn.classList.remove('playing');
+            const reflectAudioBtn = getReflectAudioBtn();
+            if (reflectAudioBtn) reflectAudioBtn.classList.remove('playing');
             hide('#audio-track');
         }
 
@@ -601,6 +651,9 @@
 
         audioPlayer.addEventListener('ended', () => {
             btn.classList.remove('playing');
+            dailyAudioBtn.classList.remove('playing');
+            const reflectAudioBtn = getReflectAudioBtn();
+            if (reflectAudioBtn) reflectAudioBtn.classList.remove('playing');
             isPlaying = false;
             const fill = $('#track-fill');
             if (fill) fill.style.width = '0%';
@@ -626,22 +679,36 @@
                 }).catch(() => toast('Audio unavailable'));
             }
         });
+
+        if (dailyRefreshBtn) {
+            dailyRefreshBtn.addEventListener('click', async () => {
+                audioPlayer.pause();
+                audioPlayer.currentTime = 0;
+                resetAudioUI();
+                await loadDailyAyah(true);
+            });
+        }
     }
 
-    async function loadDailyAyah() {
+    async function loadDailyAyah(forceRandom = false) {
         try {
             const langId = localStorage.getItem('ayahpath-lang') || '131';
             const lastVerseKey = localStorage.getItem('ayahpath-last-home-ayah') || '';
             const exclude = encodeURIComponent(lastVerseKey);
-            let r = await fetch(`/api/personalized-ayah?trans=${encodeURIComponent(langId)}&user_id=anonymous_user&exclude=${exclude}`, {
-                cache: 'no-store'
-            });
-            let d = await r.json();
-            if (!d.success) {
-                r = await fetch(`/api/daily-ayah?trans=${encodeURIComponent(langId)}&user_id=anonymous_user&random=1&exclude=${exclude}`, {
+            let d = null;
+
+            if (!forceRandom) {
+                const personalized = await fetch(`/api/personalized-ayah?trans=${encodeURIComponent(langId)}&user_id=anonymous_user&exclude=${exclude}`, {
                     cache: 'no-store'
                 });
-                d = await r.json();
+                d = await personalized.json();
+            }
+
+            if (!d || !d.success) {
+                const dailyResp = await fetch(`/api/daily-ayah?trans=${encodeURIComponent(langId)}&user_id=anonymous_user&random=1&exclude=${exclude}`, {
+                    cache: 'no-store'
+                });
+                d = await dailyResp.json();
             }
             if (d.success && d.ayah && d.ayah.success) {
                 if (d.ayah.verse_key) {
@@ -724,11 +791,48 @@
         if (d.ayah && d.ayah.success) {
             vc.innerHTML = `
                 <div class="verse-top"><span class="verse-badge">Relevant Verse</span><span class="verse-ref">${esc(d.ayah.surah_name)} — ${d.ayah.verse_key}</span></div>
-                <p class="verse-ar" style="font-size:1.5rem">${d.ayah.arabic}</p>
-                <p class="verse-trans" dir="auto" style="font-size:1.05rem;line-height:1.8;text-align:center;color:var(--amber);margin-bottom:12px;opacity:0.9">${esc(d.ayah.secondary_translation || '')}</p>
+                <p class="verse-ar">${d.ayah.arabic}</p>
+                <p class="verse-trans" dir="auto">${esc(d.ayah.secondary_translation || '')}</p>
                 <blockquote class="verse-en">"${esc(d.ayah.translation)}"</blockquote>
+                <div class="verse-controls">
+                    <button class="btn-audio" id="reflect-audio-btn">
+                        <svg class="ico-play" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                        <svg class="ico-pause" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+                        <span>Recitation</span>
+                    </button>
+                </div>
             `;
             vc.style.display = 'block';
+
+            const reflectAudioBtn = $('#reflect-audio-btn');
+            if (reflectAudioBtn) {
+                reflectAudioBtn.addEventListener('click', () => {
+                    if (reflectAudioBtn.classList.contains('playing')) {
+                        audioPlayer.pause();
+                        reflectAudioBtn.classList.remove('playing');
+                        isPlaying = false;
+                        return;
+                    }
+
+                    audioPlayer.pause();
+                    audioPlayer.currentTime = 0;
+                    $('#verse-audio-btn').classList.remove('playing');
+                    $('#daily-audio-btn').classList.remove('playing');
+                    reflectAudioBtn.classList.remove('playing');
+
+                    const audioUrl = (d.ayah && d.ayah.audio_url) || '';
+                    if (!audioUrl) {
+                        toast('Audio unavailable');
+                        return;
+                    }
+
+                    audioPlayer.src = audioUrl;
+                    audioPlayer.play().then(() => {
+                        reflectAudioBtn.classList.add('playing');
+                        isPlaying = true;
+                    }).catch(() => toast('Audio unavailable'));
+                });
+            }
         } else {
             vc.style.display = 'none';
         }

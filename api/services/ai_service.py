@@ -100,7 +100,7 @@ def assign_category(scenario, user_id='anonymous_user'):
     prompt = (
         f"You are categorising a user's latest reflection for an Islamic guidance app.\n"
         f"{memory}\n"
-        f'Latest reflection: "{scenario}"\n'
+        f'Reflection: "{scenario}"\n'
         f"Options: {', '.join(categories)}.\n"
         f"Respond with ONLY the category name."
     )
@@ -191,8 +191,7 @@ def get_personalized_ayah_plan(user_id='anonymous_user'):
     recent_categories = [r.get("assigned_category") for r in reflections if r.get("assigned_category")]
     top_category = Counter(recent_categories).most_common(1)[0][0] if recent_categories else None
     if reflections:
-        latest_text = reflections[-1].get("scenario", "")
-        reason = f"Picked for you based on your recent reflections and activity. Latest reflection: {latest_text[:90]}"
+        reason = "Picked for you based on your recent reflections and activity."
     elif activities:
         reason = "Picked for you from your recent activity to bring a little more ease to today."
     else:

@@ -56,6 +56,8 @@
     --pattern-img: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%232CA4AB' stroke-width='.4'%3E%3Cpath d='M40 0L80 40L40 80L0 40Z'/%3E%3Cpath d='M40 10L70 40L40 70L10 40Z'/%3E%3Cpath d='M40 20L60 40L40 60L20 40Z'/%3E%3C/g%3E%3C/svg%3E");
     --ring-spectrum: #2CA4AB, #38bdf8, #a78bfa, #fbbf24, #fb7185, #2CA4AB;
     --ring-spectrum-short: #2CA4AB, #38bdf8, #a78bfa, #2CA4AB;
+    --font-size-level: 0;
+    --font-size-step: 1.333px;
 }
 
 .icon-3d {
@@ -831,7 +833,7 @@ button {
 
 .daily-ar {
     font-family: var(--f-ar);
-    font-size: 2.2rem; 
+    font-size: calc(2.2rem + (var(--font-size-level) * var(--font-size-step)));
     line-height: 1.8;
     color: var(--tx-1);
     direction: rtl;
@@ -841,7 +843,7 @@ button {
 }
 
 .daily-trans {
-    font-size: .95rem;
+    font-size: calc(.95rem + (var(--font-size-level) * var(--font-size-step)));
     line-height: 1.7;
     color: var(--amber);
     text-align: center;
@@ -851,13 +853,13 @@ button {
 
 body[data-lang="97"] .daily-trans {
     font-family: var(--f-ur);
-    font-size: 1.1rem;
+    font-size: calc(1.1rem + (var(--font-size-level) * var(--font-size-step)));
     line-height: 2.2;
     direction: rtl
 }
 
 .daily-en {
-    font-size: .92rem;
+    font-size: calc(.92rem + (var(--font-size-level) * var(--font-size-step)));
     color: var(--tx-2);
     font-style: italic;
     max-width: 550px;
@@ -1280,7 +1282,7 @@ body[data-lang="97"] .daily-trans {
 
 .verse-ar {
     font-family: var(--f-ar);
-    font-size: 2.6rem;
+    font-size: calc(2.6rem + (var(--font-size-level) * var(--font-size-step)));
     line-height: 1.7;
     text-align: center;
     direction: rtl;
@@ -1292,7 +1294,7 @@ body[data-lang="97"] .daily-trans {
 }
 
 .verse-trans {
-    font-size: .95rem;
+    font-size: calc(.95rem + (var(--font-size-level) * var(--font-size-step)));
     line-height: 1.7;
     text-align: center;
     color: var(--amber);
@@ -1304,13 +1306,13 @@ body[data-lang="97"] .daily-trans {
 
 body[data-lang="97"] .verse-trans {
     font-family: var(--f-ur);
-    font-size: 1.15rem;
+    font-size: calc(1.15rem + (var(--font-size-level) * var(--font-size-step)));
     line-height: 2.2;
     direction: rtl
 }
 
 .verse-en {
-    font-size: .95rem;
+    font-size: calc(.95rem + (var(--font-size-level) * var(--font-size-step)));
     line-height: 1.75;
     color: var(--tx-2);
     text-align: center;
@@ -1357,6 +1359,14 @@ body[data-lang="97"] .verse-trans {
 }
 
 .btn-audio.playing .ico-pause {
+    display: block !important
+}
+
+.btn-icon.playing .ico-play {
+    display: none !important
+}
+
+.btn-icon.playing .ico-pause {
     display: block !important
 }
 
@@ -1418,7 +1428,7 @@ body[data-lang="97"] .verse-trans {
 
 .mini-ar {
     font-family: var(--f-ar);
-    font-size: 1.15rem;
+    font-size: calc(1.15rem + (var(--font-size-level) * var(--font-size-step)));
     direction: rtl;
     text-align: right;
     line-height: 2;
@@ -1426,7 +1436,7 @@ body[data-lang="97"] .verse-trans {
 }
 
 .mini-trans {
-    font-size: .85rem;
+    font-size: calc(.85rem + (var(--font-size-level) * var(--font-size-step)));
     line-height: 1.6;
     color: var(--amber);
     margin-bottom: 6px;
@@ -1435,14 +1445,14 @@ body[data-lang="97"] .verse-trans {
 
 body[data-lang="97"] .mini-trans {
     font-family: var(--f-ur);
-    font-size: .95rem;
+    font-size: calc(.95rem + (var(--font-size-level) * var(--font-size-step)));
     direction: rtl;
     text-align: right;
     line-height: 2
 }
 
 .mini-en {
-    font-size: .85rem;
+    font-size: calc(.85rem + (var(--font-size-level) * var(--font-size-step)));
     color: var(--tx-2);
     line-height: 1.55;
     font-style: italic
@@ -2248,6 +2258,68 @@ input:checked+.slider:before {
     margin-top: 10px;
 }
 
+.font-stepper-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.font-stepper-label {
+    font-size: .82rem;
+    color: var(--tx-3);
+    font-weight: 500
+}
+
+.font-stepper {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px
+}
+
+.font-stepper-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--bdr);
+    background: var(--bg-2);
+    color: var(--tx-1);
+    font-size: 1.25rem;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--dur) var(--ease)
+}
+
+.font-stepper-btn:hover:not(:disabled) {
+    border-color: var(--bdr-accent);
+    color: var(--emerald);
+    background: var(--emerald-dim)
+}
+
+.font-stepper-btn:disabled {
+    opacity: .45;
+    cursor: not-allowed
+}
+
+.font-stepper-value {
+    min-width: 40px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--tx-1)
+}
+
+.daily-trans,
+.daily-en,
+.verse-trans,
+.verse-en,
+.mini-trans,
+.mini-en {
+    overflow-wrap: anywhere
+}
+
 .alert-text {
     color: var(--rose);
     border-color: rgba(251, 113, 133, .2);
@@ -3011,12 +3083,12 @@ input:checked+.slider:before {
     }
 
     .daily-ar {
-        font-size: 1.3rem;
+        font-size: calc(1.3rem + (var(--font-size-level) * var(--font-size-step)));
         line-height: 2
     }
 
     .daily-en {
-        font-size: .84rem
+        font-size: calc(.84rem + (var(--font-size-level) * var(--font-size-step)))
     }
 
     .daily-badge {
@@ -3031,12 +3103,12 @@ input:checked+.slider:before {
     }
 
     .verse-ar {
-        font-size: 1.4rem;
+        font-size: calc(1.4rem + (var(--font-size-level) * var(--font-size-step)));
         line-height: 2
     }
 
     .verse-en {
-        font-size: .88rem
+        font-size: calc(.88rem + (var(--font-size-level) * var(--font-size-step)))
     }
 
     .sim-hero h2 {

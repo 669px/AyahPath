@@ -92,7 +92,16 @@
                 <div class="daily-meta">
                     <span class="daily-ref" id="daily-ref"></span>
                     <button class="btn-icon" id="daily-audio-btn" title="Listen">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                        <svg class="ico-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                        <svg class="ico-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+                    </button>
+                    <button class="btn-icon" id="daily-refresh-btn" title="Refresh Ayah">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="23 4 23 10 17 10"></polyline>
+                            <polyline points="1 20 1 14 7 14"></polyline>
+                            <path d="M3.51 9a9 9 0 0 1 14.13-3.36L23 10"></path>
+                            <path d="M20.49 15a9 9 0 0 1-14.13 3.36L1 14"></path>
+                        </svg>
                     </button>
                 </div>
             </section>
@@ -374,6 +383,19 @@
                                 <option value="131">English Only</option>
                             </select>
                         </label>
+                    </div>
+
+                    <div class="setting-group">
+                        <h3>Text Size</h3>
+                        <div class="font-stepper-wrap">
+                            <span class="font-stepper-label">Verse Text Scale</span>
+                            <div class="font-stepper" role="group" aria-label="Adjust verse text size">
+                                <button class="font-stepper-btn" id="font-size-decrease" aria-label="Decrease text size">−</button>
+                                <span class="font-stepper-value" id="settings-font-size-value">0</span>
+                                <button class="font-stepper-btn" id="font-size-increase" aria-label="Increase text size">+</button>
+                            </div>
+                            <p class="settings-note">Range: −5 to +5 points for Arabic, English, and translation text.</p>
+                        </div>
                     </div>
 
                     <div class="setting-group">

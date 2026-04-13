@@ -17,6 +17,12 @@ try:
         clear_streak, clear_user_goals
     )
     from .services.youtube_service import get_videos_for_scenario
+    from .services.virtual_quran_api import (
+        get_by_key as virtual_get_by_key,
+        list_verses as virtual_list_verses,
+        get_metadata as virtual_get_metadata,
+        get_categories as virtual_get_categories,
+    )
 except ImportError:
     from config import Config
     from models.mappings import SCENARIO_MAPPINGS, DAILY_AYAHS, get_scenario
@@ -31,6 +37,12 @@ except ImportError:
         clear_streak, clear_user_goals
     )
     from services.youtube_service import get_videos_for_scenario
+    from services.virtual_quran_api import (
+        get_by_key as virtual_get_by_key,
+        list_verses as virtual_list_verses,
+        get_metadata as virtual_get_metadata,
+        get_categories as virtual_get_categories,
+    )
 from datetime import date, datetime
 import time
 from functools import wraps
@@ -321,15 +333,21 @@ def get_personalized_ayah():
     primary = _pick_ayah_entry(scenario.get('ayahs', []), exclude_key=exclude_key, randomize=True)
     if not primary:
         return jsonify({'success': False, 'error': 'No ayah available'}), 404
+    requested_key = f"{primary['surah']}:{primary['ayah']}"
     ayah = fetch_verse(primary['surah'], primary['ayah'], translation_id=trans)
     if not ayah or not ayah.get('translation'):
         return jsonify({'success': False, 'error': 'Failed to fetch personalized ayah'}), 500
+
+    reason = plan.get('reason')
+    if ayah.get('verse_key') != requested_key:
+        reason = ''
+
     ayah['success'] = True
     return jsonify({
         'success': True,
         'source': 'personalized',
         'category': plan.get('category'),
-        'reason': plan.get('reason'),
+        'reason': reason,
         'randomized': True,
         'ayah': ayah,
     }), 200
@@ -490,6 +508,85 @@ def get_verse_tafsir(surah, ayah):
         'tafsir': tafsir
     }), 200
                                                         
+
+
+@app.route('/content/api/v4/verses/by_key/<verse_key>', methods=['GET'])
+def virtual_verse_by_key(verse_key):
+    """Quran.com-style virtual endpoint: fetch one verse by key."""
+    result = virtual_get_by_key(
+        verse_key=verse_key,
+        translations=request.args.get('translations'),
+        words=request.args.get('words'),
+    )
+    if not result:
+        return jsonify({'message': 'Verse not found'}), 404
+    return jsonify(result), 200
+
+
+@app.route('/content/api/v4/verses/by_category/<category>', methods=['GET'])
+def virtual_verses_by_category(category):
+    """Virtual endpoint: list verses by predefined category."""
+    verses = virtual_list_verses(
+        category=category,
+        limit=request.args.get('limit', 20),
+        randomize=request.args.get('random'),
+        translations=request.args.get('translations'),
+        words=request.args.get('words'),
+    )
+    return jsonify({
+        'verses': verses,
+        'metadata': {
+            **virtual_get_metadata(),
+            'query': {'category': category},
+            'returned': len(verses),
+        },
+    }), 200
+
+
+@app.route('/content/api/v4/verses/by_keywords', methods=['GET'])
+def virtual_verses_by_keywords():
+    """Virtual endpoint: map natural text to category keywords and return verses."""
+    query = request.args.get('q') or request.args.get('text') or ''
+    verses = virtual_list_verses(
+        query=query,
+        limit=request.args.get('limit', 20),
+        randomize=request.args.get('random'),
+        translations=request.args.get('translations'),
+        words=request.args.get('words'),
+    )
+    return jsonify({
+        'verses': verses,
+        'metadata': {
+            **virtual_get_metadata(),
+            'query': {'text': query},
+            'returned': len(verses),
+        },
+    }), 200
+
+
+@app.route('/content/api/v4/verses', methods=['GET'])
+def virtual_verses_index():
+    """Virtual endpoint: list sample verse payloads by category or text query."""
+    query = request.args.get('q') or request.args.get('text')
+    category = request.args.get('category')
+    verses = virtual_list_verses(
+        category=category,
+        query=query,
+        limit=request.args.get('limit', 20),
+        randomize=request.args.get('random'),
+        translations=request.args.get('translations'),
+        words=request.args.get('words'),
+    )
+    return jsonify({
+        'verses': verses,
+        'metadata': {
+            **virtual_get_metadata(),
+            'available_categories': virtual_get_categories(),
+            'query': {'category': category, 'text': query},
+            'returned': len(verses),
+        },
+    }), 200
+
 @app.route('/health', methods=['GET'])
 def health_check():
     """Health check endpoint."""
