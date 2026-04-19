@@ -6,7 +6,7 @@ from flask_cors import CORS
 try:
     from .config import Config
     from .models.mappings import SCENARIO_MAPPINGS, DAILY_AYAHS, get_scenario
-    from .services.quran_service import fetch_verse, get_tafsir, get_chapters
+    from .services.quran_service import fetch_verse, get_tafsir, get_chapters, content_api_get
     from .services.ai_service import assign_category, generate_guidance, get_personalized_ayah_plan
     from .services.data_service import (
         save_reflection, get_reflections, delete_reflection,
@@ -20,13 +20,14 @@ try:
     from .services.virtual_quran_api import (
         get_by_key as virtual_get_by_key,
         list_verses as virtual_list_verses,
+        paginate_verses as virtual_paginate_verses,
         get_metadata as virtual_get_metadata,
         get_categories as virtual_get_categories,
     )
 except ImportError:
     from config import Config
     from models.mappings import SCENARIO_MAPPINGS, DAILY_AYAHS, get_scenario
-    from services.quran_service import fetch_verse, get_tafsir, get_chapters
+    from services.quran_service import fetch_verse, get_tafsir, get_chapters, content_api_get
     from services.ai_service import assign_category, generate_guidance, get_personalized_ayah_plan
     from services.data_service import (
         save_reflection, get_reflections, delete_reflection,
@@ -40,6 +41,7 @@ except ImportError:
     from services.virtual_quran_api import (
         get_by_key as virtual_get_by_key,
         list_verses as virtual_list_verses,
+        paginate_verses as virtual_paginate_verses,
         get_metadata as virtual_get_metadata,
         get_categories as virtual_get_categories,
     )
@@ -507,12 +509,37 @@ def get_verse_tafsir(surah, ayah):
         'reference': f"{surah}:{ayah}",
         'tafsir': tafsir
     }), 200
-                                                        
+
+
+
+def _request_params():
+    return {k: v for k, v in request.args.items() if v is not None}
+
+
+def _content_or_none(path):
+    return content_api_get(path, params=_request_params())
+
+
+def _virtual_rows_to_verses(rows):
+    return [(row or {}).get("verse") or row for row in rows]
+
+
+@app.route('/content/api/v4/chapters', methods=['GET'])
+def content_chapters():
+    """Quran Foundation-compatible local chapter endpoint."""
+    official = _content_or_none("chapters")
+    if official:
+        return jsonify(official), 200
+    return jsonify({"chapters": get_chapters()}), 200
 
 
 @app.route('/content/api/v4/verses/by_key/<verse_key>', methods=['GET'])
 def virtual_verse_by_key(verse_key):
     """Quran.com-style virtual endpoint: fetch one verse by key."""
+    official = _content_or_none(f"verses/by_key/{verse_key}")
+    if official:
+        return jsonify(official), 200
+
     result = virtual_get_by_key(
         verse_key=verse_key,
         translations=request.args.get('translations'),
@@ -521,6 +548,69 @@ def virtual_verse_by_key(verse_key):
     if not result:
         return jsonify({'message': 'Verse not found'}), 404
     return jsonify(result), 200
+
+
+@app.route('/content/api/v4/verses/by_chapter/<int:chapter_number>', methods=['GET'])
+def content_verses_by_chapter(chapter_number):
+    """Quran Foundation-compatible local endpoint for verses by chapter."""
+    official = _content_or_none(f"verses/by_chapter/{chapter_number}")
+    if official:
+        return jsonify(official), 200
+
+    rows = virtual_list_verses(
+        chapter_number=chapter_number,
+        limit=1000,
+        translations=request.args.get('translations'),
+        words=request.args.get('words'),
+    )
+    payload = virtual_paginate_verses(
+        _virtual_rows_to_verses(rows),
+        page=request.args.get('page', 1),
+        per_page=request.args.get('per_page', 10),
+    )
+    return jsonify(payload), 200
+
+
+@app.route('/content/api/v4/verses/by_page/<int:page_number>', methods=['GET'])
+def content_verses_by_page(page_number):
+    """Quran Foundation-compatible local endpoint for verses by page."""
+    official = _content_or_none(f"verses/by_page/{page_number}")
+    if official:
+        return jsonify(official), 200
+
+    rows = virtual_list_verses(
+        page_number=page_number,
+        limit=1000,
+        translations=request.args.get('translations'),
+        words=request.args.get('words'),
+    )
+    payload = virtual_paginate_verses(
+        _virtual_rows_to_verses(rows),
+        page=request.args.get('page', 1),
+        per_page=request.args.get('per_page', 10),
+    )
+    return jsonify(payload), 200
+
+
+@app.route('/content/api/v4/verses/by_juz/<int:juz_number>', methods=['GET'])
+def content_verses_by_juz(juz_number):
+    """Quran Foundation-compatible local endpoint for verses by juz."""
+    official = _content_or_none(f"verses/by_juz/{juz_number}")
+    if official:
+        return jsonify(official), 200
+
+    rows = virtual_list_verses(
+        juz_number=juz_number,
+        limit=1000,
+        translations=request.args.get('translations'),
+        words=request.args.get('words'),
+    )
+    payload = virtual_paginate_verses(
+        _virtual_rows_to_verses(rows),
+        page=request.args.get('page', 1),
+        per_page=request.args.get('per_page', 10),
+    )
+    return jsonify(payload), 200
 
 
 @app.route('/content/api/v4/verses/by_category/<category>', methods=['GET'])

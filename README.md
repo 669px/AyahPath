@@ -12,7 +12,7 @@ The project is split into a frontend Flask app and a backend API. Running `app.p
 - Optional OpenRouter-powered AI guidance, with keyword-based fallback when no API key is configured.
 - Prayer tracker with daily completion, weekly summary, streaks, total prayers, and completion rate.
 - Saved reflections, activity history, goals, streak tracking, notifications, language settings, and theme controls.
-- Local virtual Qur'an API endpoints backed by bundled JSON data.
+- Quran Foundation-compatible local Qur'an API endpoints backed by bundled JSON data, with optional live API credentials.
 - SQLite-backed prayer database for local persistence.
 - Ubuntu deployment script with Gunicorn, systemd, and Nginx setup.
 
@@ -137,12 +137,24 @@ AYAHPATH_ALLOWED_ORIGINS=http://localhost:5000,http://127.0.0.1:5000
 OPENROUTER_API_KEY=
 AI_MODEL=google/gemini-2.0-flash-001
 
+# Optional Quran Foundation / Quran.com Content API integration
+QURAN_CLIENT_ID=
+QURAN_CLIENT_SECRET=
+QURAN_AUTH_BASE_URL=https://oauth2.quran.foundation
+QURAN_API_BASE_URL=https://apis.quran.foundation
+QURAN_USE_OFFICIAL_API=auto
+QURAN_DEFAULT_TRANSLATION=131
+QURAN_DEFAULT_RECITATION=7
+QURAN_DEFAULT_TAFSIR=169
+
 # Present in config, currently optional
 GEMINI_API_KEY=
 YOUTUBE_API_KEY=
 ```
 
 The app works without `OPENROUTER_API_KEY`; it falls back to local keyword matching and built-in guidance.
+
+The app also works without Quran Foundation credentials. When `QURAN_CLIENT_ID` and `QURAN_CLIENT_SECRET` are set, the backend attempts official Content API calls first, then falls back to the bundled virtual Qur'an data if the upstream API is unavailable.
 
 ## Common API Routes
 
@@ -177,11 +189,17 @@ GET    /api/prayers/stats
 Virtual Qur'an-style endpoints:
 
 ```text
+GET /content/api/v4/chapters
 GET /content/api/v4/verses
 GET /content/api/v4/verses/by_key/<verse_key>
+GET /content/api/v4/verses/by_chapter/<chapter_number>
+GET /content/api/v4/verses/by_page/<page_number>
+GET /content/api/v4/verses/by_juz/<juz_number>
 GET /content/api/v4/verses/by_category/<category>
 GET /content/api/v4/verses/by_keywords?q=<query>
 ```
+
+`by_category` and `by_keywords` are AyahPath-specific helper endpoints. The other `/content/api/v4/...` routes are shaped to match Quran Foundation Content API patterns as closely as possible while using local data when credentials are not available.
 
 ## Data and Persistence
 

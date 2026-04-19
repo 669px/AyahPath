@@ -43,6 +43,13 @@ def _parse_translation_ids(value):
     return out or None
 
 
+def _safe_int(value, fallback=None):
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return fallback
+
+
 def _copy_verse(verse, translation_ids=None, include_words=False):
     item = dict(verse)
     translations = [dict(t) for t in verse.get("translations", [])]
@@ -139,12 +146,43 @@ def _category_matches_from_query(text):
     return matches
 
 
-def list_verses(category=None, query=None, limit=20, randomize=False, translations=None, words=False):
+def list_verses(
+    category=None,
+    query=None,
+    limit=20,
+    randomize=False,
+    translations=None,
+    words=False,
+    chapter_number=None,
+    page_number=None,
+    juz_number=None,
+):
     idx = _load_index()
     by_category = idx["by_category"]
 
     selected = []
-    if category:
+    if chapter_number is not None:
+        selected = [
+            verse
+            for rows in by_category.values()
+            for verse in rows
+            if _safe_int(verse.get("chapter_id"), -1) == _safe_int(chapter_number)
+        ]
+    elif page_number is not None:
+        selected = [
+            verse
+            for rows in by_category.values()
+            for verse in rows
+            if _safe_int(verse.get("page_number"), -1) == _safe_int(page_number)
+        ]
+    elif juz_number is not None:
+        selected = [
+            verse
+            for rows in by_category.values()
+            for verse in rows
+            if _safe_int(verse.get("juz_number"), -1) == _safe_int(juz_number)
+        ]
+    elif category:
         selected = list(by_category.get(str(category).strip().lower(), []))
     elif query:
         categories = _category_matches_from_query(query)
@@ -190,3 +228,30 @@ def list_verses(category=None, query=None, limit=20, randomize=False, translatio
             }
         )
     return result
+
+
+def paginate_verses(rows, page=1, per_page=10):
+    try:
+        page = max(1, int(page))
+    except (TypeError, ValueError):
+        page = 1
+    try:
+        per_page = max(1, min(int(per_page), 50))
+    except (TypeError, ValueError):
+        per_page = 10
+
+    total_records = len(rows)
+    total_pages = max(1, (total_records + per_page - 1) // per_page)
+    start = (page - 1) * per_page
+    end = start + per_page
+
+    return {
+        "verses": rows[start:end],
+        "pagination": {
+            "per_page": per_page,
+            "current_page": page,
+            "next_page": page + 1 if page < total_pages else None,
+            "total_pages": total_pages,
+            "total_records": total_records,
+        },
+    }

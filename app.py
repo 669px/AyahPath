@@ -394,9 +394,69 @@ def virtual_proxy_by_key(verse_key):
         'language': request.args.get('language'),
         'words': request.args.get('words'),
         'translations': request.args.get('translations'),
+        'audio': request.args.get('audio'),
+        'tafsirs': request.args.get('tafsirs'),
+        'fields': request.args.get('fields'),
     }
     params = {k: v for k, v in params.items() if v is not None}
     return api_proxy_get(f'/content/api/v4/verses/by_key/{verse_key}', params=params)
+
+
+@app.route('/content/api/v4/chapters', methods=['GET'])
+def virtual_proxy_chapters():
+    params = {
+        'language': request.args.get('language'),
+    }
+    params = {k: v for k, v in params.items() if v is not None}
+    return api_proxy_get('/content/api/v4/chapters', params=params)
+
+
+@app.route('/content/api/v4/verses/by_chapter/<int:chapter_number>', methods=['GET'])
+def virtual_proxy_by_chapter(chapter_number):
+    params = {
+        'language': request.args.get('language'),
+        'words': request.args.get('words'),
+        'translations': request.args.get('translations'),
+        'audio': request.args.get('audio'),
+        'tafsirs': request.args.get('tafsirs'),
+        'fields': request.args.get('fields'),
+        'page': request.args.get('page'),
+        'per_page': request.args.get('per_page'),
+    }
+    params = {k: v for k, v in params.items() if v is not None}
+    return api_proxy_get(f'/content/api/v4/verses/by_chapter/{chapter_number}', params=params)
+
+
+@app.route('/content/api/v4/verses/by_page/<int:page_number>', methods=['GET'])
+def virtual_proxy_by_page(page_number):
+    params = {
+        'language': request.args.get('language'),
+        'words': request.args.get('words'),
+        'translations': request.args.get('translations'),
+        'audio': request.args.get('audio'),
+        'tafsirs': request.args.get('tafsirs'),
+        'fields': request.args.get('fields'),
+        'page': request.args.get('page'),
+        'per_page': request.args.get('per_page'),
+    }
+    params = {k: v for k, v in params.items() if v is not None}
+    return api_proxy_get(f'/content/api/v4/verses/by_page/{page_number}', params=params)
+
+
+@app.route('/content/api/v4/verses/by_juz/<int:juz_number>', methods=['GET'])
+def virtual_proxy_by_juz(juz_number):
+    params = {
+        'language': request.args.get('language'),
+        'words': request.args.get('words'),
+        'translations': request.args.get('translations'),
+        'audio': request.args.get('audio'),
+        'tafsirs': request.args.get('tafsirs'),
+        'fields': request.args.get('fields'),
+        'page': request.args.get('page'),
+        'per_page': request.args.get('per_page'),
+    }
+    params = {k: v for k, v in params.items() if v is not None}
+    return api_proxy_get(f'/content/api/v4/verses/by_juz/{juz_number}', params=params)
 
 
 @app.route('/content/api/v4/verses/by_category/<category>', methods=['GET'])
