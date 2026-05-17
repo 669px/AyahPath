@@ -13,6 +13,24 @@ def _resolve_data_dir():
     if os.path.isabs(data_dir):
         return data_dir
     return os.path.join(BASE_DIR, data_dir)
+
+
+def _env_float(name, default):
+    value = os.getenv(name, str(default))
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return float(default)
+
+
+def _env_int(name, default):
+    value = os.getenv(name, str(default))
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return int(default)
+
+
 class Config:
     GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
     OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
@@ -21,6 +39,10 @@ class Config:
     QURAN_CLIENT_SECRET = os.getenv("QURAN_CLIENT_SECRET", "")
     QURAN_AUTH_BASE_URL = os.getenv("QURAN_AUTH_BASE_URL", "https://oauth2.quran.foundation")
     QURAN_API_BASE_URL = os.getenv("QURAN_API_BASE_URL", "https://apis.quran.foundation")
+    QURAN_MCP_BASE_URL = os.getenv("QURAN_MCP_BASE_URL", "")
+    QURAN_MCP_TIMEOUT_SECONDS = _env_float("QURAN_MCP_TIMEOUT_SECONDS", 6)
+    QURAN_API_TIMEOUT_SECONDS = _env_float("QURAN_API_TIMEOUT_SECONDS", 12)
+    QURAN_MCP_FAIL_COOLDOWN_SECONDS = _env_int("QURAN_MCP_FAIL_COOLDOWN_SECONDS", 300)
     QURAN_USE_OFFICIAL_API = os.getenv("QURAN_USE_OFFICIAL_API", "auto").lower()
     QURAN_DEFAULT_TRANSLATION = os.getenv("QURAN_DEFAULT_TRANSLATION", "131")
     QURAN_DEFAULT_RECITATION = os.getenv("QURAN_DEFAULT_RECITATION", "7")
