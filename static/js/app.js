@@ -54,6 +54,7 @@
     document.addEventListener('DOMContentLoaded', () => {
         audioPlayer = $('#audio-player');
         initTheme();
+        initAccessibilityAppearance();
         initLanguage();
         initTypography();
         initNav();
@@ -129,6 +130,30 @@
                 openScenario(currentScenarioData);
             }
         });
+    }
+
+    function initAccessibilityAppearance() {
+        const gradientToggle = $('#settings-disable-gradient');
+        const cbSelect = $('#settings-colorblind-select');
+        const root = document.documentElement;
+        const gradSaved = localStorage.getItem('ayahpath-disable-gradient') === '1';
+        const cbSaved = localStorage.getItem('ayahpath-colorblind') || 'none';
+
+        const apply = () => {
+            const disableGradient = gradientToggle ? gradientToggle.checked : gradSaved;
+            const cbMode = cbSelect ? cbSelect.value : cbSaved;
+            root.setAttribute('data-no-gradient', disableGradient ? 'true' : 'false');
+            root.setAttribute('data-colorblind', cbMode);
+            localStorage.setItem('ayahpath-disable-gradient', disableGradient ? '1' : '0');
+            localStorage.setItem('ayahpath-colorblind', cbMode);
+        };
+
+        if (gradientToggle) gradientToggle.checked = gradSaved;
+        if (cbSelect) cbSelect.value = cbSaved;
+        apply();
+
+        if (gradientToggle) gradientToggle.addEventListener('change', apply);
+        if (cbSelect) cbSelect.addEventListener('change', apply);
     }
 
     function initSettings() {

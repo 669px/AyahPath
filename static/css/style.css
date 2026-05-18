@@ -333,7 +333,55 @@ button {
 }
 
 button {
-    font-family: var(--f-body)
+    font-family: var(--f-body);
+    border-radius: 0.1%;
+}
+
+[data-no-gradient="true"] .ambient-bg,
+[data-no-gradient="true"] .geo-pattern,
+[data-no-gradient="true"] .ambient-orb {
+    display: none !important;
+}
+
+[data-no-gradient="true"] .daily-banner,
+[data-no-gradient="true"] .sim-hero,
+[data-no-gradient="true"] .verse-card,
+[data-no-gradient="true"] .insight,
+[data-no-gradient="true"] .icard,
+[data-no-gradient="true"] .history-area,
+[data-no-gradient="true"] .setting-group,
+[data-no-gradient="true"] .prayer-item,
+[data-no-gradient="true"] .prayer-progress-section,
+[data-no-gradient="true"] .video-embeds,
+[data-no-gradient="true"] .bg-sacred-gradient {
+    background-image: none !important;
+}
+
+[data-no-gradient="true"] .btn-primary,
+[data-no-gradient="true"] .btn-secondary.saved,
+[data-no-gradient="true"] .btn-checkin {
+    background-image: none !important;
+}
+
+[data-colorblind="protanopia"] {
+    --emerald: #2f80ed;
+    --brand-main: #2f80ed;
+    --brand-alt: #56ccf2;
+    --bdr-accent: #56ccf2;
+}
+
+[data-colorblind="deuteranopia"] {
+    --emerald: #ffb020;
+    --brand-main: #ffb020;
+    --brand-alt: #ffd166;
+    --bdr-accent: #ffd166;
+}
+
+[data-colorblind="tritanopia"] {
+    --emerald: #ef476f;
+    --brand-main: #ef476f;
+    --brand-alt: #f78c6b;
+    --bdr-accent: #f78c6b;
 }
 
 .ambient-bg {

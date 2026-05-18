@@ -142,6 +142,10 @@ QURAN_CLIENT_ID=
 QURAN_CLIENT_SECRET=
 QURAN_AUTH_BASE_URL=https://oauth2.quran.foundation
 QURAN_API_BASE_URL=https://apis.quran.foundation
+QURAN_MCP_BASE_URL=
+QURAN_MCP_TIMEOUT_SECONDS=6
+QURAN_API_TIMEOUT_SECONDS=12
+QURAN_MCP_FAIL_COOLDOWN_SECONDS=300
 QURAN_USE_OFFICIAL_API=auto
 QURAN_DEFAULT_TRANSLATION=131
 QURAN_DEFAULT_RECITATION=7
@@ -154,7 +158,8 @@ YOUTUBE_API_KEY=
 
 The app works without `OPENROUTER_API_KEY`; it falls back to local keyword matching and built-in guidance.
 
-The app also works without Quran Foundation credentials. When `QURAN_CLIENT_ID` and `QURAN_CLIENT_SECRET` are set, the backend attempts official Content API calls first, then falls back to the bundled virtual Qur'an data if the upstream API is unavailable.
+The app also works without Quran Foundation credentials.
+Set `QURAN_MCP_BASE_URL=https://mcp.quran.ai` to fetch verses/translations from Quran MCP's hosted content endpoints first. If MCP is unavailable, the backend falls back to the official OAuth Content API (when credentials are set), then to the bundled virtual Qur'an data.
 
 ## Common API Routes
 
