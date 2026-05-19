@@ -15,6 +15,7 @@
     };
 
     let currentScenarioData = null;
+    let lastScenarioMeta = null;
     let audioPlayer = null;
     let isPlaying = false;
     let dailyAudioUrl = null;
@@ -126,8 +127,8 @@
             localStorage.setItem('ayahpath-lang', val);
             document.body.setAttribute('data-lang', val);
             loadDailyAyah();
-            if ($('#page-simulation').classList.contains('active') && currentScenarioData) {
-                openScenario(currentScenarioData);
+            if ($('#page-simulation').classList.contains('active') && lastScenarioMeta) {
+                openScenario(lastScenarioMeta);
             }
         });
     }
@@ -249,15 +250,13 @@
     function renderNotifications() {
         const list = $('#notif-list');
         const empty = $('#notif-empty');
-        const badge = $('#notif-badge');
+        const badges = $$('.notif-badge');
         let notifs = JSON.parse(localStorage.getItem('ayahpath-notifs') || '[]');
-        
+
         const unreadCount = notifs.filter(n => !n.read).length;
-        if (unreadCount > 0) {
-            badge.style.display = 'block';
-        } else {
-            badge.style.display = 'none';
-        }
+        badges.forEach((badge) => {
+            badge.style.display = unreadCount > 0 ? 'block' : 'none';
+        });
 
         if (notifs.length === 0) {
             list.innerHTML = '';
@@ -507,6 +506,7 @@
     }
 
     async function openScenario(sc) {
+        lastScenarioMeta = sc;
         go('simulation');
         const icon = ICONS[sc.icon] || ICONS.patience;
         $('#sim-icon').innerHTML = icon;
@@ -543,6 +543,8 @@
         const targetUr = $('#verse-ur');
         if (targetUr) targetUr.textContent = a.secondary_translation || '';
         $('#verse-en').textContent = `"${a.translation}"`;
+        showTranslator($('#verse-translator-secondary'), a.secondary_translator_name);
+        showTranslator($('#verse-translator'), a.translator_name);
         show('#verse-card');
 
         if (a.audio_url) {
@@ -559,7 +561,9 @@
                     <div class="mini-ctx">${esc(aa.context || '')}</div>
                     <p class="mini-ar">${aa.arabic}</p>
                     <p class="mini-trans" dir="auto">${esc(aa.secondary_translation || '')}</p>
+                    ${aa.secondary_translator_name ? `<p class="verse-translator">${esc(aa.secondary_translator_name)}</p>` : ''}
                     <p class="mini-en">"${esc(aa.translation)}"</p>
+                    ${aa.translator_name ? `<p class="verse-translator">${esc(aa.translator_name)}</p>` : ''}
                     <span class="mini-ref">${esc(aa.surah_name)} — ${aa.verse_key}</span>
                 `;
                 list.appendChild(div);
@@ -574,7 +578,7 @@
             show('#insight-section');
         }
 
-        renderVideoEmbeds(d.video_embeds, '#youtube-list', '#youtube-section');
+        renderHadiths(d.hadiths, '#hadith-list', '#hadith-section');
 
         show('#action-row');
         resetSave($('#save-btn'));
@@ -582,49 +586,50 @@
         $('#share-btn').onclick = () => shareResult(d);
     }
 
-    function renderVideoEmbeds(videos, listId, sectionId) {
-        if (videos && videos.length > 0) {
-            const container = $(listId);
-            container.innerHTML = '';
-            videos.forEach(vid => {
-                const wrapper = document.createElement('div');
-                wrapper.className = 'video-card';
-                const searchQuery = encodeURIComponent(vid.query || `${vid.channel || ''} ${vid.title || ''}`.trim());
-                const searchUrl = vid.search_url || `https://www.youtube.com/results?search_query=${searchQuery}`;
-                const targetUrl = vid.url || searchUrl;
-                const thumbUrl = vid.thumbnail_url || '';
-                const ctaLabel = vid.link_type === 'video' ? 'Watch on YouTube' : 'Open YouTube results';
-                const thumbMarkup = thumbUrl
-                    ? `<img class="video-thumb" src="${thumbUrl}" alt="${esc(vid.title)} thumbnail" loading="lazy" onerror="this.remove(); this.parentElement.classList.add('video-thumb-failed');" />`
-                    : '';
 
-                wrapper.innerHTML = `
-                    <div class="video-responsive">
-                        <a class="video-link" href="${targetUrl}" target="_blank" rel="noopener noreferrer" aria-label="${esc(vid.title)} (opens in YouTube)">
-                            ${thumbMarkup}
-                            <div class="video-thumb-fallback">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
-                                <span>${ctaLabel}</span>
-                            </div>
-                            <span class="video-play" aria-hidden="true">
-                                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="9 7 19 12 9 17 9 7"/></svg>
-                            </span>
-                        </a>
-                    </div>
-                    <div class="video-info">
-                        <h4 class="video-title">${esc(vid.title)}</h4>
-                        <div class="video-meta">
-                            <span class="video-channel">${esc(vid.channel)}</span>
-                            <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="video-search-link">${ctaLabel} &rarr;</a>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(wrapper);
-            });
-            show(sectionId);
-        } else {
-            hide(sectionId);
+    function renderHadiths(hadiths, listSelector, sectionSelector) {
+        const list = $(listSelector);
+        const section = $(sectionSelector);
+        if (!list || !section) return;
+        const items = Array.isArray(hadiths) ? hadiths.filter(h => h && (h.english || h.arabic)) : [];
+        list.innerHTML = '';
+        if (!items.length) {
+            hide(sectionSelector);
+            return;
         }
+        items.forEach((h, idx) => {
+            const card = document.createElement('article');
+            card.className = 'hadith-card';
+            card.style.animationDelay = `${idx * 60}ms`;
+            const status = (h.status || '').trim();
+            const statusKey = status.toLowerCase().replace(/[^a-z]+/g, '');
+            const statusBadge = status
+                ? `<span class="hadith-status hadith-status-${esc(statusKey)}">${esc(status)}</span>`
+                : '';
+            const ref = h.reference || [h.book_name, h.hadith_number ? `Hadith ${h.hadith_number}` : ''].filter(Boolean).join(' • ');
+            const narrator = h.narrator_en ? `<span class="hadith-narrator">${esc(h.narrator_en)}</span>` : '';
+            const arabic = h.arabic ? `<p class="hadith-ar" dir="rtl">${esc(h.arabic)}</p>` : '';
+            const english = h.english ? `<p class="hadith-en">${esc(h.english)}</p>` : '';
+            const urdu = h.urdu ? `<p class="hadith-ur" dir="rtl">${esc(h.urdu)}</p>` : '';
+            card.innerHTML = `
+                <div class="hadith-card-head">
+                    <span class="hadith-badge">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+                        <span>Hadith</span>
+                    </span>
+                    ${statusBadge}
+                </div>
+                ${arabic}
+                ${english}
+                ${urdu}
+                <div class="hadith-meta">
+                    ${narrator}
+                    <span class="hadith-source">${esc(ref)}</span>
+                </div>
+            `;
+            list.appendChild(card);
+        });
+        show(sectionSelector);
     }
 
     function initAudio() {
@@ -746,6 +751,8 @@
                 $('#daily-arabic').textContent = d.ayah.arabic;
                 $('#daily-urdu').textContent = d.ayah.secondary_translation || '';
                 $('#daily-translation').textContent = `"${d.ayah.translation}"`;
+                showTranslator($('#daily-translator-secondary'), d.ayah.secondary_translator_name);
+                showTranslator($('#daily-translator'), d.ayah.translator_name);
                 $('#daily-ref').textContent = `${d.ayah.surah_name} — ${d.ayah.verse_key}`;
                 dailyAudioUrl = d.ayah.audio_url;
             }
@@ -818,7 +825,9 @@
                 <div class="verse-top"><span class="verse-badge">Relevant Verse</span><span class="verse-ref">${esc(d.ayah.surah_name)} — ${d.ayah.verse_key}</span></div>
                 <p class="verse-ar">${d.ayah.arabic}</p>
                 <p class="verse-trans" dir="auto">${esc(d.ayah.secondary_translation || '')}</p>
+                ${d.ayah.secondary_translator_name ? `<p class="verse-translator">${esc(d.ayah.secondary_translator_name)}</p>` : ''}
                 <blockquote class="verse-en">"${esc(d.ayah.translation)}"</blockquote>
+                ${d.ayah.translator_name ? `<p class="verse-translator">${esc(d.ayah.translator_name)}</p>` : ''}
                 <div class="verse-controls">
                     <button class="btn-audio" id="reflect-audio-btn">
                         <svg class="ico-play" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -896,7 +905,7 @@
             `;
         }
 
-        renderVideoEmbeds(d.video_embeds, '#reflect-youtube-list', '#reflect-youtube-section');
+        renderHadiths(d.hadiths, '#reflect-hadith-list', '#reflect-hadith-section');
 
         const saveBtn = $('#reflect-save-btn');
         resetSave(saveBtn);
@@ -963,6 +972,7 @@
                     toast(`Checked in! Streak: ${d.current_streak} days 🔥`);
                     setTimeout(() => {
                         cb.classList.remove('success-pulse');
+                        cb.disabled = false;
                         loadStreak();
                     }, 800);
                 } else {
@@ -1242,6 +1252,18 @@
         const d = document.createElement('div');
         d.textContent = str;
         return d.innerHTML;
+    }
+
+    function showTranslator(el, name) {
+        if (!el) return;
+        const label = (name || '').trim();
+        if (!label) {
+            el.textContent = '';
+            el.hidden = true;
+            return;
+        }
+        el.textContent = label;
+        el.hidden = false;
     }
 
     function timeAgo(ts) {

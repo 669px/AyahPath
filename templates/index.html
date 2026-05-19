@@ -69,7 +69,7 @@
             </button>
             <button class="nav-item" data-page="notifications" id="nav-notifications-desktop" style="position:relative;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                <div class="notif-badge" style="display:none;"></div>
+                <div class="notif-badge" id="notif-badge-desktop" style="display:none;"></div>
                 <span>Alerts</span>
             </button>
             <button class="nav-item" data-page="settings" id="nav-settings-desktop">
@@ -85,10 +85,12 @@
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
                     <span id="daily-badge-label">Ayah of the Day</span>
                 </div>
-                <p class="daily-ref" id="daily-reason"></p>
+                <p class="daily-reason" id="daily-reason"></p>
                 <p class="daily-ar" id="daily-arabic"></p>
                 <p class="daily-trans" id="daily-urdu"></p>
+                <p class="verse-translator" id="daily-translator-secondary" hidden></p>
                 <p class="daily-en" id="daily-translation"></p>
+                <p class="verse-translator" id="daily-translator" hidden></p>
                 <div class="daily-meta">
                     <span class="daily-ref" id="daily-ref"></span>
                     <button class="btn-icon" id="daily-audio-btn" title="Listen">
@@ -149,7 +151,9 @@
                     </div>
                     <p class="verse-ar" id="verse-ar"></p>
                     <p class="verse-trans" id="verse-ur" dir="auto"></p>
+                    <p class="verse-translator" id="verse-translator-secondary" hidden></p>
                     <blockquote class="verse-en" id="verse-en"></blockquote>
+                    <p class="verse-translator" id="verse-translator" hidden></p>
                     <div class="verse-controls">
                         <button class="btn-audio" id="verse-audio-btn">
                             <svg class="ico-play" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -200,9 +204,9 @@
                     </div>
                 </section>
 
-                <section class="video-embeds" id="youtube-section" hidden>
-                    <h3 class="label">Scholarly Videos</h3>
-                    <div class="video-grid" id="youtube-list"></div>
+                <section class="hadith-section" id="hadith-section" hidden>
+                    <h3 class="label">Prophetic Wisdom</h3>
+                    <div class="hadith-list" id="hadith-list"></div>
                 </section>
 
                 <div class="action-row" id="action-row" hidden>
@@ -251,9 +255,9 @@
                         <div class="reflect-topic" id="reflect-topic"></div>
                         <article class="verse-card" id="reflect-verse-card"></article>
                         <div class="insight-cards" id="reflect-insights"></div>
-                        <section class="video-embeds" id="reflect-youtube-section" hidden>
-                            <h3 class="label">Scholarly Videos</h3>
-                            <div class="video-grid" id="reflect-youtube-list"></div>
+                        <section class="hadith-section" id="reflect-hadith-section" hidden>
+                            <h3 class="label">Prophetic Wisdom</h3>
+                            <div class="hadith-list" id="reflect-hadith-list"></div>
                         </section>
                         <div class="action-row">
                             <button class="btn-secondary" id="reflect-save-btn">

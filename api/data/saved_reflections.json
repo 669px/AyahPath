@@ -1,117 +1,9 @@
 [
     {
-        "id": 1,
+        "id": "4a81ad4b3db1",
         "user_id": "anonymous_user",
-        "timestamp": "2026-04-06T16:34:59.792776",
-        "scenario": "I am feeling very overwhelmed with work today and struggling to find peace.",
-        "assigned_category": "Anxiety",
-        "reference": "94:6",
-        "verse_text": {
-            "arabic": "إِنَّ مَعَ ٱلْعُسْرِ يُسْرًا",
-            "english": ""
-        },
-        "tafsir_snippet": "<h2>Which was revealed in Makkah</h2><p>بِسْمِ اللَّهِ الرَّحْمَـنِ الرَّحِيمِ</p><p>In the Name of Allah, the Most Gracious, the Most Merciful.</p><h2>The Meaning of opening the Breast</h2><p>Allah says,</p><p>أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ</p><p>(Have We not opened your breast for you) meaning, `have We not opened your chest for you.' This means, `We illuminated it, and We made it spacious, vast and wide.' This is as Allah says,</p><p>فَمَن يُرِدِ اللَّهُ أَن يَهْدِيَهُ يَشْرَحْ صَدْرَهُ لِلإِس...",
-        "guidance": {
-            "dunya_perspective": "Reflect on this verse as a means to find peace in your daily affairs.",
-            "akhirah_perspective": "Remember that ultimate ease lies with Allah, and patience brings immense spiritual reward.",
-            "action_item": "Ponder upon the verse and its meaning today."
-        }
-    },
-    {
-        "id": 2,
-        "user_id": "anonymous_user",
-        "timestamp": "2026-04-06T16:43:36.041411",
-        "scenario": "I am feeling very overwhelmed with work today and struggling to find peace.",
-        "assigned_category": "Anxiety",
-        "reference": "2:286",
-        "verse_text": {
-            "arabic": "لَا يُكَلِّفُ ٱللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا ٱكْتَسَبَتْ ۗ رَبَّنَا لَا تُؤَاخِذْنَآ إِن نَّسِينَآ أَوْ أَخْطَأْنَا ۚ رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَآ إِصْرًا كَمَا حَمَلْتَهُۥ عَلَى ٱلَّذِينَ مِن قَبْلِنَا ۚ رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِۦ ۖ وَٱعْفُ عَنَّا وَٱغْفِرْ لَنَا وَٱرْحَمْنَآ ۚ أَنتَ مَوْلَىٰنَا فَٱنصُرْنَا عَلَى ٱلْقَوْمِ ٱلْكَـٰفِرِينَ",
-            "english": ""
-        },
-        "tafsir_snippet": "<p>The Hadiths on the Virtue of These Two Ayat, May Allah Benefit Us by Them Al-Bukhari recorded that Abu Mas`ud said that the Messenger of Allah said ﷺ,</p><p>«مَنْ قَرَأَ بِالْآيَتَيْنِ مِنْ آخِرِ سُورَةِ الْبَقَرَةِ فِي لَيْلَةٍ، كَفَتَاه»</p><p>(Whoever recites the last two Ayat in Surat Al-Baqarah at night, they will suffice for him.)</p><p>The rest of the six also recorded similar wording for this Hadith. The Two Sahihs recorded this Hadith using various chains of narration, and Imam Ahmad...",
-        "guidance": {
-            "dunya_perspective": "Reflect on this verse as a means to find peace in your daily affairs.",
-            "akhirah_perspective": "Remember that ultimate ease lies with Allah, and patience brings immense spiritual reward.",
-            "action_item": "Ponder upon the verse and its meaning today."
-        }
-    },
-    {
-        "id": 3,
-        "user_id": "anonymous_user",
-        "timestamp": "2026-04-06T16:47:20.605938",
-        "scenario": "I am very anxious about my exams tomorrow and feel completely unprepared.",
-        "assigned_category": "Anxiety",
-        "reference": "94:5",
-        "verse_text": {
-            "arabic": "فَإِنَّ مَعَ ٱلْعُسْرِ يُسْرًا",
-            "english": ""
-        },
-        "tafsir_snippet": "<h2>Which was revealed in Makkah</h2><p>بِسْمِ اللَّهِ الرَّحْمَـنِ الرَّحِيمِ</p><p>In the Name of Allah, the Most Gracious, the Most Merciful.</p><h2>The Meaning of opening the Breast</h2><p>Allah says,</p><p>أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ</p><p>(Have We not opened your breast for you) meaning, `have We not opened your chest for you.' This means, `We illuminated it, and We made it spacious, vast and wide.' This is as Allah says,</p><p>فَمَن يُرِدِ اللَّهُ أَن يَهْدِيَهُ يَشْرَحْ صَدْرَهُ لِلإِس...",
-        "guidance": {
-            "dunya_perspective": "Reflect on this verse as a means to find peace in your daily affairs.",
-            "akhirah_perspective": "Remember that ultimate ease lies with Allah, and patience brings immense spiritual reward.",
-            "action_item": "Ponder upon the verse and its meaning today."
-        }
-    },
-    {
-        "id": 4,
-        "user_id": "anonymous_user",
-        "timestamp": "2026-04-06T16:48:22.694709",
-        "scenario": "I am feeling extremely anxious about my exams and feel like I am going to fail.",
-        "assigned_category": "Anxiety",
-        "reference": "2:286",
-        "verse_text": {
-            "arabic": "لَا يُكَلِّفُ ٱللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا ٱكْتَسَبَتْ ۗ رَبَّنَا لَا تُؤَاخِذْنَآ إِن نَّسِينَآ أَوْ أَخْطَأْنَا ۚ رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَآ إِصْرًا كَمَا حَمَلْتَهُۥ عَلَى ٱلَّذِينَ مِن قَبْلِنَا ۚ رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِۦ ۖ وَٱعْفُ عَنَّا وَٱغْفِرْ لَنَا وَٱرْحَمْنَآ ۚ أَنتَ مَوْلَىٰنَا فَٱنصُرْنَا عَلَى ٱلْقَوْمِ ٱلْكَـٰفِرِينَ",
-            "english": ""
-        },
-        "tafsir_snippet": "<p>The Hadiths on the Virtue of These Two Ayat, May Allah Benefit Us by Them Al-Bukhari recorded that Abu Mas`ud said that the Messenger of Allah said ﷺ,</p><p>«مَنْ قَرَأَ بِالْآيَتَيْنِ مِنْ آخِرِ سُورَةِ الْبَقَرَةِ فِي لَيْلَةٍ، كَفَتَاه»</p><p>(Whoever recites the last two Ayat in Surat Al-Baqarah at night, they will suffice for him.)</p><p>The rest of the six also recorded similar wording for this Hadith. The Two Sahihs recorded this Hadith using various chains of narration, and Imam Ahmad...",
-        "guidance": {
-            "dunya_perspective": "Dear sister/brother, it is completely understandable to feel overwhelmed and anxious when facing significant academic challenges like exams. Many students experience these intense feelings. From a worldly perspective, the Hadith regarding the last two verses of Surah Al-Baqarah states that 'Whoever recites the last two Ayat in Surat Al-Baqarah at night, they will suffice for him.' This 'sufficiency' can manifest in various worldly ways. When you diligently prepare for your exams whilst also reciting these verses, you are combining effort ('sabab') with seeking divine assistance. This spiritual practice can help to calm your nerves, reduce mental clutter, and enhance your focus during revision and the exam itself. It imbues you with a sense of peace, knowing that you have done your best and entrusted the outcome to Allah. This inner tranquillity is a powerful aid in effective studying and clearer thinking, preventing anxiety from paralysing your efforts. Remember, a well-prepared mind, supported by spiritual solace, is better equipped to perform.",
-            "akhirah_perspective": "From the perspective of the Akhirah, your current anxiety is an opportunity to turn wholeheartedly to Allah. The Tafsir highlights the immense virtues of the last two verses of Surah Al-Baqarah, revealing they were bestowed upon the Prophet Muhammad ﷺ during his miraculous Isra journey, alongside the five daily prayers. Reciting these verses is not just about seeking immediate relief from worldly stress; it is an act of profound worship and a means of strengthening your faith ('Iman'). It is a powerful declaration of your reliance on Allah, acknowledging that all power and assistance ultimately reside with Him. By turning to these verses, you are seeking Allah's protection and sufficiency, earning immense spiritual rewards, and drawing closer to Him. This act of sincere supplication and remembrance provides spiritual solace, reinforces the truth that your ultimate success lies in Allah's pleasure, and prepares your heart for the hereafter, where true and lasting tranquillity is found.",
-            "action_item": "Make it a habit to recite the last two verses of Surah Al-Baqarah every night before sleeping, as mentioned in the Hadith, with full contemplation of their meaning and a sincere heart, asking Allah for His sufficiency in your studies and exams."
-        }
-    },
-    {
-        "id": 5,
-        "user_id": "anonymous_user",
-        "timestamp": "2026-04-06T16:48:36.667027",
-        "scenario": "I am feeling extremely anxious about my exams and feel like I am going to fail.",
-        "assigned_category": "Anxiety",
-        "reference": "94:6",
-        "verse_text": {
-            "arabic": "إِنَّ مَعَ ٱلْعُسْرِ يُسْرًا",
-            "english": ""
-        },
-        "tafsir_snippet": "<h2>Which was revealed in Makkah</h2><p>بِسْمِ اللَّهِ الرَّحْمَـنِ الرَّحِيمِ</p><p>In the Name of Allah, the Most Gracious, the Most Merciful.</p><h2>The Meaning of opening the Breast</h2><p>Allah says,</p><p>أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ</p><p>(Have We not opened your breast for you) meaning, `have We not opened your chest for you.' This means, `We illuminated it, and We made it spacious, vast and wide.' This is as Allah says,</p><p>فَمَن يُرِدِ اللَّهُ أَن يَهْدِيَهُ يَشْرَحْ صَدْرَهُ لِلإِس...",
-        "guidance": {
-            "dunya_perspective": "Dear sister/brother, I understand how overwhelming and distressing exam anxiety can feel. It's a heavy burden, much like the 'burden' mentioned in the Tafsir. From a worldly perspective, reflecting on the verse, 'Have We not opened your breast for you?', reminds us that Allah facilitates ease. Practically, this means we must strive and prepare diligently. Think of 'opening your breast' as Allah granting you the capacity for clarity and focus, making your understanding 'spacious, vast and wide'. To lighten this burden, break down your study material into manageable chunks. Prioritise tasks, create a realistic study schedule, and ensure you're taking short, restorative breaks. Sometimes, the feeling of being overwhelmed stems from the sheer volume; tackling one small part at a time can make the whole task feel less daunting. Also, don't hesitate to seek clarification from teachers or peers if you're struggling with specific topics.",
-            "akhirah_perspective": "From a spiritual standpoint, the anxiety you're experiencing is a trial, and Allah reminds us that He 'removed from you your burden'. This signifies Allah's boundless mercy and His ability to alleviate even the heaviest of worries. Your effort in studying, combined with patience and trust in Allah (Tawakkul), is an act of worship. Remember that the outcome is ultimately in Allah's hands. Do your best, make sincere Du'a, and then place your trust in Him. The Prophet (peace be upon him) taught us to tie our camel and then trust in Allah. This means fulfilling our worldly responsibilities whilst having complete faith in Divine decree. Even if the results are not as you hoped, your sincere efforts will be rewarded in the Akhirah. This perspective can bring immense peace, knowing that your value is not solely defined by exam results but by your striving and submission to Allah.",
-            "action_item": "Today, I encourage you to dedicate 15 minutes to focus on one small, manageable study task. Before you begin, take a moment to make a sincere Du'a to Allah, asking Him for ease, clarity, and success in your studies."
-        }
-    },
-    {
-        "id": 6,
-        "user_id": "anonymous_user",
-        "timestamp": "2026-04-06T17:01:39.005338",
-        "scenario": "I am feeling very anxious about my future and what will happen to me.",
-        "assigned_category": "Anxiety",
-        "reference": "94:5",
-        "verse_text": {
-            "arabic": "فَإِنَّ مَعَ ٱلْعُسْرِ يُسْرًا",
-            "english": ""
-        },
-        "tafsir_snippet": "<h2>Which was revealed in Makkah</h2><p>بِسْمِ اللَّهِ الرَّحْمَـنِ الرَّحِيمِ</p><p>In the Name of Allah, the Most Gracious, the Most Merciful.</p><h2>The Meaning of opening the Breast</h2><p>Allah says,</p><p>أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ</p><p>(Have We not opened your breast for you) meaning, `have We not opened your chest for you.' This means, `We illuminated it, and We made it spacious, vast and wide.' This is as Allah says,</p><p>فَمَن يُرِدِ اللَّهُ أَن يَهْدِيَهُ يَشْرَحْ صَدْرَهُ لِلإِس...",
-        "guidance": {
-            "dunya_perspective": "Dear sister/brother, it is completely understandable to feel anxious about the future; many of us share such concerns. From a worldly perspective, the concept of Allah 'opening your breast' (Surah Al-Inshirah, 94:1) can be a profound source of strength. It encourages us to seek clarity and inner peace amidst uncertainty. When we feel overwhelmed, it is often because our 'breast' feels constricted by worries. Just as Allah made His law 'vast, wide, accommodating and easy,' we can strive to approach our future by breaking down large anxieties into smaller, more manageable steps. This might involve setting achievable goals, seeking practical advice, or simply focusing on what is within our control for today. Trust that with Allah's help, paths of ease can emerge, illuminating your way forward.",
-            "akhirah_perspective": "Spiritually, these verses are a beautiful reminder of Allah's immense compassion and His power to alleviate our burdens. The 'opening of the breast' (Surah Al-Inshirah, 94:1) signifies an expansion of your spiritual capacity, an infusion of faith that allows you to accept Allah's divine decree (Qadar) with peace. When Allah says He 'removed from you your burden' (94:2), it speaks not only of worldly difficulties but also of the spiritual weight of worries, doubts, and past transgressions. This should instil in your heart a profound sense of reliance on Allah (Tawakkul). Knowing that Allah is the ultimate Disposer of affairs and that your ultimate destination is with Him provides an unparalleled sense of security. Your future, in its entirety, is in His Most Capable Hands, and He desires ease for you.",
-            "action_item": "Today, take a few moments to recite Surah Al-Inshirah (Chapter 94 of the Qur'an), reflecting deeply on its meaning. As you recite, make a heartfelt *dua* (supplication), asking Allah to open your breast to peace and clarity, and to remove the burden of anxiety from your back, just as He did for His beloved Messenger (peace be upon him)."
-        }
-    },
-    {
-        "id": "3e17d37d7f30",
-        "user_id": "anonymous_user",
-        "timestamp": "2026-04-07T14:55:38.424917+00:00",
-        "scenario": "hi i am sad today",
+        "timestamp": "2026-05-19T17:24:22.196994+00:00",
+        "scenario": "i am sad today",
         "assigned_category": "stress",
         "reference": "13:28",
         "verse_text": {
@@ -120,24 +12,28 @@
             "verse_key": "13:28",
             "arabic": "ٱلَّذِينَ ءَامَنُوا۟ وَتَطْمَئِنُّ قُلُوبُهُم بِذِكْرِ ٱللَّهِ ۗ أَلَا بِذِكْرِ ٱللَّهِ تَطْمَئِنُّ ٱلْقُلُوبُ",
             "translation": "those who believe, and whose hearts find their rest in the remembrance of God - for, verily, in the remembrance of God [men's] hearts do find their rest-:",
-            "secondary_translation": "",
+            "secondary_translation": "وہ لوگ جو ایمان لائے اور ان کے دلوں کو الله کی یاد سے تسکین ہوتی ہے خبردار! الله کی یاد ہی سے دل تسکین پاتے ہیں",
+            "translator_name": "Dr. Mustafa Khattab (The Clear Quran)",
+            "secondary_translator_name": "Maulana Fateh Muhammad Jalandhari",
             "surah_name": "Ar-Ra'd",
-            "audio": "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1735.mp3",
+            "surah_name_ar": "الرعد",
+            "audio": "https://everyayah.com/data/Abdul_Basit_Murattal_192kbps/013028.mp3",
+            "audio_url": "https://everyayah.com/data/Abdul_Basit_Murattal_192kbps/013028.mp3",
             "success": true
         },
-        "tafsir_snippet": "Tafsir available through Quran.com for detailed explanations.",
+        "tafsir_snippet": "Tafsir text is not bundled in virtual mode for 13:28.",
         "guidance": {
-            "dunya_impact": "When feeling down, engaging in activities that remind you of God can bring a sense of calm and perspective, helping you navigate daily challenges with a more peaceful mindset.",
-            "akhirah_impact": "Remembering God strengthens your connection with Him, increasing your faith and reward in the afterlife. It brings you closer to Allah and earns His pleasure.",
-            "better_choice": "Take a few moments to engage in dhikr (remembrance of God), such as reciting a short prayer or reflecting on His blessings.",
-            "why_this_verse": "This verse offers solace by reminding you that finding peace and contentment lies in remembering God, especially during times of sadness."
+            "dunya_impact": "Focus on patience and practical steps in your daily affairs.",
+            "akhirah_impact": "Trust in Allah's plan and seek reward in the hereafter.",
+            "better_choice": "Take a moment for prayer and reflection today.",
+            "why_this_verse": "This verse reminds us of Allah's presence in all situations."
         }
     },
     {
-        "id": "c7802f4592b4",
+        "id": "bfc3686632fc",
         "user_id": "anonymous_user",
-        "timestamp": "2026-04-07T14:59:17.753638+00:00",
-        "scenario": "why i am sad today",
+        "timestamp": "2026-05-19T18:12:46.316212+00:00",
+        "scenario": "I am sad, i have been unable to work properly.",
         "assigned_category": "stress",
         "reference": "13:28",
         "verse_text": {
@@ -146,24 +42,28 @@
             "verse_key": "13:28",
             "arabic": "ٱلَّذِينَ ءَامَنُوا۟ وَتَطْمَئِنُّ قُلُوبُهُم بِذِكْرِ ٱللَّهِ ۗ أَلَا بِذِكْرِ ٱللَّهِ تَطْمَئِنُّ ٱلْقُلُوبُ",
             "translation": "those who believe, and whose hearts find their rest in the remembrance of God - for, verily, in the remembrance of God [men's] hearts do find their rest-:",
-            "secondary_translation": "",
+            "secondary_translation": "Those who believe (in the Oneness of Allah - Islamic Monotheism), and whose hearts find rest in the remembrance of Allah, Verily, in the remembrance of Allah do hearts find rest.",
+            "translator_name": "Dr. Mustafa Khattab (The Clear Quran)",
+            "secondary_translator_name": "Hilali & Khan",
             "surah_name": "Ar-Ra'd",
-            "audio": "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1735.mp3",
+            "surah_name_ar": "الرعد",
+            "audio": "https://everyayah.com/data/Abdul_Basit_Murattal_192kbps/013028.mp3",
+            "audio_url": "https://everyayah.com/data/Abdul_Basit_Murattal_192kbps/013028.mp3",
             "success": true
         },
-        "tafsir_snippet": "Tafsir available through Quran.com for detailed explanations.",
+        "tafsir_snippet": "Tafsir text is not bundled in virtual mode for 13:28.",
         "guidance": {
-            "dunya_impact": "When feeling overwhelmed, taking a break to remember God can provide a sense of calm and perspective, helping you approach your worldly responsibilities with renewed focus and reduced anxiety.",
-            "akhirah_impact": "Remembering God strengthens your connection with Him, increasing your faith and bringing you closer to eternal peace and reward in the afterlife.",
-            "better_choice": "Take five minutes to engage in dhikr (remembrance of God) through prayer, reflection, or recitation of the Quran.",
-            "why_this_verse": "This verse offers solace by reminding you that true peace and contentment are found in remembering God, which can alleviate the sadness you are experiencing."
+            "dunya_impact": "Focus on patience and practical steps in your daily affairs.",
+            "akhirah_impact": "Trust in Allah's plan and seek reward in the hereafter.",
+            "better_choice": "Take a moment for prayer and reflection today.",
+            "why_this_verse": "This verse reminds us of Allah's presence in all situations."
         }
     },
     {
-        "id": "9dd8a233af90",
+        "id": "c293f680baac",
         "user_id": "anonymous_user",
-        "timestamp": "2026-04-07T15:08:59.500957+00:00",
-        "scenario": "I am feeling very anxious about my final exams today.",
+        "timestamp": "2026-05-19T18:20:35.967748+00:00",
+        "scenario": "I am sad, and I have nowhere to go.",
         "assigned_category": "stress",
         "reference": "13:28",
         "verse_text": {
@@ -172,64 +72,16 @@
             "verse_key": "13:28",
             "arabic": "ٱلَّذِينَ ءَامَنُوا۟ وَتَطْمَئِنُّ قُلُوبُهُم بِذِكْرِ ٱللَّهِ ۗ أَلَا بِذِكْرِ ٱللَّهِ تَطْمَئِنُّ ٱلْقُلُوبُ",
             "translation": "those who believe, and whose hearts find their rest in the remembrance of God - for, verily, in the remembrance of God [men's] hearts do find their rest-:",
-            "secondary_translation": "",
+            "secondary_translation": "Those who believe (in the Oneness of Allah - Islamic Monotheism), and whose hearts find rest in the remembrance of Allah, Verily, in the remembrance of Allah do hearts find rest.",
+            "translator_name": "Dr. Mustafa Khattab (The Clear Quran)",
+            "secondary_translator_name": "Hilali & Khan",
             "surah_name": "Ar-Ra'd",
-            "audio": "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1735.mp3",
+            "surah_name_ar": "الرعد",
+            "audio": "https://everyayah.com/data/Abdul_Basit_Murattal_192kbps/013028.mp3",
+            "audio_url": "https://everyayah.com/data/Abdul_Basit_Murattal_192kbps/013028.mp3",
             "success": true
         },
-        "tafsir_snippet": "Tafsir available through Quran.com for detailed explanations.",
-        "guidance": {
-            "dunya_impact": "Before your exams, take a few moments for quiet reflection and prayer. This can help calm your nerves and improve focus, leading to better performance.",
-            "akhirah_impact": "Remembering Allah brings peace to the heart and strengthens your connection with Him, which is a source of immense reward in the afterlife.",
-            "better_choice": "Take a short break to perform wudu and pray before starting your exam.",
-            "why_this_verse": "This verse reminds us that turning to Allah through remembrance and prayer can bring peace and tranquility during times of anxiety, such as before exams."
-        }
-    },
-    {
-        "id": "e2cdd4ceb349",
-        "user_id": "anonymous_user",
-        "timestamp": "2026-04-07T15:30:27.886388+00:00",
-        "scenario": "is stealing halal or haram",
-        "assigned_category": "trust_in_allah",
-        "reference": "65:3",
-        "verse_text": {
-            "chapter": 65,
-            "verse": 3,
-            "verse_key": "65:3",
-            "arabic": "وَيَرْزُقْهُ مِنْ حَيْثُ لَا يَحْتَسِبُ ۚ وَمَن يَتَوَكَّلْ عَلَى ٱللَّهِ فَهُوَ حَسْبُهُۥٓ ۚ إِنَّ ٱللَّهَ بَٰلِغُ أَمْرِهِۦ ۚ قَدْ جَعَلَ ٱللَّهُ لِكُلِّ شَىْءٍۢ قَدْرًۭا",
-            "translation": "and provides for him in a manner beyond all expectation; and for everyone who places his trust in God He [alone] is enough. Verily, God always attains to His purpose: [and] indeed, unto everything has God appointed its [term and] measure.",
-            "secondary_translation": "",
-            "surah_name": "At-Talaaq",
-            "audio": "https://cdn.islamic.network/quran/audio/128/ar.alafasy/5220.mp3",
-            "success": true
-        },
-        "tafsir_snippet": "Tafsir available through Quran.com for detailed explanations.",
-        "guidance": {
-            "dunya_impact": "Stealing creates instability and distrust in society, hindering economic growth and personal relationships. Relying on dishonest means for provision ultimately leads to worldly consequences like legal repercussions and social isolation.",
-            "akhirah_impact": "Stealing is a major sin in Islam, leading to punishment in the afterlife. Trusting in Allah's provision and earning a halal income brings blessings and rewards in the Hereafter.",
-            "better_choice": "Make a conscious effort to earn your income through honest means, even if it requires more effort. Trust that Allah will provide for you through halal channels.",
-            "why_this_verse": "This verse reminds us that Allah provides for those who trust in Him, discouraging reliance on unlawful means like stealing and encouraging faith in His provision."
-        }
-    },
-    {
-        "id": "691e82de9655",
-        "user_id": "anonymous_user",
-        "timestamp": "2026-04-07T19:38:26.162562+00:00",
-        "scenario": "How can I deal with tough situations?",
-        "assigned_category": "lying",
-        "reference": "9:119",
-        "verse_text": {
-            "chapter": 9,
-            "verse": 119,
-            "verse_key": "9:119",
-            "arabic": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱتَّقُوا۟ ٱللَّهَ وَكُونُوا۟ مَعَ ٱلصَّٰدِقِينَ",
-            "translation": "O YOU who have attained to faith! Remain conscious of God, and be among those who are true to their word!",
-            "secondary_translation": "",
-            "surah_name": "At-Tawba",
-            "audio": "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1354.mp3",
-            "success": true
-        },
-        "tafsir_snippet": "Tafsir available through Quran.com for detailed explanations.",
+        "tafsir_snippet": "Tafsir text is not bundled in virtual mode for 13:28.",
         "guidance": {
             "dunya_impact": "Focus on patience and practical steps in your daily affairs.",
             "akhirah_impact": "Trust in Allah's plan and seek reward in the hereafter.",
@@ -238,24 +90,28 @@
         }
     },
     {
-        "id": "9cf6fce4352e",
+        "id": "02f27a91d303",
         "user_id": "anonymous_user",
-        "timestamp": "2026-04-07T19:41:30.988124+00:00",
-        "scenario": "I am feeling extremely sick and I require help.",
-        "assigned_category": "lying",
-        "reference": "9:119",
+        "timestamp": "2026-05-19T18:50:36.085142+00:00",
+        "scenario": "I am sad, and I need help.",
+        "assigned_category": "stress",
+        "reference": "13:28",
         "verse_text": {
-            "chapter": 9,
-            "verse": 119,
-            "verse_key": "9:119",
-            "arabic": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱتَّقُوا۟ ٱللَّهَ وَكُونُوا۟ مَعَ ٱلصَّٰدِقِينَ",
-            "translation": "O YOU who have attained to faith! Remain conscious of God, and be among those who are true to their word!",
-            "secondary_translation": "Hai orang-orang yang beriman bertakwalah kepada Allah, dan hendaklah kamu bersama orang-orang yang benar.",
-            "surah_name": "At-Tawba",
-            "audio": "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1354.mp3",
+            "chapter": 13,
+            "verse": 28,
+            "verse_key": "13:28",
+            "arabic": "ٱلَّذِينَ ءَامَنُوا۟ وَتَطْمَئِنُّ قُلُوبُهُم بِذِكْرِ ٱللَّهِ ۗ أَلَا بِذِكْرِ ٱللَّهِ تَطْمَئِنُّ ٱلْقُلُوبُ",
+            "translation": "those who believe, and whose hearts find their rest in the remembrance of God - for, verily, in the remembrance of God [men's] hearts do find their rest-:",
+            "secondary_translation": "Those who believe (in the Oneness of Allah - Islamic Monotheism), and whose hearts find rest in the remembrance of Allah, Verily, in the remembrance of Allah do hearts find rest.",
+            "translator_name": "Dr. Mustafa Khattab (The Clear Quran)",
+            "secondary_translator_name": "Hilali & Khan",
+            "surah_name": "Ar-Ra'd",
+            "surah_name_ar": "الرعد",
+            "audio": "https://everyayah.com/data/Abdul_Basit_Murattal_192kbps/013028.mp3",
+            "audio_url": "https://everyayah.com/data/Abdul_Basit_Murattal_192kbps/013028.mp3",
             "success": true
         },
-        "tafsir_snippet": "Tafsir available through Quran.com for detailed explanations.",
+        "tafsir_snippet": "Tafsir text is not bundled in virtual mode for 13:28.",
         "guidance": {
             "dunya_impact": "Focus on patience and practical steps in your daily affairs.",
             "akhirah_impact": "Trust in Allah's plan and seek reward in the hereafter.",
@@ -264,59 +120,33 @@
         }
     },
     {
-        "id": "f6600b9ddce3",
+        "id": "5e4b790a592e",
         "user_id": "anonymous_user",
-        "timestamp": "2026-04-09T15:09:09.218214+00:00",
-        "scenario": "hi i am sad",
-        "assigned_category": "lying",
-        "reference": "9:119",
+        "timestamp": "2026-05-19T18:51:53.921497+00:00",
+        "scenario": "I am sad and I need help",
+        "assigned_category": "stress",
+        "reference": "13:28",
         "verse_text": {
-            "chapter": 9,
-            "verse": 119,
-            "verse_key": "9:119",
-            "arabic": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱتَّقُوا۟ ٱللَّهَ وَكُونُوا۟ مَعَ ٱلصَّٰدِقِينَ",
-            "translation": "O YOU who have attained to faith! Remain conscious of God, and be among those who are true to their word!",
-            "secondary_translation": "",
-            "surah_name": "At-Tawba",
-            "surah_name_ar": "سُورَةُ التَّوۡبَةِ",
-            "audio": "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1354.mp3",
-            "audio_url": "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1354.mp3",
+            "chapter": 13,
+            "verse": 28,
+            "verse_key": "13:28",
+            "arabic": "ٱلَّذِينَ ءَامَنُوا۟ وَتَطْمَئِنُّ قُلُوبُهُم بِذِكْرِ ٱللَّهِ ۗ أَلَا بِذِكْرِ ٱللَّهِ تَطْمَئِنُّ ٱلْقُلُوبُ",
+            "translation": "those who believe, and whose hearts find their rest in the remembrance of God - for, verily, in the remembrance of God [men's] hearts do find their rest-:",
+            "secondary_translation": "Those who believe (in the Oneness of Allah - Islamic Monotheism), and whose hearts find rest in the remembrance of Allah, Verily, in the remembrance of Allah do hearts find rest.",
+            "translator_name": "Dr. Mustafa Khattab (The Clear Quran)",
+            "secondary_translator_name": "Hilali & Khan",
+            "surah_name": "Ar-Ra'd",
+            "surah_name_ar": "الرعد",
+            "audio": "https://everyayah.com/data/Abdul_Basit_Murattal_192kbps/013028.mp3",
+            "audio_url": "https://everyayah.com/data/Abdul_Basit_Murattal_192kbps/013028.mp3",
             "success": true
         },
-        "tafsir_snippet": "Tafsir available through Quran.com for detailed explanations.",
+        "tafsir_snippet": "Tafsir text is not bundled in virtual mode for 13:28.",
         "guidance": {
             "dunya_impact": "Focus on patience and practical steps in your daily affairs.",
             "akhirah_impact": "Trust in Allah's plan and seek reward in the hereafter.",
             "better_choice": "Take a moment for prayer and reflection today.",
             "why_this_verse": "This verse reminds us of Allah's presence in all situations."
-        }
-    },
-    {
-        "id": "e0b2d1bbbd29",
-        "user_id": "anonymous_user",
-        "timestamp": "2026-04-09T15:22:49.539397+00:00",
-        "scenario": "hi i am sad",
-        "assigned_category": "lying",
-        "reference": "9:119",
-        "verse_text": {
-            "chapter": 9,
-            "verse": 119,
-            "verse_key": "9:119",
-            "arabic": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱتَّقُوا۟ ٱللَّهَ وَكُونُوا۟ مَعَ ٱلصَّٰدِقِينَ",
-            "translation": "O YOU who have attained to faith! Remain conscious of God, and be among those who are true to their word!",
-            "secondary_translation": "",
-            "surah_name": "At-Tawba",
-            "surah_name_ar": "سُورَةُ التَّوۡبَةِ",
-            "audio": "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1354.mp3",
-            "audio_url": "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1354.mp3",
-            "success": true
-        },
-        "tafsir_snippet": "Tafsir available through Quran.com for detailed explanations.",
-        "guidance": {
-            "dunya_impact": "When you're feeling sad, it's important to be honest with yourself and others about your feelings. Suppressing sadness can lead to further emotional distress. Seeking support from friends, family, or a professional can help you navigate difficult emotions and find healthy coping mechanisms. Remember, being true to your word also means being true to yourself and acknowledging your emotional state.",
-            "akhirah_impact": "In Islam, honesty and truthfulness are highly valued virtues. Being honest about your feelings, even sadness, is a sign of humility and self-awareness before Allah. Seeking help and support when you're struggling is not a sign of weakness but rather a recognition of your need for Allah's guidance and mercy. Remember that Allah is always there to listen and provide comfort during times of difficulty.",
-            "better_choice": "Acknowledge your sadness and reach out to a trusted friend or family member to share how you're feeling.",
-            "why_this_verse": "This verse reminds you to be truthful in all aspects of your life, including acknowledging and addressing your sadness, rather than masking it with falsehood."
         }
     }
 ]

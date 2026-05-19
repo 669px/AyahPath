@@ -1,6 +1,6 @@
 # AyahPath
 
-AyahPath is a Flask-based Qur'anic life guidance app. It helps users explore relevant ayat for everyday situations, reflect on personal challenges, track prayer progress, build streaks, save reflections, and view supportive reminders from a local virtual Qur'an dataset.
+AyahPath is a Flask-based Qur'anic life guidance app built for the [Quran Hackathon](https://launch.provisioncapital.com/quran-hackathon). It helps users explore relevant ayat for everyday situations, reflect on personal challenges, track prayer progress, build streaks, save reflections, and view supportive reminders from a local virtual Qur'an dataset.
 
 The project is split into a frontend Flask app and a backend API. Running `app.py` starts both services locally.
 
@@ -8,6 +8,7 @@ The project is split into a frontend Flask app and a backend API. Running `app.p
 
 - Daily and personalized ayah cards with Arabic text, English translation, optional secondary translation, and audio links.
 - Life-scenario guidance for themes such as stress, anger, jealousy, gratitude, forgiveness, patience, charity, honesty, humility, and trust in Allah.
+- Prophetic Wisdom — relevant authentic Hadiths (`Sahih`/`Hasan`) pulled live from [hadithapi.com](https://www.hadithapi.com/) and shown alongside every scenario and reflection.
 - Reflection flow that maps user input to a relevant Qur'anic category and returns practical and spiritual guidance.
 - Optional OpenRouter-powered AI guidance, with keyword-based fallback when no API key is configured.
 - Prayer tracker with daily completion, weekly summary, streaks, total prayers, and completion rate.
@@ -40,7 +41,7 @@ The project is split into a frontend Flask app and a backend API. Running `app.p
 |   +-- config.py              # Environment/config handling
 |   +-- data/                  # Local JSON persistence and Qur'an sample data
 |   +-- models/                # Scenario and mapping data
-|   +-- services/              # AI, Qur'an, YouTube, and data services
+|   +-- services/              # AI, Qur'an, Hadith, and data services
 +-- static/
 |   +-- css/style.css
 |   +-- js/app.js
@@ -135,7 +136,7 @@ AYAHPATH_ALLOWED_ORIGINS=http://localhost:5000,http://127.0.0.1:5000
 
 # Optional AI integration
 OPENROUTER_API_KEY=
-AI_MODEL=google/gemini-2.0-flash-001
+AI_MODEL=mistralai/mistral-7b-instruct
 
 # Optional Quran Foundation / Quran.com Content API integration
 QURAN_CLIENT_ID=
@@ -151,15 +152,22 @@ QURAN_DEFAULT_TRANSLATION=131
 QURAN_DEFAULT_RECITATION=7
 QURAN_DEFAULT_TAFSIR=169
 
-# Present in config, currently optional
-GEMINI_API_KEY=
-YOUTUBE_API_KEY=
+# Hadith API (https://www.hadithapi.com)
+HADITH_API_KEY=
 ```
 
 The app works without `OPENROUTER_API_KEY`; it falls back to local keyword matching and built-in guidance.
 
 The app also works without Quran Foundation credentials.
 Set `QURAN_MCP_BASE_URL=https://mcp.quran.ai` to fetch verses/translations from Quran MCP's hosted content endpoints first. If MCP is unavailable, the backend falls back to the official OAuth Content API (when credentials are set), then to the bundled virtual Qur'an data.
+
+### Hadith integration
+
+AyahPath fetches authentic Hadiths from [hadithapi.com](https://www.hadithapi.com/). A working API key is bundled as a default in `api/config.py` so the feature works out of the box; override it by setting `HADITH_API_KEY` in your `.env`. Generate your own key by registering at [hadithapi.com](https://www.hadithapi.com/) and copying it from your profile page.
+
+- Each scenario shows up to 2 relevant `Sahih` (preferred) or `Hasan` Hadiths from Sahih Bukhari, Sahih Muslim, Jami' al-Tirmidhi, or Sunan Abu Dawood.
+- Responses are cached in-memory for 12 hours per scenario to keep latency low and respect API quotas.
+- If the Hadith API is unreachable, those sections degrade gracefully and stay hidden — the rest of the app keeps working.
 
 ## Common API Routes
 
@@ -169,6 +177,7 @@ Frontend/proxy routes are served from `app.py`, while backend routes are served 
 GET    /api/scenarios
 GET    /api/scenarios/<scenario_id>
 GET    /api/daily-ayah
+GET    /api/daily-hadith
 GET    /api/personalized-ayah
 POST   /api/reflections
 GET    /api/reflections/<user_id>

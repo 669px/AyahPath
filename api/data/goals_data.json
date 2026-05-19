@@ -1,14 +1,1 @@
-[
-    {
-        "id": "73789078cebe",
-        "user_id": "anonymous_user",
-        "title": "5 prayers",
-        "type": "scenarios",
-        "target": 5,
-        "current": 1,
-        "completed": false,
-        "created_date": "2026-04-07T20:01:12.039070+00:00",
-        "completed_date": null,
-        "period": "daily"
-    }
-]
+[]
