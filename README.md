@@ -58,7 +58,7 @@ The project is split into a frontend Flask app and a backend API. Running `app.p
 Clone the repository and enter the project directory:
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/669px/AyahPath
 cd AyahPath-main
 ```
 
