@@ -1,7 +1,6 @@
 import logging
 import random
 import time
-from datetime import date
 from urllib.parse import quote_plus
 import requests
 
@@ -32,12 +31,6 @@ SCENARIO_HADITH_KEYWORDS = {
     'stress': ['anxious', 'worry'],
     'arrogance': ['pride', 'arrogant'],
 }
-
-DAILY_HADITH_THEMES = [
-    'mercy', 'patience', 'gratitude', 'charity', 'forgive', 'truthful',
-    'kindness', 'humility', 'remembrance', 'sincerity', 'trust', 'modesty',
-    'knowledge', 'prayer', 'fasting',
-]
 
 PREFERRED_BOOK_SLUGS = ['sahih-bukhari', 'sahih-muslim', 'al-tirmidhi', 'abu-dawood']
 
@@ -237,23 +230,3 @@ def get_hadiths_for_scenario(scenario_id, limit=2):
     return sample
 
 
-def get_daily_hadith():
-    today = date.today()
-    cache_key = f'daily::{today.isoformat()}'
-    cached = _cache_get(cache_key)
-    if cached is not None:
-        return cached
-    idx = today.timetuple().tm_yday % len(DAILY_HADITH_THEMES)
-    rotated = DAILY_HADITH_THEMES[idx:] + DAILY_HADITH_THEMES[:idx]
-    items = _search_with_fallback(rotated, paginate=10)
-    if not items:
-        _cache_set(cache_key, None)
-        return None
-    preferred = [h for h in items if h.get('book_slug') in PREFERRED_BOOK_SLUGS]
-    pool = preferred or items
-    pool = [h for h in pool if _is_meaningful(h.get('english'), min_len=40)] or pool
-    seed = today.toordinal()
-    rng = random.Random(seed)
-    chosen = rng.choice(pool)
-    _cache_set(cache_key, chosen)
-    return chosen

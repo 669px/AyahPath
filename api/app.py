@@ -23,7 +23,7 @@ try:
         get_metadata as virtual_get_metadata,
         get_categories as virtual_get_categories,
     )
-    from .services.hadith_service import get_hadiths_for_scenario, get_daily_hadith
+    from .services.hadith_service import get_hadiths_for_scenario
 except ImportError:
     from config import Config
     from models.mappings import SCENARIO_MAPPINGS, DAILY_AYAHS, get_scenario
@@ -44,7 +44,7 @@ except ImportError:
         get_metadata as virtual_get_metadata,
         get_categories as virtual_get_categories,
     )
-    from services.hadith_service import get_hadiths_for_scenario, get_daily_hadith
+    from services.hadith_service import get_hadiths_for_scenario
 from datetime import date, datetime
 import time
 from functools import wraps
@@ -336,14 +336,6 @@ def get_personalized_ayah():
         'randomized': True,
         'ayah': ayah,
     }), 200
-
-@app.route('/api/daily-hadith', methods=['GET'])
-def daily_hadith():
-    """Return a curated daily hadith from hadithapi.com."""
-    hadith = get_daily_hadith()
-    if not hadith:
-        return jsonify({'success': False, 'error': 'Daily hadith unavailable'}), 503
-    return jsonify({'success': True, 'hadith': hadith}), 200
 
 @app.route('/api/streak', methods=['GET'])
 def get_default_streak():

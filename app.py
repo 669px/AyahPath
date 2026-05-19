@@ -164,13 +164,6 @@ def get_daily_ayah():
         return (jsonify({'success': False, 'error': 'Backend not available'}), 503)
     return (jsonify(result), 200 if result.get('success') else 400)
 
-@app.route('/api/daily-hadith', methods=['GET'])
-def get_daily_hadith_proxy():
-    result = api_call('/api/daily-hadith')
-    if result.get('backend_unavailable'):
-        return (jsonify({'success': False, 'error': 'Backend not available'}), 503)
-    return (jsonify(result), 200 if result.get('success') else 400)
-
 @app.route('/api/personalized-ayah', methods=['GET'])
 def get_personalized_ayah():
     params = {'user_id': normalize_user_id(request.args.get('user_id', 'anonymous_user')), 'trans': request.args.get('trans', '131'), 'lang': request.args.get('lang', 'en'), 'exclude': clean_text(request.args.get('exclude', ''), max_len=24)}

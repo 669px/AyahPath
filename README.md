@@ -177,7 +177,6 @@ Frontend/proxy routes are served from `app.py`, while backend routes are served 
 GET    /api/scenarios
 GET    /api/scenarios/<scenario_id>
 GET    /api/daily-ayah
-GET    /api/daily-hadith
 GET    /api/personalized-ayah
 POST   /api/reflections
 GET    /api/reflections/<user_id>
