@@ -24,3 +24,4 @@ api/data/activity_log.json
 api/data/streak_data.json
 api/data/goals_data.json
 api/data/saved_reflections.json
+tests/
