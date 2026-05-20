@@ -220,8 +220,6 @@ Have questions or suggestions? We'd love to hear from you:
 - Qur'an data from Quran.com and Quran Foundation
 - Hadith data from Hadith API
 - Inspired by the need for accessible Islamic guidance in digital age
-- Thanks to all contributors and community members
-
 ---
 
 **AyahPath — Guided by the Words of Allah ﷻ**
