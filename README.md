@@ -71,7 +71,7 @@ Built during the Quran Hackathon competition, AyahPath demonstrates:
 - Progressive Web App capabilities
 
 **External Integrations**
-- Quran Foundation APIs (optional, graceful fallback)
+- Quran Foundation APIs & MCP (optional, graceful fallback)
 - Hadith API for authentic Islamic texts
 - OpenRouter AI (optional, with local fallback)
 
