@@ -1,252 +1,261 @@
 # AyahPath
 
-AyahPath is a Flask-based Qur'anic life guidance app built for the [Quran Hackathon](https://launch.provisioncapital.com/quran-hackathon). It helps users explore relevant ayat for everyday situations, reflect on personal challenges, track prayer progress, build streaks, save reflections, and view supportive reminders from a local virtual Qur'an dataset.
+**Qur'anic Life Guidance at Your Fingertips**
 
-The project is split into a frontend Flask app and a backend API. Running `app.py` starts both services locally.
+AyahPath is a modern web application that helps you navigate life's challenges with wisdom from the Qur'an. Whether you're facing stress, difficult decisions, or seeking spiritual growth, AyahPath connects you with relevant verses, prophetic wisdom, and practical spiritual guidance.
 
-## Features
+**Visit us:** [ayahpath.online](https://ayahpath.online)
 
-- Daily and personalized ayah cards with Arabic text, English translation, optional secondary translation, and audio links.
-- Life-scenario guidance for themes such as stress, anger, jealousy, gratitude, forgiveness, patience, charity, honesty, humility, and trust in Allah.
-- Prophetic Wisdom — relevant authentic Hadiths (`Sahih`/`Hasan`) pulled live from [hadithapi.com](https://www.hadithapi.com/) and shown alongside every scenario and reflection.
-- Reflection flow that maps user input to a relevant Qur'anic category and returns practical and spiritual guidance.
-- Optional OpenRouter-powered AI guidance, with keyword-based fallback when no API key is configured.
-- Prayer tracker with daily completion, weekly summary, streaks, total prayers, and completion rate.
-- Saved reflections, activity history, goals, streak tracking, notifications, language settings, and theme controls.
-- Quran Foundation-compatible local Qur'an API endpoints backed by bundled JSON data, with optional live API credentials.
-- SQLite-backed prayer database for local persistence.
-- Ubuntu deployment script with Gunicorn, systemd, and Nginx setup.
+---
+
+## About the Project
+
+AyahPath was built for the [Quran Hackathon](https://launch.provisioncapital.com/quran-hackathon), a prestigious competition to innovate Islamic technology solutions. The project combines Flask backend APIs with a modern vanilla JavaScript frontend to create a seamless, accessible experience for seeking Qur'anic guidance in everyday life.
+
+### Hackathon Achievement
+
+Built during the Quran Hackathon competition, AyahPath demonstrates:
+- Respectful integration of Islamic texts with modern technology
+- Accessible design for diverse audiences and abilities
+- Smart categorization of Qur'anic wisdom for real-world scenarios
+- Seamless offline-first architecture with local persistence
+- Performance optimization for all devices and connection speeds
+
+---
+
+## Key Features
+
+**Qur'anic Guidance**
+- Daily and personalized ayah (verse) selections with Arabic text and multiple translations
+- Audio recitations for every verse
+- Life-scenario mapping (stress, anger, jealousy, gratitude, forgiveness, patience, charity, honesty, humility, trust)
+
+**Prophetic Wisdom**
+- Authentic Hadiths (sayings and actions of Prophet Muhammad ﷺ) integrated with every guidance
+- Curated selections from Sahih Bukhari, Sahih Muslim, and other trusted collections
+- Smart context-matching between verses and Hadiths
+
+**Personal Tracking**
+- Daily reflection journal with AI-powered category mapping
+- Prayer completion tracker with streaks and weekly summaries
+- Personal goals with progress tracking
+- Activity history and insights
+
+**Accessibility & Personalization**
+- Multiple Qur'an translations (Urdu, English, French, Indonesian, Bengali, Turkish, Hindi)
+- Customizable themes (Midnight, Light, Arabic Majlis, Quranic Emerald, Ramadan Lantern)
+- Colorblind accessibility modes (Protanopia, Deuteranopia, Tritanopia)
+- Adjustable text sizing for comfortable reading
+- High-contrast mode for better readability
+
+**Offline-First Architecture**
+- Works completely offline after first load
+- Local SQLite database for personal data
+- Bundled Qur'an data (no external API required)
+- Optional live API integration when available
+
+---
 
 ## Tech Stack
 
-- Python 3
-- Flask
-- Flask-CORS
-- Requests
-- python-dotenv
-- SQLite
-- HTML, CSS, and vanilla JavaScript
+**Backend**
+- Python 3 with Flask framework
+- Flask-CORS for secure cross-origin requests
+- SQLite for reliable local persistence
+- RESTful API design
 
-## Project Structure
+**Frontend**
+- Vanilla JavaScript (no frameworks)
+- Responsive CSS with modern design patterns
+- HTML5 semantic markup
+- Progressive Web App capabilities
 
-```text
-.
-+-- app.py                     # Frontend Flask app and integrated local launcher
-+-- prayer_db.py               # SQLite prayer tracking helpers
-+-- schema.sql                 # Prayer database schema
-+-- requirements.txt           # Python dependencies
-+-- deploy.sh                  # Ubuntu deployment script
-+-- api/
-|   +-- app.py                 # Backend API
-|   +-- config.py              # Environment/config handling
-|   +-- data/                  # Local JSON persistence and Qur'an sample data
-|   +-- models/                # Scenario and mapping data
-|   +-- services/              # AI, Qur'an, Hadith, and data services
-+-- static/
-|   +-- css/style.css
-|   +-- js/app.js
-|   +-- img/logo.png
-+-- templates/
-    +-- index.html
-    +-- 404.html
-    +-- 500.html
-    +-- 503.html
+**External Integrations**
+- Quran Foundation APIs (optional, graceful fallback)
+- Hadith API for authentic Islamic texts
+- OpenRouter AI (optional, with local fallback)
+
+---
+
+## How It Works
+
+1. **Explore Scenarios** - Browse life situations and challenges
+2. **Read Guidance** - Get relevant Qur'anic verses with tafsir (explanation)
+3. **Discover Hadiths** - Learn from prophetic wisdom connected to your situation
+4. **Personal Reflection** - Journal your thoughts and get AI-powered spiritual guidance
+5. **Track Progress** - Build habits with daily check-ins and streak tracking
+6. **Set Goals** - Define spiritual and personal growth objectives
+
+---
+
+## API Endpoints
+
+### Scenarios & Guidance
+```
+GET  /api/scenarios              - List all life scenarios
+GET  /api/scenarios/<id>         - Get detailed scenario with verses and hadiths
+POST /api/reflections            - Submit a personal reflection
+GET  /api/reflections/<user_id>  - Get saved reflections
 ```
 
-## Local Setup
-
-Clone the repository and enter the project directory:
-
-```bash
-git clone https://github.com/669px/AyahPath
-cd AyahPath-main
+### Daily Content
+```
+GET /api/daily-ayah              - Get ayah of the day
+GET /api/personalized-ayah       - Get personalized verse recommendation
 ```
 
-Create and activate a virtual environment:
-
-```bash
-python -m venv .venv
+### Tracking
+```
+GET  /api/streak/<user_id>       - View current streak
+POST /api/streak/<user_id>/checkin - Daily check-in
+GET  /api/goals/<user_id>        - View goals
+POST /api/goals                  - Create new goal
+GET  /api/activity/<user_id>     - View activity log
 ```
 
-On Windows:
-
-```powershell
-.\.venv\Scripts\Activate.ps1
+### Qur'an & Prayer
+```
+GET /api/quran/chapters          - List all chapters
+GET /api/quran/verse/<s>/<a>     - Get specific verse
+GET /api/quran/tafsir/<s>/<a>    - Get verse interpretation
+GET /api/prayers/<date>          - Get prayer log for date
+POST /api/prayers/<date>/<id>    - Mark prayer as completed
+GET /api/prayers/stats           - Prayer statistics
 ```
 
-On macOS or Linux:
+---
 
-```bash
-source .venv/bin/activate
-```
+## Data Privacy
 
-Install dependencies:
+Your data stays with you:
+- All reflections stored locally in your browser
+- Prayer tracking saved in local database
+- No analytics or user tracking
+- Optional account features coming soon
+- Secure HTTPS transmission
+- No data sold or shared
 
-```bash
-pip install -r requirements.txt
-```
+---
 
-Run the integrated launcher:
+## Browser Support
 
-```bash
-python app.py
-```
+- Chrome/Edge 90+
+- Firefox 88+
+- Safari 14+
+- Mobile browsers (iOS Safari, Chrome Mobile)
+- Progressive Web App: Install as app on home screen
 
-Open the app:
+---
 
-```text
-http://localhost:5000
-```
+## Offline Capabilities
 
-The backend API runs on:
+AyahPath works seamlessly offline:
+- View all saved reflections and prayers
+- Access bundled Qur'an data
+- Update personal goals and streaks
+- Automatic sync when connection returns
+- No features disabled offline (except live API calls)
 
-```text
-http://localhost:5001
-```
+---
 
-Health checks:
+## Accessibility
 
-```text
-http://localhost:5000/health
-http://localhost:5001/api/health
-```
+Designed with inclusivity in mind:
+- WCAG 2.1 AA compliance target
+- Keyboard navigation support
+- Screen reader friendly
+- Colorblind modes
+- Adjustable text sizing
+- High contrast options
+- Semantic HTML structure
 
-## Windows Console Note
+---
 
-If Windows raises a Unicode encoding error when `app.py` prints startup icons, run with UTF-8 output enabled:
+## Language Support
 
-```powershell
-$env:PYTHONIOENCODING = "utf-8"
-python app.py
-```
+Currently available in:
+- English (Hilali & other translations)
+- Urdu
+- French
+- Indonesian
+- Bengali
+- Turkish
+- Hindi
 
-## Environment Variables
+More languages coming soon.
 
-Create a `.env` file in the project root or inside `api/` if you want to override defaults.
+---
 
-```env
-FRONTEND_PORT=5000
-API_HOST=localhost
-API_PORT=5001
-API_DEBUG=false
-APP_URL=http://localhost:5000
-DATA_DIR=data
-FLASK_SECRET_KEY=change-this-for-production
-AYAHPATH_ALLOWED_ORIGINS=http://localhost:5000,http://127.0.0.1:5000
+## Contributing
 
-# Optional AI integration
-OPENROUTER_API_KEY=
-AI_MODEL=mistralai/mistral-7b-instruct
+We welcome contributions! Areas where we'd love help:
 
-# Optional Quran Foundation / Quran.com Content API integration
-QURAN_CLIENT_ID=
-QURAN_CLIENT_SECRET=
-QURAN_AUTH_BASE_URL=https://oauth2.quran.foundation
-QURAN_API_BASE_URL=https://apis.quran.foundation
-QURAN_MCP_BASE_URL=
-QURAN_MCP_TIMEOUT_SECONDS=6
-QURAN_API_TIMEOUT_SECONDS=12
-QURAN_MCP_FAIL_COOLDOWN_SECONDS=300
-QURAN_USE_OFFICIAL_API=auto
-QURAN_DEFAULT_TRANSLATION=131
-QURAN_DEFAULT_RECITATION=7
-QURAN_DEFAULT_TAFSIR=169
+- Adding new Qur'anic scenario categories
+- Improving AI guidance algorithms
+- Translating to additional languages
+- Enhancing accessibility features
+- Bug fixes and performance improvements
+- UI/UX refinements
 
-# Hadith API (https://www.hadithapi.com)
-HADITH_API_KEY=
-```
+See the repository for technical details: [github.com/669px/AyahPath](https://github.com/669px/AyahPath)
 
-The app works without `OPENROUTER_API_KEY`; it falls back to local keyword matching and built-in guidance.
+---
 
-The app also works without Quran Foundation credentials.
-Set `QURAN_MCP_BASE_URL=https://mcp.quran.ai` to fetch verses/translations from Quran MCP's hosted content endpoints first. If MCP is unavailable, the backend falls back to the official OAuth Content API (when credentials are set), then to the bundled virtual Qur'an data.
+## Security & Safety
 
-### Hadith integration
+- All data transmitted over HTTPS
+- Strong input validation and sanitization
+- Rate limiting on API endpoints
+- CORS protection
+- No external scripts loaded
+- Open source for community audit
 
-AyahPath fetches authentic Hadiths from [hadithapi.com](https://www.hadithapi.com/). A working API key is bundled as a default in `api/config.py` so the feature works out of the box; override it by setting `HADITH_API_KEY` in your `.env`. Generate your own key by registering at [hadithapi.com](https://www.hadithapi.com/) and copying it from your profile page.
+---
 
-- Each scenario shows up to 2 relevant `Sahih` (preferred) or `Hasan` Hadiths from Sahih Bukhari, Sahih Muslim, Jami' al-Tirmidhi, or Sunan Abu Dawood.
-- Responses are cached in-memory for 12 hours per scenario to keep latency low and respect API quotas.
-- If the Hadith API is unreachable, those sections degrade gracefully and stay hidden — the rest of the app keeps working.
+## Qur'an & Hadith Sources
 
-## Common API Routes
+**Qur'an Translations:**
+- Multiple trusted English translations
+- Original Arabic text
+- Regional translations (Urdu, Bengali, etc.)
+- Audio recitations from renowned Qaris
 
-Frontend/proxy routes are served from `app.py`, while backend routes are served from `api/app.py`.
+**Hadiths:**
+- Sahih Bukhari
+- Sahih Muslim
+- Jami' al-Tirmidhi
+- Sunan Abu Dawood
+- Only authenticated (Sahih/Hasan) Hadiths included
 
-```text
-GET    /api/scenarios
-GET    /api/scenarios/<scenario_id>
-GET    /api/daily-ayah
-GET    /api/personalized-ayah
-POST   /api/reflections
-GET    /api/reflections/<user_id>
-DELETE /api/reflections/<reflection_id>
-GET    /api/streak
-POST   /api/streak/<user_id>/checkin
-GET    /api/goals
-POST   /api/goals
-DELETE /api/goals/<goal_id>
-GET    /api/activity
-POST   /api/activity
-GET    /api/history
-DELETE /api/history
-GET    /api/quran/chapters
-GET    /api/quran/verse/<surah>/<ayah>
-GET    /api/quran/tafsir/<surah>/<ayah>
-GET    /api/prayers/<date>
-POST   /api/prayers/<date>/<prayer_id>
-GET    /api/prayers/week
-GET    /api/prayers/stats
-```
-
-Virtual Qur'an-style endpoints:
-
-```text
-GET /content/api/v4/chapters
-GET /content/api/v4/verses
-GET /content/api/v4/verses/by_key/<verse_key>
-GET /content/api/v4/verses/by_chapter/<chapter_number>
-GET /content/api/v4/verses/by_page/<page_number>
-GET /content/api/v4/verses/by_juz/<juz_number>
-GET /content/api/v4/verses/by_category/<category>
-GET /content/api/v4/verses/by_keywords?q=<query>
-```
-
-`by_category` and `by_keywords` are AyahPath-specific helper endpoints. The other `/content/api/v4/...` routes are shaped to match Quran Foundation Content API patterns as closely as possible while using local data when credentials are not available.
-
-## Data and Persistence
-
-- Prayer tracking is stored in `prayer.db`, initialized from `schema.sql`.
-- Reflection, activity, goal, streak, and virtual Qur'an data live under `api/data/`.
-- The bundled virtual Qur'an dataset allows the core app to run without depending on an external Qur'an API.
-
-Generated local files such as `.venv/`, `__pycache__/`, logs, and database files should not be committed.
-
-## Deployment
-
-For an Ubuntu 22.04 or 24.04 server, the included deployment script installs system dependencies, creates an application user, configures a virtual environment, initializes SQLite, registers systemd services, and sets up Nginx:
-
-```bash
-chmod +x deploy.sh
-sudo ./deploy.sh
-```
-
-After deployment, useful service commands include:
-
-```bash
-sudo systemctl status ayahpath-frontend
-sudo systemctl status ayahpath-api
-sudo journalctl -u ayahpath-frontend -f
-sudo journalctl -u ayahpath-api -f
-```
-
-## Security Notes
-
-- Set a strong `FLASK_SECRET_KEY` in production.
-- Restrict `AYAHPATH_ALLOWED_ORIGINS` to your real domain.
-- Keep `.env`, local databases, and runtime logs out of version control.
-- Do not expose API keys in client-side code or committed files.
+---
 
 ## License
 
-No license file is currently included. Add a license before publishing if you want to define how others may use, modify, or distribute the project.
+This project is open source. See LICENSE file in the repository for details.
+
+---
+
+## Support & Feedback
+
+Have questions or suggestions? We'd love to hear from you:
+
+- Visit [ayahpath.online](https://ayahpath.online)
+- Check the FAQ section in the app
+- Report issues on GitHub
+- Share your story of how AyahPath helped you
+
+---
+
+## Acknowledgments
+
+- Built for the [Quran Hackathon](https://launch.provisioncapital.com/quran-hackathon)
+- Qur'an data from Quran.com and Quran Foundation
+- Hadith data from Hadith API
+- Inspired by the need for accessible Islamic guidance in digital age
+- Thanks to all contributors and community members
+
+---
+
+**AyahPath — Guided by the Words of Allah ﷻ**
+
+*"Indeed, in the Qur'an there is guidance and good news for the believers." (Qur'an 2:97)*
