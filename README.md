@@ -147,17 +147,6 @@ Your data stays with you:
 
 ---
 
-## Offline Capabilities
-
-AyahPath works seamlessly offline:
-- View all saved reflections and prayers
-- Access bundled Qur'an data
-- Update personal goals and streaks
-- Automatic sync when connection returns
-- No features disabled offline (except live API calls)
-
----
-
 ## Accessibility
 
 Designed with inclusivity in mind:
@@ -183,21 +172,6 @@ Currently available in:
 - Hindi
 
 More languages coming soon.
-
----
-
-## Contributing
-
-We welcome contributions! Areas where we'd love help:
-
-- Adding new Qur'anic scenario categories
-- Improving AI guidance algorithms
-- Translating to additional languages
-- Enhancing accessibility features
-- Bug fixes and performance improvements
-- UI/UX refinements
-
-See the repository for technical details: [github.com/669px/AyahPath](https://github.com/669px/AyahPath)
 
 ---
 
@@ -229,18 +203,12 @@ See the repository for technical details: [github.com/669px/AyahPath](https://gi
 
 ---
 
-## License
-
-This project is open source. See LICENSE file in the repository for details.
-
----
 
 ## Support & Feedback
 
 Have questions or suggestions? We'd love to hear from you:
 
 - Visit [ayahpath.online](https://ayahpath.online)
-- Check the FAQ section in the app
 - Report issues on GitHub
 - Share your story of how AyahPath helped you
 
